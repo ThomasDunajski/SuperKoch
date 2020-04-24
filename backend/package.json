@@ -1,0 +1,11 @@
+{
+  "name": "super-koch-backend",
+  "version": "1.0.0",
+  "description": "simple server for debugging the frontend",
+  "author": "thomas dunajski <thomas.dunajski@gfnork.de>",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1"
+  }
+}

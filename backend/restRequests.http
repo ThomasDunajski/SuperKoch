@@ -1,0 +1,32 @@
+GET http://localhost:3000/tags
+
+###
+
+POST http://localhost:3000/tags/recomanded
+content-type: application/json
+{
+    "selectedTags":[{"name":"fancy"}]
+}
+
+###
+
+POST http://localhost:3000/tags/recomanded
+content-type: application/json
+
+{
+    "worngRequest":[]
+}
+
+###
+
+GET http://localhost:3000/recepie/1
+
+
+###
+
+POST http://localhost:3000/recepie/TagSearch
+content-type: application/json
+
+{
+    "selectedTags": ["5e907bf10ce9ad2f9ce38298"]
+}

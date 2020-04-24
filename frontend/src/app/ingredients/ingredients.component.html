@@ -1,0 +1,11 @@
+<p>
+    <button mat-button (click)="decServings()">-</button>
+    {{servings}} Portionen
+    <button mat-button (click)="incServings()">+</button>
+</p>
+<table class="ingredients-table">
+    <tr *ngFor="let ingredient of ingredients, let isEven=even" [class.even]="isEven" >
+        <th class="ingredient">{{ingredient.name}}</th>   
+        <th>{{ingredient.quantity * servings}}</th>
+    </tr>
+</table>

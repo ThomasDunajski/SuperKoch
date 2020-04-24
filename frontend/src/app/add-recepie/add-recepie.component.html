@@ -1,0 +1,29 @@
+<h2>Rezept hinzufügen</h2>
+<p>
+    <mat-form-field>
+        <mat-label>Name</mat-label>
+        <input [value]="recipe.name" matInput placeholder="z.B. Tomatensalat">
+        <mat-hint>Hint</mat-hint>
+      </mat-form-field>
+</p>
+<p>
+  <mat-form-field>
+      <mat-label>Kochzeit</mat-label>
+      <input [value]="recipe.cookingDuration" matInput placeholder="z.B. Tomatensalat">
+      <mat-hint>Hint</mat-hint>
+    </mat-form-field>
+</p>
+<p>
+<mat-form-field>
+  <mat-label>Wartezeit</mat-label>
+  <input [value]="recipe.restDuration" matInput placeholder="z.B. Tomatensalat">
+  <mat-hint>Hint</mat-hint>
+</mat-form-field>
+</p>
+<p>
+  <mat-form-field>
+    <mat-label>Portionen</mat-label>
+    <input [value]="recipe.servings" matInput placeholder="z.B. Tomatensalat">
+    <mat-hint>Hint</mat-hint>
+  </mat-form-field>
+</p>

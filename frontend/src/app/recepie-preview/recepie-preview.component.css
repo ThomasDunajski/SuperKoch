@@ -1,0 +1,15 @@
+img {
+    max-width: 10%;
+}
+a{
+    text-decoration: none;
+    color: black;
+}
+.content {
+    display: flex;
+    margin-bottom: 3px;
+}
+.recepieName{
+position: absolute;
+margin-top: 1.4%;
+}

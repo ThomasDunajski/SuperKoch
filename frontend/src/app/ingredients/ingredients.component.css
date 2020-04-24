@@ -1,0 +1,19 @@
+.ingredients-table{
+    margin-left:auto; 
+    margin-right:auto;
+    width: 100%;
+}
+.ingredient{
+    text-align: left;
+}
+.even{
+    background-color: lightgray;
+}
+input{
+    max-width: 6%;
+}
+button{
+    max-width: 6%;
+    background-color: lightgray;
+    font-weight: bold;
+}

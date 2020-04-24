@@ -1,0 +1,35 @@
+<div class="container">
+    <div class="centered"> 
+        <h3 class="left">
+            Empfohlen
+        </h3>
+        <div>
+            <mat-form-field>
+                <mat-hint>weitere Tags</mat-hint>
+            <mat-chip-list #tags>
+                <mat-chip color="primary"  *ngFor="let tag of recomandedTags" (click)="onTagClick($event, tag)">{{tag.name}}</mat-chip>
+            </mat-chip-list>
+            <input #tagInput [matChipInputFor]="tags" [formControl]="tagCtrl" [matAutocomplete]="auto" #textbox style="width: 10000%;">
+                <mat-autocomplete #auto="matAutocomplete" (optionSelected)="autocompleteSelected($event)">
+                    <mat-option *ngFor="let tag of tagsForAutocomplete | async" [value]="tag">
+                        {{tag}}
+                    </mat-option>
+                </mat-autocomplete>
+            </mat-form-field>
+        </div>
+        
+        <h3 class="left bold">
+            Ausgewählt
+        </h3>
+        
+        <mat-chip-list #chipList>
+            <mat-chip selected *ngFor="let tag of selected" [removable]="true" (removed)="remove(tag)">{{tag.name}} 
+              <mat-icon matChipRemove>cancel</mat-icon>
+            </mat-chip>
+        </mat-chip-list>  
+        
+         <p class="left">
+            <app-recepie-preview *ngFor="let recepie of recepies" [data]="recepie"></app-recepie-preview>
+         </p>
+    </div>
+</div>

@@ -1,0 +1,11 @@
+<mat-toolbar color="primary">
+    <a routerLink = "/" style="color:inherit; text-decoration: none;">Superkoch</a>
+    <input placeholder="Search" style=" margin-left: auto; margin-right: auto;">
+
+    <button mat-button [matMenuTriggerFor]="menu"><mat-icon>menu</mat-icon></button>
+    <mat-menu #menu="matMenu">
+        <button mat-menu-item [routerLink]="['/add-recepie']">
+            Rezept Hinzufügen
+        </button>
+    </mat-menu>
+</mat-toolbar>
