@@ -4,10 +4,12 @@
     <div style="text-align: center;">
         <span style="margin-right: 1%;">Cooking Time {{recepie.cookingDuration}}</span>
         <span>Resting Time {{recepie.restDuration}}</span>
-        <mat-chip-list>
-            <mat-chip style="margin-top: 4%;" color="primary" selected *ngFor="let tag of recepie.tags">{{tag.name}}</mat-chip>
-        </mat-chip-list>
     </div>    
+    <div style="text-align: center;">
+    <mat-chip-list>
+        <mat-chip style="margin-top: 4%;" color="primary" selected *ngFor="let tag of recepie.tags">{{tag.name}}</mat-chip>
+    </mat-chip-list>
+    </div>
     <div class="recepie">
         <app-ingredients [ingredients]="recepie.ingredients" [servings]="recepie.servings"></app-ingredients>
         <span>

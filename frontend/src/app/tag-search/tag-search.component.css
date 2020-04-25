@@ -7,3 +7,9 @@ mat-form-field {
 .left.bold{
     font-weight: bold;
 }
+.centered{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 90%;
+}

@@ -20,4 +20,6 @@ img {
     margin-left: 5%;
     max-width: 90%;
 }
-
+.mat-chip-list{
+    display:inline-block;
+}
