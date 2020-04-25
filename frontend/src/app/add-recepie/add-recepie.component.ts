@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../api.service';
-import { Recipe }from '../recipe';
+import { Recipe , Ingredient}from '../recipe';
+import { RecepieComponent } from '../recepie/recepie.component';
 
 @Component({
   selector: 'app-add-recepie',
@@ -10,8 +11,26 @@ import { Recipe }from '../recipe';
 export class AddRecepieComponent implements OnInit {
 
   recipe:Recipe = new Recipe();
+  isSesonal:boolean;
   constructor() { }
   ngOnInit(): void {
   }
 
+  addIngredient(){
+    this.recipe.ingredients.push(new Ingredient());
+  }
+
+  removeIngredient(index:number){
+    this.recipe.ingredients.splice(index, 1)
+  }
+  addInstruction(){
+    this.recipe.instructions.push("");
+  }
+
+  removeInctruction(index:number){
+    this.recipe.instructions.splice(index, 1)
+  }
+  onChange(isChecked: boolean){
+    this.isSesonal = isChecked;
+  }
 }

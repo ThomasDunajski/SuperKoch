@@ -1,12 +1,3 @@
-.centered {
-    align-self: center;
-    width: 90%;
-    text-align: center;
-}
-.container{
-    display: flex;
-    justify-content: center;
-}
 mat-form-field {
     width: 100%;
   }

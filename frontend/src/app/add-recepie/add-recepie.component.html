@@ -1,29 +1,69 @@
-<h2>Rezept hinzufügen</h2>
-<p>
+<div class="centered">
+  <h2>Rezept hinzufügen</h2>
+  <p>
+      <mat-form-field>
+          <mat-label>Name</mat-label>
+          <input [value]="recipe.name" matInput placeholder="z.B. Tomatensalat">
+          <mat-hint>Hint</mat-hint>
+        </mat-form-field>
+  </p>
+  <p>
     <mat-form-field>
-        <mat-label>Name</mat-label>
-        <input [value]="recipe.name" matInput placeholder="z.B. Tomatensalat">
+        <mat-label>Kochzeit</mat-label>
+        <input [value]="recipe.cookingDuration" matInput placeholder="z.B. 15">
         <mat-hint>Hint</mat-hint>
       </mat-form-field>
-</p>
-<p>
+  </p>
+  <p>
   <mat-form-field>
-      <mat-label>Kochzeit</mat-label>
-      <input [value]="recipe.cookingDuration" matInput placeholder="z.B. Tomatensalat">
-      <mat-hint>Hint</mat-hint>
-    </mat-form-field>
-</p>
-<p>
-<mat-form-field>
-  <mat-label>Wartezeit</mat-label>
-  <input [value]="recipe.restDuration" matInput placeholder="z.B. Tomatensalat">
-  <mat-hint>Hint</mat-hint>
-</mat-form-field>
-</p>
-<p>
-  <mat-form-field>
-    <mat-label>Portionen</mat-label>
-    <input [value]="recipe.servings" matInput placeholder="z.B. Tomatensalat">
+    <mat-label>Wartezeit</mat-label>
+    <input [value]="recipe.restDuration" matInput placeholder="z.B. 15">
     <mat-hint>Hint</mat-hint>
   </mat-form-field>
-</p>
+  </p>
+  <p>
+    <mat-form-field>
+      <mat-label>Portionen</mat-label>
+      <input [value]="recipe.servings" matInput placeholder="z.B. 4">
+      <mat-hint>Hint</mat-hint>
+    </mat-form-field>
+  </p>
+  <h3>Zutaten</h3>
+  <p  *ngFor="let ingredient of recipe.ingredients; let i = index">
+    <mat-form-field>
+      <mat-label>Zutat</mat-label>
+      <input [value]="ingredient.name" matInput placeholder="z.B. Tomate">
+      <mat-hint>Hint</mat-hint>
+    </mat-form-field>
+    <button mat-button (click)="removeIngredient(i)" class="red">
+      <mat-icon>remove_circle_outline</mat-icon>
+    </button>
+  </p>
+  <p class="center_button">
+    <button mat-button (click)="addIngredient()" class="green">
+      <mat-icon>add_circle_outline</mat-icon>
+    </button>
+  </p>
+  <h3>Anleitung</h3>
+  <p  *ngFor="let instruction of recipe.instructions; let i = index">
+    <mat-form-field>
+      <mat-label>Schritt</mat-label>
+      <input [value]="instruction" matInput placeholder="z.B. Gemüse schneiden">
+      <mat-hint>Hint</mat-hint>
+    </mat-form-field>
+    <button mat-button (click)="removeInctruction(i)" class="red">
+      <mat-icon>remove_circle_outline</mat-icon>
+    </button>
+  </p>
+  <p class="center_button">
+  <button mat-button (click)="addInstruction()" class="green">
+    <mat-icon>add_circle_outline</mat-icon>
+  </button>
+  </p>
+  <p>
+    <mat-checkbox [checked]="isSesonal" (change)="onChange($event.checked)">Saisonal</mat-checkbox>
+  </p>
+  <p *ngIf="isSesonal">
+   test
+  </p>
+</div>

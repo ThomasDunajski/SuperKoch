@@ -18,6 +18,7 @@ import { MatChipsModule } from '@angular/material/chips';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import {MatInputModule} from '@angular/material/input';
+import{MatCheckboxModule} from '@angular/material/checkbox';
 
 import { RecepieComponent } from './recepie/recepie.component';
 import { TagSearchComponent } from './tag-search/tag-search.component';
@@ -48,6 +49,7 @@ import { AddRecepieComponent } from './add-recepie/add-recepie.component';
     MatAutocompleteModule,
     MatInputModule,
     MatMenuModule,
+    MatCheckboxModule,
     MatToolbarModule,
     MatIconModule,
     MatFormFieldModule,
