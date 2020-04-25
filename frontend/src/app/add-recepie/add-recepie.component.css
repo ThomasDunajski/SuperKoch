@@ -11,6 +11,9 @@ h2{
     text-align: center;
     min-width: 90%;
 }
+p{
+    text-align: center;
+}
 .center_button{
     text-align: center;
 }
@@ -18,8 +21,32 @@ h2{
     display: block;
     margin-left: auto;
     margin-right: auto;
+}
+.centered.narrow{
     width: 90%;
 }
 .mat-form-field {
-    width: 90%;
+    width: 80%;
   }
+.mat-form-field.centered{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+#ingredient{
+    width: 40%;
+}
+#quantity{
+    width: 15%; 
+    margin-left: 2%;
+}
+#unit{
+    width: 16%; 
+    margin-left: 2%;
+}
+.mat-button{
+    width: 5%;
+}
+#instruction{
+    width: 75%;
+}

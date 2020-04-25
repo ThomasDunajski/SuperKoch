@@ -33,4 +33,6 @@ export class AddRecepieComponent implements OnInit {
   onChange(isChecked: boolean){
     this.isSesonal = isChecked;
   }
+  
+  units = ["g", "ml"];
 }
