@@ -20,6 +20,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import {MatInputModule} from '@angular/material/input';
 import{MatCheckboxModule} from '@angular/material/checkbox';
+import{MatCardModule} from '@angular/material/card';
+import {MatButtonToggleModule} from '@angular/material/button-toggle';
 
 import { RecepieComponent } from './recepie/recepie.component';
 import { TagSearchComponent } from './tag-search/tag-search.component';
@@ -48,9 +50,11 @@ import { AddRecepieComponent } from './add-recepie/add-recepie.component';
     BrowserAnimationsModule,
     MatButtonModule,
     MatAutocompleteModule,
+    MatButtonToggleModule,
     MatInputModule,
     MatMenuModule,
     MatSelectModule,
+    MatCardModule,
     MatCheckboxModule,
     MatToolbarModule,
     MatIconModule,

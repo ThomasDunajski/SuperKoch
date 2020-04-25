@@ -35,3 +35,10 @@
 #instruction{
     width: 75%;
 }
+.mat-button-toggle-checked {
+    background-color: #71BC78;
+}
+.mat-button-toggle-group{
+    justify-content: center;
+    flex-wrap: wrap;
+}

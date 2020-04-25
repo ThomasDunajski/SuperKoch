@@ -77,9 +77,22 @@
   </button>
   </p>
   <p>
-    <mat-checkbox [checked]="isSesonal" (change)="onChange($event.checked)">Saisonal</mat-checkbox>
+    <mat-checkbox [checked]="isSesonal" color="primary" (change)="onChange($event.checked)">Saisonal</mat-checkbox>
   </p>
   <p *ngIf="isSesonal">
-   test
+    <mat-button-toggle-group multiple="true">
+      <mat-button-toggle value="1">Jan</mat-button-toggle>
+      <mat-button-toggle value="2">Feb</mat-button-toggle>
+      <mat-button-toggle value="3">Mär</mat-button-toggle>
+      <mat-button-toggle value="4">Apr</mat-button-toggle>
+      <mat-button-toggle value="5">Mai</mat-button-toggle>
+      <mat-button-toggle value="6">Jun</mat-button-toggle>
+      <mat-button-toggle value="7">Jul</mat-button-toggle>
+      <mat-button-toggle value="8">Aug</mat-button-toggle>
+      <mat-button-toggle value="9">Sep</mat-button-toggle>
+      <mat-button-toggle value="10">Okt</mat-button-toggle>
+      <mat-button-toggle value="11">Nov</mat-button-toggle>
+      <mat-button-toggle value="12">Dez</mat-button-toggle>
+    </mat-button-toggle-group>
   </p>
 </div>
