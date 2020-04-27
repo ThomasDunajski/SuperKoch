@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Recipe , Ingredient}from './recipe';
 
 const localUrl = 'api/';
 
@@ -24,5 +25,8 @@ export class ApiService {
       ids.push(element._id);
     });
     return this.http.post(localUrl+ "recepie/TagSearch", {selectedTags:ids});
+  }
+  addRecipe(recipe:Recipe) {
+    return this.http.post(localUrl+ "recepie", {"recipe":recipe});
   }
 }

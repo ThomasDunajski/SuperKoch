@@ -36,9 +36,12 @@
     width: 75%;
 }
 .mat-button-toggle-checked {
-    background-color: #71BC78;
+    background-color: #74C365;
 }
 .mat-button-toggle-group{
     justify-content: center;
     flex-wrap: wrap;
+}
+#save-button{
+    width: auto;
 }

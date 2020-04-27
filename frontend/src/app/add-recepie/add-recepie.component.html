@@ -3,28 +3,28 @@
   <p>
       <mat-form-field class="centered">
           <mat-label>Name</mat-label>
-          <input [value]="recipe.name" matInput placeholder="z.B. Tomatensalat">
+          <input [(ngModel)]="recipe.name" matInput  placeholder="z.B. Tomatensalat">
           <mat-hint>Hint</mat-hint>
         </mat-form-field>
   </p>
   <p>
     <mat-form-field class="centered">
         <mat-label>Kochzeit</mat-label>
-        <input [value]="recipe.cookingDuration" matInput placeholder="z.B. 15">
-        <mat-hint>Hint</mat-hint>
+        <input [(ngModel)]="recipe.cookingDuration" matInput placeholder="z.B. 15">
+        <mat-hint>Minuten</mat-hint>
       </mat-form-field>
   </p>
   <p>
   <mat-form-field class="centered">
     <mat-label>Wartezeit</mat-label>
-    <input [value]="recipe.restDuration" matInput placeholder="z.B. 15">
-    <mat-hint>Hint</mat-hint>
+    <input [(ngModel)]="recipe.restDuration" matInput placeholder="z.B. 15">
+    <mat-hint>Minuten</mat-hint>
   </mat-form-field>
   </p>
   <p>
     <mat-form-field class="centered">
       <mat-label>Portionen</mat-label>
-      <input [value]="recipe.servings" matInput placeholder="z.B. 4">
+      <input [(ngModel)]="recipe.servings" matInput placeholder="z.B. 4">
       <mat-hint>Hint</mat-hint>
     </mat-form-field>
   </p>
@@ -33,17 +33,17 @@
     <p  *ngFor="let ingredient of recipe.ingredients; let i = index">
       <mat-form-field id="ingredient">
         <mat-label>Zutat</mat-label>
-        <input [value]="ingredient.name" matInput placeholder="z.B. Tomate">
+        <input [(ngModel)]="ingredient.name" matInput placeholder="z.B. Tomate">
         <mat-hint>Hint</mat-hint>
       </mat-form-field>
       <mat-form-field id="quantity">
         <mat-label>Menge</mat-label>
-        <input [value]="ingredient.quantity" matInput placeholder="z.B. 1">
+        <input [(ngModel)]="ingredient.quantity" matInput placeholder="z.B. 1">
         <mat-hint>Hint</mat-hint>
       </mat-form-field>
       <mat-form-field id="unit">
         <mat-label>Einheit</mat-label>
-        <mat-select>
+        <mat-select [(ngModel)]="ingredient.unit">
           <mat-option *ngFor="let unit of units" [value]="unit">
             {{unit}}
           </mat-option>
@@ -64,7 +64,7 @@
   <p  *ngFor="let instruction of recipe.instructions; let i = index">
     <mat-form-field id="instruction">
       <mat-label>Schritt</mat-label>
-      <input [value]="instruction" matInput placeholder="z.B. Gemüse schneiden">
+      <input [(ngModel)]="recipe.instructions[i]" matInput placeholder="z.B. Gemüse schneiden">
       <mat-hint *ngIf="i===0">für die Übersicht lohnt es sich meistens das Rezept in mehrere Scritte zu teilen</mat-hint>
     </mat-form-field>
     <button mat-button (click)="removeInctruction(i)" class="red">
@@ -77,10 +77,10 @@
   </button>
   </p>
   <p>
-    <mat-checkbox [checked]="isSesonal" color="primary" (change)="onChange($event.checked)">Saisonal</mat-checkbox>
+    <mat-checkbox [checked]="isSesonal" color="primary" (change)="onCheckboxChange($event.checked)">Saisonal</mat-checkbox>
   </p>
   <p *ngIf="isSesonal">
-    <mat-button-toggle-group multiple="true">
+    <mat-button-toggle-group #season="matButtonToggleGroup" multiple="true" (change)="onSesonChanged(season.value)">
       <mat-button-toggle value="1">Jan</mat-button-toggle>
       <mat-button-toggle value="2">Feb</mat-button-toggle>
       <mat-button-toggle value="3">Mär</mat-button-toggle>
@@ -94,5 +94,10 @@
       <mat-button-toggle value="11">Nov</mat-button-toggle>
       <mat-button-toggle value="12">Dez</mat-button-toggle>
     </mat-button-toggle-group>
+  </p>
+  <p>
+    <button mat-button id="save-button" (click)="saveRecipe()">
+      Rezept Speichern
+    </button>
   </p>
 </div>
