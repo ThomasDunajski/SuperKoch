@@ -55,6 +55,11 @@ app.get('/recepie/:recepieId', function (req, res) {
         var dbo = db.db("SuperKoch");
         dbo.collection("Recepies").findOne({number:recepieId},(function(err, result) {
           if (err) throw err;
+          if(result === null || result === undefined){
+            res.json(result);
+            db.close();
+            return
+          }
           const tagIds = result.tags;
           var recepieTags =[];
           // resolve tags
@@ -96,9 +101,10 @@ app.post('/recepie/TagSearch', function (req, res) {
 });
 
 // read connection string with credentials from json
-var fs = require('fs');
-var url = JSON.parse(fs.readFileSync('config.json', 'utf8')).url;
+//var fs = require('fs');
+//var url = JSON.parse(fs.readFileSync('config.json', 'utf8')).url;
 
+var url = "mongodb+srv://SUperkovh:2MlYEch6qBslJ95s@superkoch-unfs3.mongodb.net/test?retryWrites=true&w=majority";
 //initalize tags
 MongoClient.connect(url, function(err, db) {
     if (err) throw err;
