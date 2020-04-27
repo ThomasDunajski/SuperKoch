@@ -30,3 +30,12 @@ content-type: application/json
 {
     "selectedTags": ["5e907bf10ce9ad2f9ce38298"]
 }
+
+###
+
+POST http://localhost:3000/recepie
+content-type: application/json
+
+{
+    "recipe": {"name":"test"}
+}
