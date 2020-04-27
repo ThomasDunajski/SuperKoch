@@ -95,6 +95,19 @@
       <mat-button-toggle value="12">Dez</mat-button-toggle>
     </mat-button-toggle-group>
   </p>
+  <h3>Tags</h3>
+  <mat-form-field>
+    <mat-chip-list>
+      <mat-chip color="primary" *ngFor="let tag of tags" (click)="addTag(tag)">{{tag.name}}</mat-chip>
+    </mat-chip-list>
+  </mat-form-field>
+  <p class=" centered narrow">
+  <mat-chip-list>
+    <mat-chip selected *ngFor="let tag of selectedTags" [removable]="true" (removed)="removeTag(tag)">{{tag.name}} 
+      <mat-icon matChipRemove>cancel</mat-icon>
+    </mat-chip>
+    </mat-chip-list>  
+  </p>
   <p>
     <button mat-button id="save-button" (click)="saveRecipe()">
       Rezept Speichern
