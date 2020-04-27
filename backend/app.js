@@ -29,6 +29,25 @@ app.post('/tags/recomanded', function (req, res) {
     }
 });
 
+app.post('/recepie', function (req, res) {
+  var recipe = req.body.recipe;
+  if (recipe === undefined){
+      res.statusMessage = "recipe undefined";
+      res.status(400).send();
+  }
+  else{
+    MongoClient.connect(url, function(err, db) {
+      if (err) throw err;
+      var dbo = db.db("SuperKoch");
+      dbo.collection("Recepies").insert(recipe,(function(err, result) {
+        console.log(result);
+        res.json({message:"success"});
+        db.close();
+      }));
+    });
+  }
+});
+
 app.get('/recepie/:recepieId', function (req, res) {
     var recepieId = parseInt(req.params.recepieId);
     MongoClient.connect(url, function(err, db) {
