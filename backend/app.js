@@ -102,7 +102,7 @@ app.post('/recepie/TagSearch', function (req, res) {
   }
 });
 
-app.post('/upload', function(req, res) {
+app.post('/images/upload', function(req, res) {
   console.log('upload called')
   upload(req,res,function(err){
     if(req.fileValidationError) {

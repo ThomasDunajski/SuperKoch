@@ -22,6 +22,7 @@ import {MatInputModule} from '@angular/material/input';
 import{MatCheckboxModule} from '@angular/material/checkbox';
 import{MatCardModule} from '@angular/material/card';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
 
 import { RecepieComponent } from './recepie/recepie.component';
 import { TagSearchComponent } from './tag-search/tag-search.component';
@@ -50,6 +51,7 @@ import { AddRecepieComponent } from './add-recepie/add-recepie.component';
     BrowserAnimationsModule,
     MatButtonModule,
     MatAutocompleteModule,
+    MatProgressBarModule,
     MatButtonToggleModule,
     MatInputModule,
     MatMenuModule,

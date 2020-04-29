@@ -34,7 +34,7 @@ export class ApiService {
     var formData: any = new FormData();
     formData.append("file", profileImage);
 
-    return this.http.post(localUrl+ 'upload', formData, {
+    return this.http.post(localUrl+ '/images/upload', formData, {
       reportProgress: true,
       observe: 'events'
     })

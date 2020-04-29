@@ -24,7 +24,7 @@ export class AddRecepieComponent implements OnInit {
   constructor(private api: ApiService, private router: Router,public fb: FormBuilder,) { 
     this.form = this.fb.group({
     name: [''],
-    avatar: [null]
+    image: [null]
   })}
   ngOnInit(): void {
     this.getAllTags();
@@ -84,31 +84,27 @@ export class AddRecepieComponent implements OnInit {
     this.selectedTags = this.selectedTags.filter( el => el.name.valueOf() !== tag.name.valueOf()); 
   }
 
-
-
-
-
-
   submitUser() {
     this.api.uploadImage(
-      this.form.value.avatar
+      this.form.value.image
     ).subscribe((event: HttpEvent<any>) => {
       switch (event.type) {
-        case HttpEventType.Sent:
-          console.log('Request has been made');
-          break;
-        case HttpEventType.ResponseHeader:
-          console.log('Response header has been received');
-          break;
         case HttpEventType.UploadProgress:
           this.progress = Math.round(event.loaded / event.total * 100);
           console.log(`Uploaded! ${this.progress}%`);
           break;
         case HttpEventType.Response:
-          console.log('Image successfully created', event.body);
-          setTimeout(() => {
+          console.log('Image successfully uploaded', event.body);
+          const resBody = JSON.parse(JSON.stringify(event.body));
+          if (resBody.filename ===""){
             this.progress = 0;
-          }, 1500);
+          }
+          else{
+            this.recipe.imageUri = resBody.filename;
+          }
+          //setTimeout(() => {
+          //  this.progress = 0;
+          //}, 1500);
 
       }
     })
@@ -116,8 +112,8 @@ export class AddRecepieComponent implements OnInit {
   uploadFile(event) {
     const file = (event.target as HTMLInputElement).files[0];
     this.form.patchValue({
-      avatar: file
+      image: file
     });
-    this.form.get('avatar').updateValueAndValidity()
+    this.form.get('image').updateValueAndValidity()
   }
 }
