@@ -3,6 +3,8 @@ import { ApiService } from '../api.service';
 import { Recipe , Ingredient}from '../recipe';
 import { RecepieComponent } from '../recepie/recepie.component';
 import { Router } from '@angular/router';
+import { FormBuilder, FormGroup } from "@angular/forms";
+import { HttpEvent, HttpEventType } from '@angular/common/http';
 
 
 @Component({
@@ -17,7 +19,13 @@ export class AddRecepieComponent implements OnInit {
   units = ["g", "ml", "TL", "EL", "Stück", "Dose"]
   tags;
   selectedTags = [];
-  constructor(private api: ApiService, private router: Router) { }
+  form: FormGroup;
+  progress: number = 0;
+  constructor(private api: ApiService, private router: Router,public fb: FormBuilder,) { 
+    this.form = this.fb.group({
+    name: [''],
+    avatar: [null]
+  })}
   ngOnInit(): void {
     this.getAllTags();
   }
@@ -74,5 +82,42 @@ export class AddRecepieComponent implements OnInit {
   removeTag(tag){
     this.tags.push(tag);
     this.selectedTags = this.selectedTags.filter( el => el.name.valueOf() !== tag.name.valueOf()); 
+  }
+
+
+
+
+
+
+  submitUser() {
+    this.api.uploadImage(
+      this.form.value.avatar
+    ).subscribe((event: HttpEvent<any>) => {
+      switch (event.type) {
+        case HttpEventType.Sent:
+          console.log('Request has been made');
+          break;
+        case HttpEventType.ResponseHeader:
+          console.log('Response header has been received');
+          break;
+        case HttpEventType.UploadProgress:
+          this.progress = Math.round(event.loaded / event.total * 100);
+          console.log(`Uploaded! ${this.progress}%`);
+          break;
+        case HttpEventType.Response:
+          console.log('Image successfully created', event.body);
+          setTimeout(() => {
+            this.progress = 0;
+          }, 1500);
+
+      }
+    })
+  }
+  uploadFile(event) {
+    const file = (event.target as HTMLInputElement).files[0];
+    this.form.patchValue({
+      avatar: file
+    });
+    this.form.get('avatar').updateValueAndValidity()
   }
 }

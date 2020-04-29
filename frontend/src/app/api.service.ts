@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Recipe , Ingredient}from './recipe';
+import { Observable } from 'rxjs';
 
 const localUrl = 'api/';
 
@@ -28,5 +29,14 @@ export class ApiService {
   }
   addRecipe(recipe:Recipe) {
     return this.http.post(localUrl+ "recepie", {"recipe":recipe});
+  }
+  uploadImage(profileImage: File): Observable<any> {
+    var formData: any = new FormData();
+    formData.append("file", profileImage);
+
+    return this.http.post(localUrl+ 'upload', formData, {
+      reportProgress: true,
+      observe: 'events'
+    })
   }
 }

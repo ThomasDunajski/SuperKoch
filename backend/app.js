@@ -2,9 +2,11 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var cors = require('cors');
 var app = express();
+var multer = require('multer');
 
 app.use(cors());
 app.use(bodyParser.json());
+app.use(express.static('public'));
 
 var MongoClient = require('mongodb').MongoClient;
 
@@ -100,6 +102,53 @@ app.post('/recepie/TagSearch', function (req, res) {
   }
 });
 
+app.post('/upload', function(req, res) {
+  console.log('upload called')
+  upload(req,res,function(err){
+    if(req.fileValidationError) {
+      console.log(req.fileValidationError);
+           res.json({error_code:1,err_desc:"wrong file format only jpg is accepted."});
+           return;
+      }
+      if(err){
+        console.log(err);
+           res.json({error_code:1,err_desc:err});
+           return;
+      }
+       res.json({error_code:0,err_desc:null});
+  })
+});
+
+function makeid(length) {
+  var result           = '';
+  var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  var charactersLength = characters.length;
+  for ( var i = 0; i < length; i++ ) {
+     result += characters.charAt(Math.floor(Math.random() * charactersLength));
+  }
+  return result;
+}
+
+var storage = multer.diskStorage({ //multers disk storage settings
+  destination: function (req, file, cb) {
+      cb(null, 'public\\images')
+  },
+  filename: function (req, file, cb) {
+      var datetimestamp = Date.now();
+      cb(null, datetimestamp + '.' + makeid(25) + '.jpg');
+  }
+});
+var upload = multer({ //multer settings
+  storage: storage,
+  fileFilter: function (req, file, cb) {
+    if (file.mimetype !== 'image/jpeg') {
+     req.fileValidationError = 'goes wrong on the mimetype';
+     return cb(null, false, new Error('goes wrong on the mimetype'));
+    }
+    cb(null, true);
+   }, 
+   limits: { fileSize: 10000000 }
+}).single('file');
 // read connection string with credentials from json
 //var fs = require('fs');
 //var url = JSON.parse(fs.readFileSync('config.json', 'utf8')).url;
