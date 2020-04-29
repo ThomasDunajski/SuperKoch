@@ -107,15 +107,15 @@ app.post('/upload', function(req, res) {
   upload(req,res,function(err){
     if(req.fileValidationError) {
       console.log(req.fileValidationError);
-           res.json({error_code:1,err_desc:"wrong file format only jpg is accepted."});
-           return;
-      }
-      if(err){
+      res.json({error_code:1,err_desc:"wrong file format only jpg is accepted."});
+        return;
+    }
+    if(err){
         console.log(err);
            res.json({error_code:1,err_desc:err});
            return;
       }
-       res.json({error_code:0,err_desc:null});
+       res.json({error_code:0,err_desc:null, filename: req.file.filename});
   })
 });
 
@@ -135,7 +135,7 @@ var storage = multer.diskStorage({ //multers disk storage settings
   },
   filename: function (req, file, cb) {
       var datetimestamp = Date.now();
-      cb(null, datetimestamp + '.' + makeid(25) + '.jpg');
+      cb(null, datetimestamp + '.' + makeid(5) + '.jpg');
   }
 });
 var upload = multer({ //multer settings
