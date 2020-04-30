@@ -38,6 +38,12 @@ app.post('/recepie', function (req, res) {
       res.status(400).send();
   }
   else{
+    // trim all strings
+    for (let key in recipe) {
+      if (typeof recipe[key] === 'string' || recipe[key] instanceof String){
+        recipe[key] = recipe[key].trim();
+      }
+    }
     MongoClient.connect(url, function(err, db) {
       if (err) throw err;
       var dbo = db.db("SuperKoch");
