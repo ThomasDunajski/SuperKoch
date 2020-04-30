@@ -6,6 +6,6 @@
 <table class="ingredients-table">
     <tr *ngFor="let ingredient of ingredients, let isEven=even" [class.even]="isEven" >
         <th class="ingredient">{{ingredient.name}}</th>   
-        <th>{{ingredient.quantity * servings}}</th>
+        <th>{{ingredient.quantity * servings}} {{ingredient.unit}}</th>
     </tr>
 </table>

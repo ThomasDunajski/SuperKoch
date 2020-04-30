@@ -3,9 +3,14 @@
 }
 .recepie{
     display: flex;
+    flex-basis: 100%;
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
+    max-width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    gap: 10px;
 }
 h1 {
     text-align: center;
@@ -17,9 +22,16 @@ img {
     margin-right: auto;
 }
 .recepie-instruction{
-    margin-left: 5%;
-    max-width: 90%;
+    /*margin-left: 5%;*/
+
 }
 .mat-chip-list{
     display:inline-block;
+}
+.app-ingredients{
+    margin-right: 2%;
+}
+.growing{
+    width: 55%;
+    flex-grow: 2;
 }

@@ -2,8 +2,8 @@
     <h1 >{{recepie.name}}</h1>
     <img src={{recepie.imageUri}}>
     <div style="text-align: center;">
-        <span style="margin-right: 1%;">Cooking Time {{recepie.cookingDuration}}</span>
-        <span>Resting Time {{recepie.restDuration}}</span>
+        <span style="margin-right: 1%;">Kochzeit {{recepie.cookingDuration}} min</span>
+        <span>Wartezeit {{recepie.restDuration}} min</span>
     </div>    
     <div style="text-align: center;">
     <mat-chip-list>
@@ -11,9 +11,9 @@
     </mat-chip-list>
     </div>
     <div class="recepie">
-        <app-ingredients [ingredients]="recepie.ingredients" [servings]="recepie.servings"></app-ingredients>
-        <span>
-            <p *ngFor="let instruction of recepie.instructions" class="recepie-instruction">
+        <app-ingredients [ingredients]="recepie.ingredients" [servings]="recepie.servings" class="app-ingredients"></app-ingredients>
+        <span class="growing">
+            <p *ngFor="let instruction of recepie.instructions">
                 {{instruction}}
             </p>
         </span>
