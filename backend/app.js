@@ -41,11 +41,19 @@ app.post('/recepie', function (req, res) {
     MongoClient.connect(url, function(err, db) {
       if (err) throw err;
       var dbo = db.db("SuperKoch");
-      dbo.collection("Recepies").insert(recipe,(function(err, result) {
-        console.log(result);
-        res.json({message:"success"});
-        db.close();
-      }));
+      dbo.collection("Recepies").aggregate([
+        {"$project": { number : 1 }},
+        {"$sort": {"number":-1}},
+        {"$limit": 1}
+      ]).next().then((data) => {
+        // Here you can do something with your data
+        recipe.number = data.number +1;
+        dbo.collection("Recepies").insert(recipe,(function(err, result) {
+          console.log(result);
+          res.json({message:"success"});
+          db.close();
+        }));
+      });
     });
   }
 });
