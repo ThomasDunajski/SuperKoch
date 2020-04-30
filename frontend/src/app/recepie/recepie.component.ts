@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../api.service';
-import { error } from '@angular/compiler/src/util';
+import { Recipe , Ingredient}from '../recipe';
+
 
 @Component({
   selector: 'app-recepie',
@@ -12,15 +13,18 @@ export class RecepieComponent implements OnInit {
   constructor(private api: ApiService) { }
 
   ngOnInit(): void {
-    this.getRecepie(1);
+    this.getRecepie("2");
   }
 
-  recepie;
+  recepie:Recipe;
   error;
   
   getRecepie(number){
     this.api.getRecepie(number).subscribe(data => {
-      this.recepie = data;
+      this.recepie = data as Recipe;
+      // resolving imagename to url if its a uploaded file
+      if (this.recepie.imageUri.indexOf("/") === -1)
+      this.recepie.imageUri = this.api.getImageUri(this.recepie.imageUri);
     },
     (error => {
       this.error = error;      

@@ -15,7 +15,7 @@ export class ApiService {
     return this.http.post(localUrl+ "tags/recomanded", {selectedTags:selectedTags});
   }
   getAllTags() {
-    return this.http.get(localUrl + "/tags");
+    return this.http.get(localUrl + "tags");
   }
   getRecepie(number) {
     return this.http.get(localUrl + "recepie/" + number);
@@ -34,9 +34,12 @@ export class ApiService {
     var formData: any = new FormData();
     formData.append("file", profileImage);
 
-    return this.http.post(localUrl+ '/images/upload', formData, {
+    return this.http.post(localUrl+ 'images/upload', formData, {
       reportProgress: true,
       observe: 'events'
     })
+  }
+  getImageUri(name:string){
+    return localUrl + "images/" + name;
   }
 }
