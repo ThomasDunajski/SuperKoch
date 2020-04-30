@@ -65,7 +65,7 @@ import { AddRecepieComponent } from './add-recepie/add-recepie.component';
     MatChipsModule,
     RouterModule.forRoot([
       { path: '', component: TagSearchComponent },
-      { path: 'recepie', component: RecepieComponent },
+      { path: 'recipe/:id', component: RecepieComponent },
       { path: 'add-recepie', component: AddRecepieComponent },
       // { path: 'recepie/:productId', component: RecepieComponent },
     ])

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../api.service';
 import { Recipe , Ingredient}from '../recipe';
+import { ActivatedRoute } from '@angular/router';
 
 
 @Component({
@@ -10,10 +11,10 @@ import { Recipe , Ingredient}from '../recipe';
 })
 export class RecepieComponent implements OnInit {
 
-  constructor(private api: ApiService) { }
+  constructor(private api: ApiService, private actRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.getRecepie("2");
+    this.getRecepie(this.actRoute.snapshot.params.id);
   }
 
   recepie:Recipe;
