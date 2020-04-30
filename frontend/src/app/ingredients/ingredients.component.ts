@@ -21,4 +21,7 @@ export class IngredientsComponent implements OnInit {
   decServings = function(){
     this.servings = --this.servings;
   }
+  getQuantity(quantity){
+    return quantity ? quantity * this.servings :"";
+  }
 }
