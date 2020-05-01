@@ -2,3 +2,6 @@ backend/public/images
 backend/node_modules/
 frontend/node_modules/
 backend/config.json
+Todo.txt
+.vscode/launch.json
+backend/test.css
