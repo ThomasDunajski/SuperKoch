@@ -63,36 +63,59 @@ app.post('/recepie', function (req, res) {
     });
   }
 });
-
-app.get('/recepie/:recepieId', function (req, res) {
-    var recepieId = parseInt(req.params.recepieId);
-    MongoClient.connect(url, function(err, db) {
-        if (err) throw err;
-        var dbo = db.db("SuperKoch");
-        dbo.collection("Recepies").findOne({number:recepieId},(function(err, result) {
-          if (err) throw err;
-          if(result === null || result === undefined){
-            res.json(result);
-            db.close();
-            return
-          }
-          const tagIds = result.tags;
-          var recepieTags =[];
-          // resolve tags
-          var tagIdString
-          tagIds.forEach(tagId =>{
-            tagIdString = JSON.stringify(tagId);
-            tags.forEach(tag =>{
-              if (JSON.stringify(tag._id) === tagIdString){
-                recepieTags.push(tag);
-              }
-            });
-          });
-          result.tags = recepieTags;
-          res.json(result);
-          db.close();
-        }));
+function find(db, query){
+  return new Promise((resolve, reject) => {
+   
+     db
+     .collection('Recepies')
+     .find(query)
+     .limit(1)
+     .toArray(function(err, data) {
+        err 
+           ? reject(err) 
+           : resolve(data[0]);
       });
+  });
+};
+
+function findOne (db, query) {
+  return new Promise((resolve, reject) => {
+
+     db
+     .collection('Recepies')
+     .findOne(query, function(err, data) {
+        err 
+           ? reject(err) 
+           : resolve(data);
+      });
+  });
+};
+
+function resolveTags(tagIds){
+  var recepieTags =[];
+  // resolve tags
+  var tagIdString
+  tagIds.forEach(tagId =>{
+    tagIdString = JSON.stringify(tagId);
+    tags.forEach(tag =>{
+      if (JSON.stringify(tag._id) === tagIdString){
+        recepieTags.push(tag);
+      }
+    });
+  });
+  return recepieTags;
+}
+
+app.get('/recepie/:recepieId', async function (req, res) {
+    var recepieId = parseInt(req.params.recepieId);
+    MongoClient.connect(url, async function(err, con) {
+        if (err) throw err;
+        const db = con.db("SuperKoch");
+        var recipe = await findOne(db, {number:recepieId});
+        recipe.tags = resolveTags(recipe.tags);
+        res.json(recipe);
+        con.close();
+    });
 });
 
 app.post('/recepie/search', function (req, res) {
