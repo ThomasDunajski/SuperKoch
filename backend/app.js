@@ -95,8 +95,9 @@ app.get('/recepie/:recepieId', function (req, res) {
       });
 });
 
-app.post('/recepie/TagSearch', function (req, res) {
-  var selectedTags = req.body.selectedTags;
+app.post('/recepie/search', function (req, res) {
+  const selectedTags = req.body.selectedTags;
+  const season = req.body.season ?  {season: new Date().getMonth() + 1}: {};
   if (selectedTags === undefined){
       res.statusMessage = "selectedTags undefined";
       res.status(400).send();
@@ -106,7 +107,7 @@ app.post('/recepie/TagSearch', function (req, res) {
     MongoClient.connect(url, function(err, db) {
       if (err) throw err;
       var dbo = db.db("SuperKoch");
-      dbo.collection("Recepies").find({tags: {$all: selectedTags}}, {name: 1}).toArray(function(err, result) {
+      dbo.collection("Recepies").find({$and:[{tags: {$all: selectedTags}}, season]}, {name: 1}).toArray(function(err, result) {
         if (err) throw err;
         //console.log(result);
         res.json(result);

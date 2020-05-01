@@ -22,10 +22,17 @@ export class ApiService {
   }
   getRecepieTagSearch(selectedTags) {
     var ids = [];
+    var season = false;
     selectedTags.forEach(element => {
-      ids.push(element._id);
+      if (element._id){
+        ids.push(element._id);
+      }
+      else if(element.name === "in Saison")
+      {
+        season = true;
+      }
     });
-    return this.http.post(localUrl+ "recepie/TagSearch", {selectedTags:ids});
+    return this.http.post(localUrl+ "recepie/search", {selectedTags:ids, season: season});
   }
   addRecipe(recipe:Recipe) {
     return this.http.post(localUrl+ "recepie", {"recipe":recipe});

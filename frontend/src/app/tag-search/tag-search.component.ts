@@ -84,12 +84,13 @@ export class TagSearchComponent implements OnInit {
     this.api.getAllTags(this.selected)
       .subscribe(data => {
         this.allTags = data;
+        this.allTags.push({_id: null, name:"in Saison"});
         this.allTags.forEach(element => {
           this.allTagNames.push(element.name)
         });
         this.tagsForAutocomplete = this.tagCtrl.valueChanges.pipe(
           startWith(null),
-          map((fruit: string | null) => fruit ? this._filter(fruit) : this.allTagNames.slice()));
+          map((tag: string | null) => tag ? this._filter(tag) : this.allTagNames.slice()));
       },
       (error => {
         this.allTags = [];
