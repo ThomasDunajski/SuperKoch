@@ -69,11 +69,11 @@ function find(db, query){
      db
      .collection('Recepies')
      .find(query)
-     .limit(1)
+     .limit(10)
      .toArray(function(err, data) {
         err 
            ? reject(err) 
-           : resolve(data[0]);
+           : resolve(data);
       });
   });
 };
@@ -127,15 +127,12 @@ app.post('/recepie/search', function (req, res) {
   }
   else
   {
-    MongoClient.connect(url, function(err, db) {
+    MongoClient.connect(url, async function(err, con) {
       if (err) throw err;
-      var dbo = db.db("SuperKoch");
-      dbo.collection("Recepies").find({$and:[{tags: {$all: selectedTags}}, season]}, {name: 1}).toArray(function(err, result) {
-        if (err) throw err;
-        //console.log(result);
-        res.json(result);
-        db.close();
-      });
+      const db = con.db("SuperKoch");
+      var recipes = await find(db, {$and:[{tags: {$all: selectedTags}}, season]});
+      res.json(recipes);
+      con.close();
     });
   }
 });
