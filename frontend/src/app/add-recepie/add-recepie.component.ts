@@ -21,6 +21,7 @@ export class AddRecepieComponent implements OnInit {
   selectedTags = [];
   form: FormGroup;
   progress: number = 0;
+  instructions =[{value:""}];
   constructor(private api: ApiService, private router: Router,public fb: FormBuilder,) { 
     this.form = this.fb.group({
     name: [''],
@@ -37,10 +38,10 @@ export class AddRecepieComponent implements OnInit {
     this.recipe.ingredients.splice(index, 1)
   }
   addInstruction(){
-    this.recipe.instructions.push("");
+    this.instructions.push({value:""});
   }
   removeInctruction(index:number){
-    this.recipe.instructions.splice(index, 1)
+    this.instructions.splice(index, 1)
   }
   onCheckboxChange(isChecked: boolean){
     this.isSesonal = isChecked;
@@ -49,6 +50,7 @@ export class AddRecepieComponent implements OnInit {
     this.recipe.season = value.map(Number);
   }
   saveRecipe(){
+    this.recipe.instructions = this.instructions.map( x=> x.value)
     this.recipe.ingredients.map(x=>x.quantity = x.quantity / this.recipe.servings)
     this.recipe.tags = this.selectedTags.map(x => x._id)
     console.log(this.recipe)

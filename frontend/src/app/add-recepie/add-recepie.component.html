@@ -61,10 +61,10 @@
     </button>
   </p>
   <h3>Anleitung</h3>
-  <p  *ngFor="let instruction of recipe.instructions; let i = index">
+  <p  *ngFor="let instruction of instructions; let i = index">
     <mat-form-field id="instruction">
       <mat-label>Schritt</mat-label>
-      <input [(ngModel)]="recipe.instructions[i]" matInput placeholder="z.B. Gemüse schneiden">
+      <textarea [(ngModel)]="instructions[i].value" matInput placeholder="z.B. Gemüse schneiden"></textarea>
       <mat-hint *ngIf="i===0">für die Übersicht lohnt es sich meistens das Rezept in mehrere Scritte zu teilen</mat-hint>
     </mat-form-field>
     <button mat-button (click)="removeInctruction(i)" class="red">
