@@ -14,9 +14,10 @@ import { HttpEvent, HttpEventType } from '@angular/common/http';
 })
 export class AddRecepieComponent implements OnInit {
 
+  public addForm: FormGroup;
   recipe:Recipe = new Recipe();
   isSesonal:boolean;
-  units = ["g", "ml", "TL", "EL", "Stück", "Dose","Priese", "Schuss", "etwas"]
+  units = ["g", "ml", "TL", "EL", "Stück", "Prise", "Schuss", "etwas", "Dose"]
   tags;
   selectedTags = [];
   form: FormGroup;

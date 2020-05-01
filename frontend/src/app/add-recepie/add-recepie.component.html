@@ -3,28 +3,28 @@
   <p>
       <mat-form-field class="centered">
           <mat-label>Name</mat-label>
-          <input [(ngModel)]="recipe.name" matInput  placeholder="z.B. Tomatensalat">
+          <input [(ngModel)]="recipe.name" matInput placeholder="z.B. Tomatensalat">
           <mat-hint>Hint</mat-hint>
         </mat-form-field>
   </p>
   <p>
     <mat-form-field class="centered">
         <mat-label>Kochzeit</mat-label>
-        <input [(ngModel)]="recipe.cookingDuration" matInput placeholder="z.B. 15">
+        <input [(ngModel)]="recipe.cookingDuration" type="number" matInput placeholder="z.B. 15">
         <mat-hint>Minuten</mat-hint>
       </mat-form-field>
   </p>
   <p>
   <mat-form-field class="centered">
     <mat-label>Wartezeit</mat-label>
-    <input [(ngModel)]="recipe.restDuration" matInput placeholder="z.B. 15">
+    <input [(ngModel)]="recipe.restDuration" type="number" matInput placeholder="z.B. 15">
     <mat-hint>Minuten</mat-hint>
   </mat-form-field>
   </p>
   <p>
     <mat-form-field class="centered">
       <mat-label>Portionen</mat-label>
-      <input [(ngModel)]="recipe.servings" matInput placeholder="z.B. 4">
+      <input [(ngModel)]="recipe.servings" type="number"matInput placeholder="z.B. 4">
       <mat-hint>Hint</mat-hint>
     </mat-form-field>
   </p>
@@ -38,7 +38,7 @@
       </mat-form-field>
       <mat-form-field id="quantity">
         <mat-label>Menge</mat-label>
-        <input [(ngModel)]="ingredient.quantity" matInput placeholder="z.B. 1">
+        <input [(ngModel)]="ingredient.quantity" type="number" matInput placeholder="z.B. 1">
         <mat-hint>Hint</mat-hint>
       </mat-form-field>
       <mat-form-field id="unit">
