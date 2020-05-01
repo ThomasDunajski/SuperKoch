@@ -111,7 +111,7 @@ app.get('/recepie/:recepieId', async function (req, res) {
     MongoClient.connect(url, async function(err, con) {
         if (err) throw err;
         const db = con.db("SuperKoch");
-        var recipe = await findOne(db, "Recepies", {number:recepieId});
+        var recipe = await findOne(db, {number:recepieId});
         recipe.tags = resolveTags(recipe.tags);
         res.json(recipe);
         con.close();
