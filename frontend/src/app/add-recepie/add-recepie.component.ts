@@ -68,15 +68,8 @@ export class AddRecepieComponent implements OnInit {
     console.log(this.recipe.name)
   }
 
-  getAllTags = function() {
-    this.api.getAllTags(this.selected)
-      .subscribe(data => {
-        this.tags = data;
-      },
-      (error => {
-        this.tags = [];
-      }
-      ));
+  getAllTags = async function() {
+      this.tags = await this.api.getAllTags();
   }
   addTag(tag){
     this.selectedTags.push(tag);

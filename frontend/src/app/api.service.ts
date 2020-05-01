@@ -12,13 +12,13 @@ export class ApiService {
 
   constructor(private http: HttpClient) { }
   getRecomandedTags(selectedTags) {
-    return this.http.post(localUrl+ "tags/recomanded", {selectedTags:selectedTags});
+    return this.http.post(localUrl+ "tags/recomanded", {selectedTags:selectedTags}).toPromise();
   }
   getAllTags() {
-    return this.http.get(localUrl + "tags");
+    return this.http.get(localUrl + "tags").toPromise();
   }
   getRecepie(number) {
-    return this.http.get(localUrl + "recepie/" + number);
+    return this.http.get(localUrl + "recepie/" + number).toPromise();
   }
   getRecepieTagSearch(selectedTags) {
     var ids = [];

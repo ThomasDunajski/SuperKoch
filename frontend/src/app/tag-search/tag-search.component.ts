@@ -70,33 +70,20 @@ export class TagSearchComponent implements OnInit {
     //this.selectTag(tag);
   }
 
-  getRecomandedTags = function() {
-    this.api.getRecomandedTags(this.selected)
-      .subscribe(data => {
-        this.recomandedTags = data;
-      },
-      (error => {
-
-      }
-      ));
+  getRecomandedTags = async function() {
+        this.recomandedTags = await this.api.getRecomandedTags(this.selected);
   }
-  getAllTags = function() {
-    this.api.getAllTags(this.selected)
-      .subscribe(data => {
-        this.allTags = data;
-        this.allTags.push({_id: null, name:"in Saison"});
-        this.allTags.forEach(element => {
-          this.allTagNames.push(element.name)
-        });
-        this.tagsForAutocomplete = this.tagCtrl.valueChanges.pipe(
-          startWith(null),
-          map((tag: string | null) => tag ? this._filter(tag) : this.allTagNames.slice()));
-      },
-      (error => {
-        this.allTags = [];
-      }
-      ));
+  getAllTags = async function() {
+    this.allTags = await this.api.getAllTags(this.selected);
+    this.allTags.push({_id: null, name:"in Saison"});
+    this.allTags.forEach(element => {
+      this.allTagNames.push(element.name)
+    });
+    this.tagsForAutocomplete = this.tagCtrl.valueChanges.pipe(
+      startWith(null),
+      map((tag: string | null) => tag ? this._filter(tag) : this.allTagNames.slice()));          
   }
+  
 getRecepieTagSearch = function() {
   this.api.getRecepieTagSearch(this.selected)
     .subscribe(data => {

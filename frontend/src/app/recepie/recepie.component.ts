@@ -20,15 +20,10 @@ export class RecepieComponent implements OnInit {
   recepie:Recipe;
   error;
   
-  getRecepie(number){
-    this.api.getRecepie(number).subscribe(data => {
-      this.recepie = data as Recipe;
+  getRecepie = async function(number){
+      this.recepie = await this.api.getRecepie(number);
       // resolving imagename to url if its a uploaded file
       if (this.recepie.imageUri.indexOf("/") === -1)
       this.recepie.imageUri = this.api.getImageUri(this.recepie.imageUri);
-    },
-    (error => {
-      this.error = error;      
-    }))
   }
 }

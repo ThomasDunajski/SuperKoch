@@ -138,7 +138,6 @@ app.post('/recepie/search', function (req, res) {
 });
 
 app.post('/images/upload', function(req, res) {
-  console.log('upload called')
   upload(req,res,function(err){
     if(req.fileValidationError) {
       console.log(req.fileValidationError);
@@ -167,7 +166,7 @@ function makeid(length) {
 
 var storage = multer.diskStorage({ //multers disk storage settings
   destination: function (req, file, cb) {
-      cb(null, 'public\\images')
+      cb(null, 'public/images')
   },
   filename: function (req, file, cb) {
       var datetimestamp = Date.now();
