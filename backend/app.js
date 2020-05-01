@@ -63,13 +63,13 @@ app.post('/recepie', function (req, res) {
     });
   }
 });
-function find(db, query){
+function find(db, collection, query, limit){
   return new Promise((resolve, reject) => {
    
      db
-     .collection('Recepies')
+     .collection(collection)
      .find(query)
-     .limit(10)
+     .limit(limit? limit : 10)
      .toArray(function(err, data) {
         err 
            ? reject(err) 
@@ -111,7 +111,7 @@ app.get('/recepie/:recepieId', async function (req, res) {
     MongoClient.connect(url, async function(err, con) {
         if (err) throw err;
         const db = con.db("SuperKoch");
-        var recipe = await findOne(db, {number:recepieId});
+        var recipe = await findOne(db, "Recepies", {number:recepieId});
         recipe.tags = resolveTags(recipe.tags);
         res.json(recipe);
         con.close();
@@ -130,7 +130,7 @@ app.post('/recepie/search', function (req, res) {
     MongoClient.connect(url, async function(err, con) {
       if (err) throw err;
       const db = con.db("SuperKoch");
-      var recipes = await find(db, {$and:[{tags: {$all: selectedTags}}, season]});
+      var recipes = await find(db, "Recepies", {$and:[{tags: {$all: selectedTags}}, season]});
       res.json(recipes);
       con.close();
     });
@@ -191,24 +191,17 @@ var upload = multer({ //multer settings
 
 var url = "mongodb+srv://SUperkovh:2MlYEch6qBslJ95s@superkoch-unfs3.mongodb.net/test?retryWrites=true&w=majority";
 //initalize tags
-MongoClient.connect(url, function(err, db) {
+MongoClient.connect(url, async function(err, con) {
     if (err) throw err;
-    var dbo = db.db("SuperKoch");
-    dbo.collection("Tags").find({}).toArray(function(err, result) {
-      if (err) {
-        console.log("failed initializing tags: " + err.message)
-      }else{
-        console.log(result);
-        tags = result;
-        console.log("tags initialized")
-      }
-      db.close();
-      //start server
-      var server_port = process.env.OPENSHIFT_NODEJS_PORT || 3000;
-      var server_ip_address = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1';
-      app.listen(server_port, server_ip_address, function () {
-          console.log("Listening on " + server_ip_address + ", server_port " + server_port)
-      });
+    const db = con.db("SuperKoch");
+    tags = await find(db, "Tags", {}, 100);
+    con.close();
+    
+    //start server
+    var server_port = process.env.OPENSHIFT_NODEJS_PORT || 3000;
+    var server_ip_address = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1';
+    app.listen(server_port, server_ip_address, function () {
+        console.log("Listening on " + server_ip_address + ", server_port " + server_port)
     });
   });
 
