@@ -32,3 +32,12 @@ img {
     width: 55%;
     flex-grow: 2;
 }
+app-season-viewer{
+    margin-top: 1%;
+}
+.mat-chip-list{
+    margin-top: 1%;
+}
+#season-viewer {
+    float: left; margin-left: 5% !important;
+}

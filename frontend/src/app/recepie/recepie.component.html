@@ -1,13 +1,14 @@
 <div *ngIf="recepie" class="centered"> 
     <h1 >{{recepie.name}}</h1>
     <img src={{recepie.imageUri}}>
+    <app-season-viewer id="season-viewer" *ngIf="recepie.season.length >0" class="recepie" [season]="recepie.season"></app-season-viewer>
     <div style="text-align: center;">
         <span style="margin-right: 1%;">Kochzeit {{recepie.cookingDuration}} min</span>
         <span>Wartezeit {{recepie.restDuration}} min</span>
     </div>    
     <div style="text-align: center;">
     <mat-chip-list>
-        <mat-chip style="margin-top: 4%;" color="primary" selected *ngFor="let tag of recepie.tags">{{tag.name}}</mat-chip>
+        <mat-chip color="primary" selected *ngFor="let tag of recepie.tags">{{tag.name}}</mat-chip>
     </mat-chip-list>
     </div>
     <div class="recepie">
@@ -18,5 +19,4 @@
             </p>
         </span>
     </div>
- </div>
-
+</div>

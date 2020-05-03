@@ -23,6 +23,7 @@ import{MatCheckboxModule} from '@angular/material/checkbox';
 import{MatCardModule} from '@angular/material/card';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
+import {MatExpansionModule} from '@angular/material/expansion';
 
 import { RecepieComponent } from './recepie/recepie.component';
 import { TagSearchComponent } from './tag-search/tag-search.component';
@@ -30,6 +31,7 @@ import { RecepiePreviewComponent } from './recepie-preview/recepie-preview.compo
 import { TextFilterPipe } from './text-filter-pipe';
 import { IngredientsComponent } from './ingredients/ingredients.component';
 import { AddRecepieComponent } from './add-recepie/add-recepie.component';
+import { SeasonViewerComponent } from './season-viewer/season-viewer.component';
 
 
 @NgModule({
@@ -41,7 +43,8 @@ import { AddRecepieComponent } from './add-recepie/add-recepie.component';
     RecepiePreviewComponent,
     TextFilterPipe,
     IngredientsComponent,
-    AddRecepieComponent
+    AddRecepieComponent,
+    SeasonViewerComponent
   ],
   imports: [
     BrowserModule,
@@ -52,6 +55,7 @@ import { AddRecepieComponent } from './add-recepie/add-recepie.component';
     MatButtonModule,
     MatAutocompleteModule,
     MatProgressBarModule,
+    MatExpansionModule,
     MatButtonToggleModule,
     MatInputModule,
     MatMenuModule,
