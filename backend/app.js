@@ -31,7 +31,7 @@ app.post('/tags/recomanded', function (req, res) {
     }
 });
 
-app.post('/recepie', function (req, res) {
+app.post('/recepie', async function (req, res) {
   var recipe = req.body.recipe;
   if (recipe === undefined){
       res.statusMessage = "recipe undefined";
@@ -44,28 +44,28 @@ app.post('/recepie', function (req, res) {
         recipe[key] = recipe[key].trim();
       }
     }
-    MongoClient.connect(url, function(err, db) {
-      if (err) throw err;
-      var dbo = db.db("SuperKoch");
-      dbo.collection("Recepies").aggregate([
-        {"$project": { number : 1 }},
-        {"$sort": {"number":-1}},
-        {"$limit": 1}
-      ]).next().then((data) => {
-        // Here you can do something with your data
-        recipe.number = data.number +1;
-        dbo.collection("Recepies").insert(recipe,(function(err, result) {
-          console.log(result);
-          res.json({message:"success"});
-          db.close();
-        }));
-      });
+    var connection = await getDb();
+    var db = connection.db("SuperKoch");
+    db.collection("Recepies").aggregate([
+      {"$project": { number : 1 }},
+      {"$sort": {"number":-1}},
+      {"$limit": 1}
+    ]).next().then((data) => {
+      // Here you can do something with your data
+      recipe.number = data.number +1;
+      db.collection("Recepies").insert(recipe,(function(err, result) {
+        console.log(result);
+        res.json({message:"success"});
+        connection.close();
+      }));
     });
   }
 });
-function find(db, collection, query, limit){
-  return new Promise((resolve, reject) => {
+function find(collection, query, limit){
+  return new Promise(async (resolve, reject) => {
    
+    const connection = await getDb();
+    const db = connection.db("SuperKoch");
      db
      .collection(collection)
      .find(query)
@@ -125,7 +125,7 @@ app.get('/recepie/:recepieId', async function (req, res) {
     res.json(recipe);
 });
 
-app.post('/recepie/search', function (req, res) {
+app.post('/recepie/search', async function (req, res) {
   const selectedTags = req.body.selectedTags;
   const season = req.body.season ?  {season: new Date().getMonth() + 1}: {};
   if (selectedTags === undefined){
@@ -134,13 +134,8 @@ app.post('/recepie/search', function (req, res) {
   }
   else
   {
-    MongoClient.connect(url, async function(err, con) {
-      if (err) throw err;
-      const db = con.db("SuperKoch");
-      var recipes = await find(db, "Recepies", {$and:[{tags: {$all: selectedTags}}, season]});
-      res.json(recipes);
-      con.close();
-    });
+    var recipes = await find("Recepies", {$and:[{tags: {$all: selectedTags}}, season]});
+    res.json(recipes);
   }
 });
 
@@ -166,18 +161,17 @@ app.post('/images/upload', function(req, res) {
 //var url = JSON.parse(fs.readFileSync('config.json', 'utf8')).url;
 
 var url = "mongodb+srv://SUperkovh:2MlYEch6qBslJ95s@superkoch-unfs3.mongodb.net/test?retryWrites=true&w=majority";
-//initalize tags
-MongoClient.connect(url, async function(err, con) {
-    if (err) throw err;
-    const db = con.db("SuperKoch");
-    tags = await find(db, "Tags", {}, 100);
-    con.close();
-    
-    //start server
-    var server_port = process.env.OPENSHIFT_NODEJS_PORT || 3000;
-    var server_ip_address = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1';
-    app.listen(server_port, server_ip_address, function () {
-        console.log("Listening on " + server_ip_address + ", server_port " + server_port)
-    });
-  });
+async function initTags(){
+  //initalize tags
+  tags = await find("Tags", {}, 100);
+}
+
+initTags();
+   
+//start server
+var server_port = process.env.OPENSHIFT_NODEJS_PORT || 3000;
+var server_ip_address = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1';
+app.listen(server_port, server_ip_address, function () {
+  console.log("Listening on " + server_ip_address + ", server_port " + server_port)
+});
 
