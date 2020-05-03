@@ -78,19 +78,31 @@ function find(db, collection, query, limit){
   });
 };
 
-function findOne (db, query) {
-  return new Promise((resolve, reject) => {
+function findOne (query) {
+  return new Promise(async (resolve, reject) => {
 
+    const connection = await getDb();
+    const db = connection.db("SuperKoch");
      db
      .collection('Recepies')
      .findOne(query, function(err, data) {
         err 
            ? reject(err) 
            : resolve(data);
+        connection.close();
       });
   });
 };
 
+function getDb(){
+  return new Promise((resolve, reject) => {
+    MongoClient.connect(url, async function(err, con) {
+      err 
+      ? reject(err) 
+      : resolve(con);
+  });
+  });
+};
 function resolveTags(tagIds){
   var recepieTags =[];
   // resolve tags
@@ -108,14 +120,9 @@ function resolveTags(tagIds){
 
 app.get('/recepie/:recepieId', async function (req, res) {
     var recepieId = parseInt(req.params.recepieId);
-    MongoClient.connect(url, async function(err, con) {
-        if (err) throw err;
-        const db = con.db("SuperKoch");
-        var recipe = await findOne(db, {number:recepieId});
-        recipe.tags = resolveTags(recipe.tags);
-        res.json(recipe);
-        con.close();
-    });
+    var recipe = await findOne({number:recepieId});
+    recipe.tags = resolveTags(recipe.tags);
+    res.json(recipe);
 });
 
 app.post('/recepie/search', function (req, res) {
