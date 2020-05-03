@@ -41,3 +41,6 @@ app-season-viewer{
 #season-viewer {
     float: left; margin-left: 5% !important;
 }
+#chips-container{
+    text-align: center; margin-left: 5%;
+}

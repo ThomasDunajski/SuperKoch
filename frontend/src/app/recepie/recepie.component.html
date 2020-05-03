@@ -6,7 +6,7 @@
         <span style="margin-right: 1%;">Kochzeit {{recepie.cookingDuration}} min</span>
         <span>Wartezeit {{recepie.restDuration}} min</span>
     </div>    
-    <div style="text-align: center;">
+    <div id="chips-container">
     <mat-chip-list>
         <mat-chip color="primary" selected *ngFor="let tag of recepie.tags">{{tag.name}}</mat-chip>
     </mat-chip-list>
