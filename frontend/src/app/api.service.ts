@@ -32,10 +32,10 @@ export class ApiService {
         season = true;
       }
     });
-    return this.http.post(localUrl+ "recepie/search", {selectedTags:ids, season: season});
+    return this.http.post(localUrl+ "recepie/search", {selectedTags:ids, season: season}).toPromise();;
   }
   addRecipe(recipe:Recipe) {
-    return this.http.post(localUrl+ "recepie", {"recipe":recipe});
+    return this.http.post(localUrl+ "recepie", {"recipe":recipe}).toPromise();
   }
   uploadImage(profileImage: File): Observable<any> {
     var formData: any = new FormData();

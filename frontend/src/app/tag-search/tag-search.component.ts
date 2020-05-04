@@ -46,7 +46,6 @@ export class TagSearchComponent implements OnInit {
     this.getRecomandedTags();
     this.allTags = this.allTags.filter( el => el.name.valueOf() !== tag.name.valueOf()); 
     this.allTagNames = this.allTagNames.filter( el => el.valueOf() !== tag.name.valueOf()); 
-    console.log(this.tagsForAutocomplete);
     this.getRecepieTagSearch();
 
   }
@@ -79,26 +78,17 @@ export class TagSearchComponent implements OnInit {
     this.allTags.forEach(element => {
       this.allTagNames.push(element.name)
     });
+    var filter = function(value: string): string[] {
+      const filterValue = value.toLowerCase();
+      return this.allTagNames.filter(tag => tag.toLowerCase().indexOf(filterValue) === 0);
+    }
     this.tagsForAutocomplete = this.tagCtrl.valueChanges.pipe(
       startWith(null),
-      map((tag: string | null) => tag ? this._filter(tag) : this.allTagNames.slice()));          
+      map((tag: string | null) => tag ? filter(tag) : this.allTagNames.slice()));          
   }
   
-getRecepieTagSearch = function() {
-  this.api.getRecepieTagSearch(this.selected)
-    .subscribe(data => {
-      this.recepies = data;
-    },
-    (error => {
-      this.recepies = [];
-    }
-    ));
-  }
-  
-  private _filter(value: string): string[] {
-    const filterValue = value.toLowerCase();
-
-    return this.allTagNames.filter(tag => tag.toLowerCase().indexOf(filterValue) === 0);
+  getRecepieTagSearch = async function() {
+    this.recepies = await this.api.getRecepieTagSearch(this.selected);
   }
 }
 

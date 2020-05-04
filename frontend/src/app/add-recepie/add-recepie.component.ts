@@ -55,14 +55,8 @@ export class AddRecepieComponent implements OnInit {
     this.recipe.ingredients.map(x=>x.quantity = x.quantity / this.recipe.servings)
     this.recipe.tags = this.selectedTags.map(x => x._id)
     console.log(this.recipe)
-    this.api.addRecipe(this.recipe).subscribe(data => {
-      // TODO
-      //this.router.navigateByUrl("/")
-    },
-    (error => {
-
-    }
-    ));
+    this.api.addRecipe(this.recipe)
+    .catch((err)=>console.log(err));
   }
   change(){
     console.log(this.recipe.name)

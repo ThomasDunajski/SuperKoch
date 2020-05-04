@@ -96,7 +96,7 @@ function findOne (query) {
 
 function getDb(){
   return new Promise((resolve, reject) => {
-    MongoClient.connect(url, async function(err, con) {
+    MongoClient.connect(url, { useUnifiedTopology: true }, async function(err, con) {
       err 
       ? reject(err) 
       : resolve(con);
