@@ -128,7 +128,7 @@ app.get('/recepie/:recepieId', async function (req, res) {
 app.post('/recepie/search', async function (req, res) {
   const selectedTags = req.body.selectedTags.length > 0 ? {tags: {$all: req.body.selectedTags}} : {};
   const season = req.body.season ?  {season: new Date().getMonth() + 1}: {};
-  const searchName = req.body.searchName ? {name:req.body.searchName} : {};
+  const searchName = req.body.searchName ?{$text: {$search:req.body.searchName}} : {};
   if (selectedTags === undefined){
       res.statusMessage = "selectedTags undefined";
       res.status(400).send();
@@ -157,11 +157,8 @@ app.post('/images/upload', function(req, res) {
   })
 });
 
-// read connection string with credentials from json
-//var fs = require('fs');
-//var url = JSON.parse(fs.readFileSync('config.json', 'utf8')).url;
-
-var url = "mongodb+srv://SUperkovh:2MlYEch6qBslJ95s@superkoch-unfs3.mongodb.net/test?retryWrites=true&w=majority";
+var fs = require('fs');
+var url = JSON.parse(fs.readFileSync('config.json', 'utf8')).url;
 async function initTags(){
   //initalize tags
   tags = await find("Tags", {}, 100);
