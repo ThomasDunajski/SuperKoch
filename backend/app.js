@@ -126,7 +126,7 @@ app.get('/recepie/:recepieId', async function (req, res) {
 });
 
 app.post('/recepie/search', async function (req, res) {
-  const selectedTags = req.body.selectedTags;
+  const selectedTags = req.body.selectedTags.length > 0 ? {tags: {$all: req.body.selectedTags}} : {};
   const season = req.body.season ?  {season: new Date().getMonth() + 1}: {};
   const searchName = req.body.searchName ? {name:req.body.searchName} : {};
   if (selectedTags === undefined){
@@ -135,7 +135,7 @@ app.post('/recepie/search', async function (req, res) {
   }
   else
   {
-    var recipes = await find("Recepies", {$and:[searchName,{$and:[{tags: {$all: selectedTags}}, season]}]});
+    var recipes = await find("Recepies", {$and:[searchName,{$and:[selectedTags, season]}]});
     res.json(recipes);
   }
 });
