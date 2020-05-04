@@ -26,6 +26,7 @@ export class TagSearchComponent implements OnInit {
   tagCtrl = new FormControl();
   friut;
   allTagNames: string[] = [];
+  searchName:string = "";
 
   constructor(private api: ApiService) {
     this.allTags=[];
@@ -46,7 +47,7 @@ export class TagSearchComponent implements OnInit {
     this.getRecomandedTags();
     this.allTags = this.allTags.filter( el => el.name.valueOf() !== tag.name.valueOf()); 
     this.allTagNames = this.allTagNames.filter( el => el.valueOf() !== tag.name.valueOf()); 
-    this.getRecepieTagSearch();
+    this.getRecipeSearch();
 
   }
 
@@ -58,7 +59,7 @@ export class TagSearchComponent implements OnInit {
     this.getRecomandedTags();
     this.allTags.push(tag);
     this.allTagNames.push(tag.name)
-    this.getRecepieTagSearch();
+    this.getRecipeSearch();
   }
 
   autocompleteSelected(event){
@@ -87,8 +88,12 @@ export class TagSearchComponent implements OnInit {
       map((tag: string | null) => tag ? filter(tag) : this.allTagNames.slice()));          
   }
   
-  getRecepieTagSearch = async function() {
-    this.recepies = await this.api.getRecepieTagSearch(this.selected);
+  getRecipeSearch = async function() {
+    this.recepies = await this.api.getRecipeSearch(this.selected, this.searchName);
+  }
+  nameChanged(name:string){
+    this.searchName = name;
+    this.getRecipeSearch();
   }
 }
 

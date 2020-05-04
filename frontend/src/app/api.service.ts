@@ -20,7 +20,7 @@ export class ApiService {
   getRecepie(number) {
     return this.http.get(localUrl + "recepie/" + number).toPromise();
   }
-  getRecepieTagSearch(selectedTags) {
+  getRecipeSearch(selectedTags, searchName:string) {
     var ids = [];
     var season = false;
     selectedTags.forEach(element => {
@@ -32,7 +32,7 @@ export class ApiService {
         season = true;
       }
     });
-    return this.http.post(localUrl+ "recepie/search", {selectedTags:ids, season: season}).toPromise();;
+    return this.http.post(localUrl+ "recepie/search", {selectedTags:ids, season: season, searchName: searchName}).toPromise();;
   }
   addRecipe(recipe:Recipe) {
     return this.http.post(localUrl+ "recepie", {"recipe":recipe}).toPromise();

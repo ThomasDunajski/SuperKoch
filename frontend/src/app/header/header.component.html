@@ -1,12 +1,14 @@
 <mat-toolbar color="primary" style="display: flex; justify-content: space-between; flex-direction: row;">
     <a routerLink = "/" style="color:inherit; text-decoration: none;">Superkoch</a>
-    <mat-form-field>
-        <mat-label>Search</mat-label>
-        <input matInput>
+    <span>
+        <mat-form-field>
+            <mat-label>Rezept suchen</mat-label>
+            <input matInput>
+          </mat-form-field>    
         <button mat-button>
             <mat-icon>search</mat-icon>
         </button>
-      </mat-form-field>    
+    </span>
     <button mat-button [matMenuTriggerFor]="menu"><mat-icon>menu</mat-icon></button>
 </mat-toolbar>
 <mat-menu #menu="matMenu">

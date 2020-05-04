@@ -1,6 +1,10 @@
 <div class="centered"> 
+    <mat-form-field id="search-field">
+        <mat-label>Name</mat-label>
+        <input #nameInput matInput (change)="nameChanged(nameInput.value)">
+      </mat-form-field>    
     <h3 class="left">
-        Empfohlen
+        Empfohlee Kategorien
     </h3>
     <div>
         <mat-form-field>
@@ -18,7 +22,7 @@
     </div>
     
     <h3 class="left bold">
-        Ausgewählt
+        Ausgewählte Kategorien
     </h3>
     
     <mat-chip-list #chipList>
@@ -26,6 +30,8 @@
           <mat-icon matChipRemove>cancel</mat-icon>
         </mat-chip>
     </mat-chip-list>  
+
+
     
      <p class="left">
         <app-recepie-preview *ngFor="let recepie of recepies" [data]="recepie"></app-recepie-preview>
