@@ -61,7 +61,7 @@ app.post('/recepie', async function (req, res) {
     });
   }
 });
-function find(collection, query, limit){
+function find(collection, query, limit, projection){
   return new Promise(async (resolve, reject) => {
    
     const connection = await getDb();
@@ -69,7 +69,8 @@ function find(collection, query, limit){
      db
      .collection(collection)
      .find(query)
-     .limit(limit? limit : 10)
+     .project(projection ? projection : {})
+     .limit(limit)
      .toArray(function(err, data) {
         err 
            ? reject(err) 
@@ -129,13 +130,15 @@ app.post('/recepie/search', async function (req, res) {
   const selectedTags = req.body.selectedTags.length > 0 ? {tags: {$all: req.body.selectedTags}} : {};
   const season = req.body.season ?  {season: new Date().getMonth() + 1}: {};
   const searchName = req.body.searchName ?{$text: {$search:req.body.searchName}} : {};
+  const projection = {name:1, imageUri:1, number:1, _id:0}
+  const limit = 10;
   if (selectedTags === undefined){
       res.statusMessage = "selectedTags undefined";
       res.status(400).send();
   }
   else
   {
-    var recipes = await find("Recepies", {$and:[searchName,{$and:[selectedTags, season]}]});
+    var recipes = await find("Recepies", {$and:[searchName,{$and:[selectedTags, season]}]}, limit,  projection);
     res.json(recipes);
   }
 });
