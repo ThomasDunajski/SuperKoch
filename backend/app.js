@@ -160,8 +160,14 @@ app.post('/images/upload', function(req, res) {
   })
 });
 
+// GET home page.
+var path = require('path');
+app.get('/', function(req, res, next) {
+  res.status(200).sendFile(path.join(__dirname, '/public/frontend/index.html')); 
+});
+
 var fs = require('fs');
-var url = JSON.parse(fs.readFileSync('config.json', 'utf8')).url;
+var url = JSON.parse(fs.readFileSync(path.join(__dirname, 'config.json'), 'utf8')).url;
 async function initTags(){
   //initalize tags
   tags = await find("Tags", {}, 100);
