@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ApiService } from '../api.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-recepie-preview',
@@ -8,7 +9,7 @@ import { ApiService } from '../api.service';
 })
 export class RecepiePreviewComponent implements OnInit {
 
-  constructor(private api: ApiService) { }
+  constructor(private api: ApiService, private router: Router) { }
 
   @Input() data;
   url;
@@ -17,5 +18,8 @@ export class RecepiePreviewComponent implements OnInit {
     // resolving imagename to url if its a uploaded file
     if (this.data.imageUri.indexOf("/") === -1)
     this.data.imageUri = this.api.getImageUri(this.data.imageUri);
+  }
+  onClick(){
+    this.router.navigateByUrl(this.url);
   }
 }

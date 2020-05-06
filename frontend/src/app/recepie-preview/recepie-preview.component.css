@@ -1,15 +1,13 @@
-img {
+.mat-card {
+    display: inline-block;
+    margin-bottom: 1%;
+    width: 100%;
+  }
+  img {
+    vertical-align: middle;
     max-width: 10%;
-}
-a{
-    text-decoration: none;
-    color: black;
-}
-.content {
-    display: flex;
-    margin-bottom: 3px;
-}
-.recepieName{
-position: absolute;
-margin-top: 1.4%;
-}
+  }
+  span {
+    display: inline-block;
+    vertical-align: middle;
+  }
