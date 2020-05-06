@@ -24,6 +24,7 @@ import{MatCardModule} from '@angular/material/card';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import {MatExpansionModule} from '@angular/material/expansion';
+import { ImageCropperModule } from 'ngx-image-cropper';
 
 import { RecepieComponent } from './recepie/recepie.component';
 import { TagSearchComponent } from './tag-search/tag-search.component';
@@ -32,6 +33,7 @@ import { TextFilterPipe } from './text-filter-pipe';
 import { IngredientsComponent } from './ingredients/ingredients.component';
 import { AddRecepieComponent } from './add-recepie/add-recepie.component';
 import { SeasonViewerComponent } from './season-viewer/season-viewer.component';
+
 
 
 @NgModule({
@@ -59,6 +61,7 @@ import { SeasonViewerComponent } from './season-viewer/season-viewer.component';
     MatButtonToggleModule,
     MatInputModule,
     MatMenuModule,
+    ImageCropperModule,
     FormsModule,
     MatSelectModule,
     MatCardModule,

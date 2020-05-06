@@ -109,15 +109,22 @@
     </mat-chip-list>  
   </p>
   <h3>Bild hochladen
-    <mat-icon *ngIf="progress === 100" class="green">done</mat-icon>
   </h3>
-    <form [formGroup]="form" (ngSubmit)="submitUser()" *ngIf="progress !== 100">
-      <p>
-        <input type="file" (change)="uploadFile($event)">
-        <button mat-button>Upload</button>
-        <mat-progress-bar *ngIf="progress !==0"  mode="determinate" [(ngModel)]="progress"></mat-progress-bar>
-      </p>
-    </form>
+
+  <input type="file" (change)="fileChangeEvent($event)" />
+
+  <div style="display: flex; ">
+    <image-cropper 
+    [imageChangedEvent]="imageChangedEvent" 
+    [maintainAspectRatio]="true" 
+    [aspectRatio]="4 / 4"
+    format="jpg" 
+    (imageCropped)="imageCropped($event)" 
+    style="flex-grow: 1; min-width: 20em;"></image-cropper>
+    <img id="image" [src]="croppedImage" style="max-width:20em; max-height: 20em;" />
+  </div>
+  <button (click)="submitUser()" mat-button>Upload</button>
+
     <p>
       <button mat-button id="save-button" (click)="saveRecipe()">
         Rezept Speichern

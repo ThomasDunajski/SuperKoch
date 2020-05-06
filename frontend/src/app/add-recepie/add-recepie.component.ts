@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../api.service';
 import { Recipe , Ingredient}from '../recipe';
-import { RecepieComponent } from '../recepie/recepie.component';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup } from "@angular/forms";
 import { HttpEvent, HttpEventType } from '@angular/common/http';
 
+import { ImageCroppedEvent } from 'ngx-image-cropper';
 
 @Component({
   selector: 'app-add-recepie',
@@ -75,8 +75,12 @@ export class AddRecepieComponent implements OnInit {
   }
 
   submitUser() {
+    var blob = this.dataURItoBlob(this.croppedImage);
+    var file = new File([blob], "fileName.jpeg", {
+      type: "image/jpeg"
+    });
     this.api.uploadImage(
-      this.form.value.image
+      file
     ).subscribe((event: HttpEvent<any>) => {
       switch (event.type) {
         case HttpEventType.UploadProgress:
@@ -106,4 +110,40 @@ export class AddRecepieComponent implements OnInit {
     });
     this.form.get('image').updateValueAndValidity()
   }
+
+
+
+  dataURItoBlob(dataURI) {
+
+    // convert base64/URLEncoded data component to raw binary data held in a string
+    var byteString;
+    if (dataURI.split(',')[0].indexOf('base64') >= 0)
+        byteString = atob(dataURI.split(',')[1]);
+    else
+        byteString = unescape(dataURI.split(',')[1]);
+
+    // separate out the mime component
+    var mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0];
+
+    // write the bytes of the string to a typed array
+    var ia = new Uint8Array(byteString.length);
+    for (var i = 0; i < byteString.length; i++) {
+        ia[i] = byteString.charCodeAt(i);
+    }
+
+    return new Blob([ia], {type:mimeString});
+}
+
+
+
+
+    imageChangedEvent: any = '';
+    croppedImage: any = '';
+
+    fileChangeEvent(event: any): void {
+        this.imageChangedEvent = event;
+    }
+    imageCropped(event: ImageCroppedEvent) {
+        this.croppedImage = event.base64;
+    }
 }
