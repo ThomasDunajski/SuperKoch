@@ -163,7 +163,7 @@ app.post('/images/upload', function(req, res) {
 // GET home page.
 var path = require('path');
 app.get('/', function(req, res, next) {
-  res.status(200).sendFile(path.join(__dirname, '/public/frontend/index.html')); 
+  res.status(200).sendFile(path.join(__dirname, '/public/index.html')); 
 });
 
 var fs = require('fs');
