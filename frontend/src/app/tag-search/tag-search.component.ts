@@ -3,6 +3,7 @@ import { ApiService } from '../api.service';
 import {FormControl} from '@angular/forms';
 import {map, startWith, take } from 'rxjs/operators';
 import {Observable} from 'rxjs';
+import {ActivatedRoute} from '@angular/router'
 
 export interface Tag {
   name: string;
@@ -28,13 +29,18 @@ export class TagSearchComponent implements OnInit {
   allTagNames: string[] = [];
   searchName:string = "";
 
-  constructor(private api: ApiService) {
+  constructor(private api: ApiService, private route: ActivatedRoute) {
     this.allTags=[];
   }
 
   ngOnInit(): void {
     this.getRecomandedTags();
     this.getAllTags();
+    
+    this.searchName = this.route.snapshot.queryParamMap.get("searchName")
+    if (this.searchName && this.searchName.length > 0){
+      this.getRecipeSearch();
+    }
   }
 
   onTagClick(event, tag) {
@@ -48,7 +54,6 @@ export class TagSearchComponent implements OnInit {
     this.allTags = this.allTags.filter( el => el.name.valueOf() !== tag.name.valueOf()); 
     this.allTagNames = this.allTagNames.filter( el => el.valueOf() !== tag.name.valueOf()); 
     this.getRecipeSearch();
-
   }
 
   remove(tag: Tag): void {

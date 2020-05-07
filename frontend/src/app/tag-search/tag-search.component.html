@@ -1,7 +1,7 @@
 <div class="centered"> 
     <mat-form-field id="search-field">
         <mat-label>Name</mat-label>
-        <input #nameInput matInput (change)="nameChanged(nameInput.value)">
+        <input #nameInput matInput [(ngModel)]="searchName" (change)="nameChanged(nameInput.value)">
       </mat-form-field>    
     <h3 class="left">
         Empfohlene Kategorien

@@ -3,9 +3,9 @@
     <span>
         <mat-form-field>
             <mat-label>Rezept suchen</mat-label>
-            <input matInput>
+            <input matInput [(ngModel)]="searchName" >
           </mat-form-field>    
-        <button mat-button>
+        <button mat-button (click)="onSearchClick()">
             <mat-icon>search</mat-icon>
         </button>
     </span>
