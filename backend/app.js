@@ -166,6 +166,10 @@ app.get('/', function(req, res, next) {
   res.status(200).sendFile(path.join(__dirname, '/public/index.html')); 
 });
 
+app.use(function(req, res) {
+  res.status(400).sendFile(path.join(__dirname, '/public/index.html')); 
+ });
+
 var fs = require('fs');
 var url = JSON.parse(fs.readFileSync(path.join(__dirname, 'config.json'), 'utf8')).url;
 async function initTags(){
