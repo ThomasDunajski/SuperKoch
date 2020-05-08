@@ -33,6 +33,7 @@ import { TextFilterPipe } from './text-filter-pipe';
 import { IngredientsComponent } from './ingredients/ingredients.component';
 import { AddRecepieComponent } from './add-recepie/add-recepie.component';
 import { SeasonViewerComponent } from './season-viewer/season-viewer.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 
 
@@ -46,7 +47,8 @@ import { SeasonViewerComponent } from './season-viewer/season-viewer.component';
     TextFilterPipe,
     IngredientsComponent,
     AddRecepieComponent,
-    SeasonViewerComponent
+    SeasonViewerComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,
@@ -74,7 +76,8 @@ import { SeasonViewerComponent } from './season-viewer/season-viewer.component';
       { path: '', component: TagSearchComponent },
       { path: 'recipe/:id', component: RecepieComponent },
       { path: 'add-recepie', component: AddRecepieComponent },
-      // { path: 'recepie/:productId', component: RecepieComponent },
+      {path: '404', component: NotFoundComponent},
+      {path: '**', redirectTo: '/404'}
     ])
   ],
   providers: [],

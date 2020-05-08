@@ -167,7 +167,7 @@ app.get('/', function(req, res, next) {
 });
 
 app.use(function(req, res) {
-  res.status(400).sendFile(path.join(__dirname, '/public/index.html')); 
+  res.status(200).sendFile(path.join(__dirname, '/public/index.html')); 
  });
 
 var fs = require('fs');

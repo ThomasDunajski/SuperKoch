@@ -2,15 +2,20 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Recipe , Ingredient}from './recipe';
 import { Observable } from 'rxjs';
+import { isDevMode } from '@angular/core';
 
-const localUrl = 'api/';
+let localUrl = '';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ApiService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+    if (isDevMode()){
+      localUrl = "api/"
+    }
+ }
   getRecomandedTags(selectedTags) {
     return this.http.post(localUrl+ "tags/recomanded", {selectedTags:selectedTags}).toPromise();
   }
