@@ -51,8 +51,7 @@ app.post('/recepie', async function (req, res) {
       {"$sort": {"number":-1}},
       {"$limit": 1}
     ]).next().then((data) => {
-      // Here you can do something with your data
-      recipe.number = data.number +1;
+      recipe.number = data ? data.number +1 : 1;
       db.collection("recipes").insert(recipe,(function(err, result) {
         console.log(result);
         res.json({message:"success"});
@@ -182,6 +181,6 @@ initTags();
 //start server
 var server_port = 8080;
 app.listen(server_port, function () {
-  console.log("Listening on " + server_ip_address + ", server_port " + server_port)
+  console.log("Listening on port " , server_port)
 });
 
