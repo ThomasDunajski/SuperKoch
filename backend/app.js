@@ -46,14 +46,14 @@ app.post('/recepie', async function (req, res) {
     }
     var connection = await getDb();
     var db = connection.db("SuperKoch");
-    db.collection("Recepies").aggregate([
+    db.collection("recipes").aggregate([
       {"$project": { number : 1 }},
       {"$sort": {"number":-1}},
       {"$limit": 1}
     ]).next().then((data) => {
       // Here you can do something with your data
       recipe.number = data.number +1;
-      db.collection("Recepies").insert(recipe,(function(err, result) {
+      db.collection("recipes").insert(recipe,(function(err, result) {
         console.log(result);
         res.json({message:"success"});
         connection.close();
@@ -85,7 +85,7 @@ function findOne (query) {
     const connection = await getDb();
     const db = connection.db("SuperKoch");
      db
-     .collection('Recepies')
+     .collection('recipes')
      .findOne(query, function(err, data) {
         err 
            ? reject(err) 
@@ -138,7 +138,7 @@ app.post('/recepie/search', async function (req, res) {
   }
   else
   {
-    var recipes = await find("Recepies", {$and:[searchName,{$and:[selectedTags, season]}]}, limit,  projection);
+    var recipes = await find("recipes", {$and:[searchName,{$and:[selectedTags, season]}]}, limit,  projection);
     res.json(recipes);
   }
 });
@@ -180,9 +180,9 @@ async function initTags(){
 initTags();
    
 //start server
-var server_port = process.env.OPENSHIFT_NODEJS_PORT || 3000;
+var server_port = 8080;
 var server_ip_address = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1';
-app.listen(server_port, server_ip_address, function () {
+app.listen(server_port, function () {
   console.log("Listening on " + server_ip_address + ", server_port " + server_port)
 });
 
