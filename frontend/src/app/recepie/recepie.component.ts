@@ -24,6 +24,8 @@ export class RecepieComponent implements OnInit {
       this.recepie = await this.api.getRecepie(number);
       // resolving imagename to url if its a uploaded file
       if (this.recepie.imageUri.indexOf("/") === -1)
-      this.recepie.imageUri = this.api.getImageUri(this.recepie.imageUri);
+      this.recepie.imageUri ?
+      this.recepie.imageUri = this.api.getImageUri(this.recepie.imageUri):
+      this.recepie.imageUri = this.api.getImageUri("no-image.png");
   }
 }
