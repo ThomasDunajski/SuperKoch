@@ -7,6 +7,11 @@ import { HttpEvent, HttpEventType } from '@angular/common/http';
 
 import { ImageCroppedEvent } from 'ngx-image-cropper';
 
+interface Response {
+  message: string
+  url?: string
+}
+
 @Component({
   selector: 'app-add-recepie',
   templateUrl: './add-recepie.component.html',
@@ -17,7 +22,7 @@ export class AddRecepieComponent implements OnInit {
   public addForm: FormGroup;
   recipe:Recipe = new Recipe();
   isSesonal:boolean;
-  units = ["g", "ml", "TL", "EL", "Stück", "Prise", "Schuss", "etwas", "Dose"]
+  units = ["g", "ml", "TL", "EL", "Stück", "Prise", "Schuss", "etwas", "Dose", "Bund"]
   tags;
   selectedTags = [];
   form: FormGroup;
@@ -56,6 +61,8 @@ export class AddRecepieComponent implements OnInit {
     this.recipe.tags = this.selectedTags.map(x => x._id)
     console.log(this.recipe)
     this.api.addRecipe(this.recipe)
+    //.then((response)=>this.router.navigate([response.url]))
+    .then((res:Response) => this.router.navigate([res.url]))
     .catch((err)=>console.log(err));
   }
   change(){
@@ -95,6 +102,7 @@ export class AddRecepieComponent implements OnInit {
           }
           else{
             this.recipe.imageUri = resBody.filename;
+            console.log(this.recipe.imageUri);
           }
           //setTimeout(() => {
           //  this.progress = 0;

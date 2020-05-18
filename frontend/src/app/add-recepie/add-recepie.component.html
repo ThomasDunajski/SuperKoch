@@ -111,10 +111,11 @@
   <h3>Bild hochladen
   </h3>
 
-  <input type="file" (change)="fileChangeEvent($event)" />
+  <input type="file" (change)="fileChangeEvent($event)" *ngIf="!this.recipe.imageUri"/>
 
   <div style="display: flex; ">
     <image-cropper 
+    *ngIf="!this.recipe.imageUri"
     [imageChangedEvent]="imageChangedEvent" 
     [maintainAspectRatio]="true" 
     [aspectRatio]="4 / 4"
@@ -123,7 +124,7 @@
     style="flex-grow: 1; min-width: 20em;"></image-cropper>
     <img id="image" [src]="croppedImage" style="max-width:20em; max-height: 20em;" />
   </div>
-  <button (click)="submitUser()" mat-button>Upload</button>
+  <button (click)="submitUser()" *ngIf="!this.recipe.imageUri" mat-button>Upload</button>
 
     <p>
       <button mat-button id="save-button" (click)="saveRecipe()">

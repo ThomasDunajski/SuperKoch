@@ -54,7 +54,7 @@ app.post('/recepie', async function (req, res) {
       recipe.number = data ? data.number +1 : 1;
       db.collection("recipes").insert(recipe,(function(err, result) {
         console.log(result);
-        res.json({message:"success"});
+        res.json({message:"success", url:"/recipe/" + recipe.number});
         connection.close();
       }));
     });
