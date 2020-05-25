@@ -150,12 +150,20 @@ app.post('/images/upload', function(req, res) {
         return;
     }
     if(err){
+      console.log(err);
+      res.json({error_code:1,err_desc:err});
+      return;
+    }
+    if (req.file.filename){
+      try {
+        fs.rename(req.file.filename, 'public/images/' + req.file.filename, (err) => {
+        });
+      } catch (error) {
         console.log(err);
-           res.json({error_code:1,err_desc:err});
-           return;
       }
-      filename =  req.file && req.file.filename ? req.file.filename: "";
-      res.json({error_code:0,err_desc:null, filename: filename});
+    }
+    filename =  req.file && req.file.filename ? req.file.filename: "";
+    res.json({error_code:0,err_desc:null, filename: filename});
   })
 });
 
