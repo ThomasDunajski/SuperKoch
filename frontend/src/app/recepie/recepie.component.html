@@ -3,8 +3,8 @@
     <img src={{recepie.imageUri}}>
     <app-season-viewer id="season-viewer" *ngIf="recepie.season.length >0" class="recepie" [season]="recepie.season"></app-season-viewer>
     <div style="text-align: center;">
-        <span style="margin-right: 1%;">Kochzeit {{recepie.cookingDuration}} min</span>
-        <span>Wartezeit {{recepie.restDuration}} min</span>
+        <span style="margin-right: 1%;">Kochzeit {{getFormatedTime(recepie.cookingDuration)}}</span>
+        <span>Wartezeit {{getFormatedTime(recepie.restDuration)}}</span>
     </div>    
     <div id="chips-container">
     <mat-chip-list>

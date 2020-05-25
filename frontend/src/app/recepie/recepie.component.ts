@@ -26,4 +26,10 @@ export class RecepieComponent implements OnInit {
       if (this.recepie.imageUri.indexOf("/") === -1)
       this.recepie.imageUri = this.api.getImageUri(this.recepie.imageUri);
   }
+  
+  getFormatedTime = function (time:number) {
+    const minutes = time % 60 !== 0 ? time % 60 + " min" : "";
+    const hours = time > 59 ? Math.floor(time / 60) + " Stunden " : ""
+    return hours + minutes;
+  }
 }
