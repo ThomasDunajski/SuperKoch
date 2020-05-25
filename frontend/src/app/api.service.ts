@@ -52,6 +52,6 @@ export class ApiService {
     })
   }
   getImageUri(name:string){
-    return localUrl + "images/" + name;
+    return name ? localUrl + "images/" + name : localUrl + "images/no-image.png";
   }
 }
