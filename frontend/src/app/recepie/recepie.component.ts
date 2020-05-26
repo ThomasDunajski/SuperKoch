@@ -22,8 +22,7 @@ export class RecepieComponent implements OnInit {
   
   getRecepie = async function(number){
       this.recepie = await this.api.getRecepie(number);
-      // resolving imagename to url if its a uploaded file
-      if (this.recepie.imageUri.indexOf("/") === -1)
+      // resolving imagename
       this.recepie.imageUri = this.api.getImageUri(this.recepie.imageUri);
   }
   
