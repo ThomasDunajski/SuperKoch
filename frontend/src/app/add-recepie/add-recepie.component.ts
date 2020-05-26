@@ -59,16 +59,15 @@ export class AddRecepieComponent implements OnInit {
     this.recipe.instructions = this.instructions.map( x=> x.value)
     this.recipe.ingredients.map(x=>x.quantity = x.quantity / this.recipe.servings)
     this.recipe.tags = this.selectedTags.map(x => x._id)
+    if (!this.recipe.name || !this.recipe.servings){
+      alert("Ein Rezept braucht einen Namen und die Anzahl der Portionen um gespeichert werden zu können");
+      return
+    }
     console.log(this.recipe)
     this.api.addRecipe(this.recipe)
-    //.then((response)=>this.router.navigate([response.url]))
     .then((res:Response) => this.router.navigate([res.url]))
     .catch((err)=>console.log(err));
   }
-  change(){
-    console.log(this.recipe.name)
-  }
-
   getAllTags = async function() {
       this.tags = await this.api.getAllTags();
   }
@@ -81,7 +80,7 @@ export class AddRecepieComponent implements OnInit {
     this.selectedTags = this.selectedTags.filter( el => el.name.valueOf() !== tag.name.valueOf()); 
   }
 
-  submitUser() {
+  uploadImage() {
     var blob = this.dataURItoBlob(this.croppedImage);
     var file = new File([blob], "fileName.jpeg", {
       type: "image/jpeg"
@@ -104,10 +103,6 @@ export class AddRecepieComponent implements OnInit {
             this.recipe.imageUri = resBody.filename;
             console.log(this.recipe.imageUri);
           }
-          //setTimeout(() => {
-          //  this.progress = 0;
-          //}, 1500);
-
       }
     })
   }

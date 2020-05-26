@@ -124,7 +124,7 @@
     style="flex-grow: 1; min-width: 20em;"></image-cropper>
     <img id="image" [src]="croppedImage" style="max-width:20em; max-height: 20em;" />
   </div>
-  <button (click)="submitUser()" *ngIf="!this.recipe.imageUri" mat-button>Upload</button>
+  <button (click)="uploadImage()" *ngIf="!this.recipe.imageUri" mat-button>Upload</button>
 
     <p>
       <button mat-button id="save-button" (click)="saveRecipe()">
