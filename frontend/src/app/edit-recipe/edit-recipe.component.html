@@ -2,7 +2,7 @@
     <p>
         <mat-form-field class="centered">
             <mat-label>Name</mat-label>
-            <input [(ngModel)]="recipe.name" matInput placeholder="z.B. Tomatensalat">
+            <input [(ngModel)]="recipe.name" matInput required placeholder="z.B. Tomatensalat">
             <mat-hint>Hint</mat-hint>
           </mat-form-field>
     </p>
@@ -23,7 +23,7 @@
     <p>
       <mat-form-field class="centered">
         <mat-label>Portionen</mat-label>
-        <input [(ngModel)]="recipe.servings" type="number"matInput placeholder="z.B. 4">
+        <input [(ngModel)]="recipe.servings" type="number" matInput required placeholder="z.B. 4">
         <mat-hint>Hint</mat-hint>
       </mat-form-field>
     </p>
