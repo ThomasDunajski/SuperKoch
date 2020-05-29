@@ -31,11 +31,12 @@ export class EditRecipeComponent implements OnInit {
   })}
   ngOnInit(): void {
     this.getAllTags();
-    this.test();
+    this.loadRecipe();
   }
-  async test() {
+  async loadRecipe() {
     this.recipe = await this.api.getRecepie(this.actRoute.snapshot.params.id) as Recipe;
     this.recipe.instructions.map( x=> this.instructions.push({value:x}));
+    this.recipe.ingredients.map(x => x.quantity *= this.recipe.servings);
     console.log(this.recipe)
   }
   addIngredient(){
