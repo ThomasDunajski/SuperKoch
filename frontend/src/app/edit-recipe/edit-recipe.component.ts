@@ -35,8 +35,10 @@ export class EditRecipeComponent implements OnInit {
   }
   async loadRecipe() {
     this.recipe = await this.api.getRecepie(this.actRoute.snapshot.params.id) as Recipe;
+    this.instructions = [];
     this.recipe.instructions.map( x=> this.instructions.push({value:x}));
     this.recipe.ingredients.map(x => x.quantity *= this.recipe.servings);
+    this.selectedTags = this.recipe.tags;
     console.log(this.recipe)
   }
   addIngredient(){
@@ -59,13 +61,14 @@ export class EditRecipeComponent implements OnInit {
   }
   saveRecipe(){
     this.recipe.instructions = this.instructions.map( x=> x.value)
-    this.recipe.ingredients.map(x=>x.quantity = x.quantity / this.recipe.servings)
-    this.recipe.tags = this.selectedTags.map(x => x._id)
+    .filter(x => x !== "");
+    this.recipe.ingredients.map(x=>x.quantity = x.quantity / this.recipe.servings);
+    this.recipe.tags = this.selectedTags.map(x => x._id);
     if (!this.recipe.name || !this.recipe.servings){
       alert("Ein Rezept braucht einen Namen und die Anzahl der Portionen um gespeichert werden zu können");
       return
     }
-    console.log(this.recipe)
+    console.log(this.recipe);
     this.api.addRecipe(this.recipe)
     .then((res:Response) => this.router.navigate([res.url]))
     .catch((err)=>console.log(err));
