@@ -34,6 +34,7 @@ import { IngredientsComponent } from './ingredients/ingredients.component';
 import { AddRecepieComponent } from './add-recepie/add-recepie.component';
 import { SeasonViewerComponent } from './season-viewer/season-viewer.component';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { EditRecipeComponent } from './edit-recipe/edit-recipe.component';
 
 
 
@@ -48,7 +49,8 @@ import { NotFoundComponent } from './not-found/not-found.component';
     IngredientsComponent,
     AddRecepieComponent,
     SeasonViewerComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    EditRecipeComponent
   ],
   imports: [
     BrowserModule,
@@ -75,6 +77,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
     RouterModule.forRoot([
       { path: '', component: TagSearchComponent },
       { path: 'recipe/:id', component: RecepieComponent },
+      { path: 'recipe/edit/:id', component: EditRecipeComponent },
       { path: 'add-recepie', component: AddRecepieComponent },
       {path: '404', component: NotFoundComponent},
       {path: '**', redirectTo: '/404'}

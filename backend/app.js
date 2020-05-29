@@ -44,22 +44,46 @@ app.post('/recepie', async function (req, res) {
         recipe[key] = recipe[key].trim();
       }
     }
-    var connection = await getDb();
-    var db = connection.db("SuperKoch");
-    db.collection("recipes").aggregate([
-      {"$project": { number : 1 }},
-      {"$sort": {"number":-1}},
-      {"$limit": 1}
-    ]).next().then((data) => {
-      recipe.number = data ? data.number +1 : 1;
-      db.collection("recipes").insert(recipe,(function(err, result) {
-        console.log(result);
-        res.json({message:"success", url:"/recipe/" + recipe.number});
-        connection.close();
-      }));
-    });
+    if (recipe.number)
+    {
+      updateRecipe(recipe, req, res);
+    }
+    else{
+      addRecipe(recipe, req, res);
+    }
   }
 });
+async function updateRecipe(recipe, req, res){
+  delete recipe._id;
+  var connection = await getDb();
+  var db = connection.db("SuperKoch");
+  db.collection("recipes").update({number:recipe.number}, recipe, function(err, result){
+    if(err){
+      console.log(err);
+    }
+    res.json({message:"success", url:"/recipe/" + recipe.number});
+    connection.close();
+  });
+}
+async function addRecipe(recipe, req, res){
+  var connection = await getDb();
+  var db = connection.db("SuperKoch");
+  db.collection("recipes").aggregate([
+    {"$project": { number : 1 }},
+    {"$sort": {"number":-1}},
+    {"$limit": 1}
+  ]).next().then((data) => {
+    recipe.number = data ? data.number +1 : 1;
+    db.collection("recipes").insert(recipe,(function(err, result) {
+      if(err){
+        console.log(err);
+      }
+      console.log(result);
+      res.json({message:"success", url:"/recipe/" + recipe.number});
+      connection.close();
+    }));
+  });
+}
 function find(collection, query, limit, projection){
   return new Promise(async (resolve, reject) => {
    

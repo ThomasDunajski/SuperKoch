@@ -1,0 +1,50 @@
+.red{
+    color: darkred;
+}
+.green{
+    color: green;
+}
+.centered{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+.centered.narrow {
+    width: 80%;
+  }
+.mat-form-field {
+    width: 80%;
+  }
+.mat-form-field.centered{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+.mat-button{
+    width: 5%;
+}
+#ingredient{
+    width: 40%;
+}
+#quantity{
+    width: 15%; 
+    margin-left: 2%;
+}
+#unit{
+    width: 16%; 
+    margin-left: 2%;
+}
+#instruction{
+    width: 75%;
+}
+.mat-button-toggle-checked {
+    background-color: #74C365;
+}
+.mat-button-toggle-group{
+    justify-content: center;
+    flex-wrap: wrap;
+}
+#save-button{
+    width: auto;
+}
