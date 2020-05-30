@@ -34,12 +34,14 @@ export class EditRecipeComponent implements OnInit {
     this.loadRecipe();
   }
   async loadRecipe() {
-    this.recipe = await this.api.getRecepie(this.actRoute.snapshot.params.id) as Recipe;
-    this.instructions = [];
-    this.recipe.instructions.map( x=> this.instructions.push({value:x}));
-    this.recipe.ingredients.map(x => x.quantity *= this.recipe.servings);
-    this.selectedTags = this.recipe.tags;
-    console.log(this.recipe)
+    if (this.actRoute.snapshot.params.id){
+      this.recipe = await this.api.getRecepie(this.actRoute.snapshot.params.id) as Recipe;
+      this.instructions = [];
+      this.recipe.instructions.map( x=> this.instructions.push({value:x}));
+      this.recipe.ingredients.map(x => x.quantity *= this.recipe.servings);
+      this.selectedTags = this.recipe.tags;
+      console.log(this.recipe)
+    }
   }
   addIngredient(){
     this.recipe.ingredients.push(new Ingredient());
@@ -66,6 +68,10 @@ export class EditRecipeComponent implements OnInit {
     this.recipe.tags = this.selectedTags.map(x => x._id);
     if (!this.recipe.name || !this.recipe.servings){
       alert("Ein Rezept braucht einen Namen und die Anzahl der Portionen um gespeichert werden zu können");
+      return
+    }
+    if (this.selectedTags.length < 1){
+      alert("Ein Rezept braucht mindestens einen Tag um gespeichert werden zu können");
       return
     }
     console.log(this.recipe);

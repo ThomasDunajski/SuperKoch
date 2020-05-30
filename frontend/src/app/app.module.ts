@@ -31,7 +31,6 @@ import { TagSearchComponent } from './tag-search/tag-search.component';
 import { RecepiePreviewComponent } from './recepie-preview/recepie-preview.component';
 import { TextFilterPipe } from './text-filter-pipe';
 import { IngredientsComponent } from './ingredients/ingredients.component';
-import { AddRecepieComponent } from './add-recepie/add-recepie.component';
 import { SeasonViewerComponent } from './season-viewer/season-viewer.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { EditRecipeComponent } from './edit-recipe/edit-recipe.component';
@@ -47,7 +46,6 @@ import { EditRecipeComponent } from './edit-recipe/edit-recipe.component';
     RecepiePreviewComponent,
     TextFilterPipe,
     IngredientsComponent,
-    AddRecepieComponent,
     SeasonViewerComponent,
     NotFoundComponent,
     EditRecipeComponent
@@ -78,7 +76,7 @@ import { EditRecipeComponent } from './edit-recipe/edit-recipe.component';
       { path: '', component: TagSearchComponent },
       { path: 'recipe/:id', component: RecepieComponent },
       { path: 'recipe/edit/:id', component: EditRecipeComponent },
-      { path: 'add-recepie', component: AddRecepieComponent },
+      { path: 'add-recepie', component: EditRecipeComponent },
       {path: '404', component: NotFoundComponent},
       {path: '**', redirectTo: '/404'}
     ])
