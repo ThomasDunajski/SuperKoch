@@ -4,7 +4,7 @@ var fs = require('fs');
 function addIndex(option){
     MongoClient.connect(url, { useUnifiedTopology: true }, async function(err, con) {
       var db = con.db("SuperKoch");
-      db.collection("Recepies").createIndex(option,
+      db.collection("recipes").createIndex(option,
       function(err, res) {
         if (err) {
           console.log(err)
