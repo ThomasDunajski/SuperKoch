@@ -1,5 +1,5 @@
 <div *ngIf="recepie" class="centered"> 
-    <h1 >{{recepie.name}}</h1>
+    <h1>{{recepie.name}}</h1>
     <img src={{recepie.imageUri}}>
     <app-season-viewer id="season-viewer" *ngIf="recepie.season.length >0" class="recepie" [season]="recepie.season"></app-season-viewer>
     <div style="text-align: center;">
@@ -19,4 +19,7 @@
             </p>
         </span>
     </div>
+    <button id="edit-button" mat-fab color="primary"(click)="goToEdit()">
+        <mat-icon>edit</mat-icon>
+    </button>
 </div>

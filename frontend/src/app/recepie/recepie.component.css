@@ -44,3 +44,7 @@ app-season-viewer{
 #chips-container{
     text-align: center; margin-left: 5%;
 }
+#edit-button{
+    float: right;
+    margin-right: 6%;
+}

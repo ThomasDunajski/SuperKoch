@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../api.service';
 import { Recipe , Ingredient}from '../recipe';
 import { ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -11,7 +12,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class RecepieComponent implements OnInit {
 
-  constructor(private api: ApiService, private actRoute: ActivatedRoute) { }
+  constructor(private api: ApiService, private actRoute: ActivatedRoute, private router: Router) { }
 
   ngOnInit(): void {
     this.getRecepie(this.actRoute.snapshot.params.id);
@@ -30,5 +31,8 @@ export class RecepieComponent implements OnInit {
     const minutes = time % 60 !== 0 ? time % 60 + " min" : "";
     const hours = time > 59 ? Math.floor(time / 60) + " Stunden " : ""
     return hours + minutes;
+  }
+  goToEdit(){
+    this.router.navigate(["/recipe/edit/" + this.actRoute.snapshot.params.id]);
   }
 }
