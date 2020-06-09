@@ -19,7 +19,7 @@ exports.upload = multer({ //multer settings
     }
     cb(null, true);
    }, 
-   limits: { fileSize: 10000000 }
+   limits: { fileSize: 25000000 }
 }).single('file');
 
 function makeid(length) {

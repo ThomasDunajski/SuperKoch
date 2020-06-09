@@ -64,7 +64,7 @@
       <mat-form-field id="instruction">
         <mat-label>Schritt</mat-label>
         <textarea [(ngModel)]="instructions[i].value" matInput placeholder="z.B. Gemüse schneiden"></textarea>
-        <mat-hint *ngIf="i===0">für die Übersicht lohnt es sich meistens das Rezept in mehrere Scritte zu teilen</mat-hint>
+        <mat-hint *ngIf="i===0">Für die Übersicht lohnt es sich meist das Rezept in mehrere Schritte zu unterteilen</mat-hint>
       </mat-form-field>
       <button mat-button (click)="removeInctruction(i)" class="red">
         <mat-icon>remove_circle_outline</mat-icon>
