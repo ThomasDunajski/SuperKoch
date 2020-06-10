@@ -17,5 +17,6 @@ export class HeaderComponent implements OnInit {
   onSearchClick(){
     console.log(this.searchName)
     this.router.navigate(["/"], {queryParams: {searchName:this.searchName}});
+    this.searchName = "";
   }
 }
