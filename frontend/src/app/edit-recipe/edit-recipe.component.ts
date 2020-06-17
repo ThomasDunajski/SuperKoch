@@ -18,7 +18,7 @@ export class EditRecipeComponent implements OnInit {
   public addForm: FormGroup;
   recipe:Recipe = new Recipe();
   isSesonal:boolean;
-  units = ["g", "ml", "TL", "EL", "Stück", "Prise", "Schuss", "etwas", "Dose", "Bund"]
+  units = ["g", "ml", "TL", "EL", "Stück", "Prise", "Schuss", "etwas", "Dose", "Bund", "Packung"]
   tags;
   selectedTags = [];
   form: FormGroup;
