@@ -38,9 +38,6 @@ app-season-viewer{
 .mat-chip-list{
     margin-top: 1%;
 }
-#season-viewer {
-    float: left; margin-left: 5% !important;
-}
 #chips-container{
     text-align: center; margin-left: 5%;
 }

@@ -25,7 +25,6 @@ export class TagSearchComponent implements OnInit {
   recepies = [];
   allTags:Tag[];
   tagCtrl = new FormControl();
-  friut;
   allTagNames: string[] = [];
   searchName:string = "";
 
@@ -34,13 +33,20 @@ export class TagSearchComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getRecomandedTags();
-    this.getAllTags();
     
     this.searchName = this.route.snapshot.queryParamMap.get("searchName")
     if (this.searchName && this.searchName.length > 0){
       this.getRecipeSearch();
     }
+    const tag = this.route.snapshot.queryParamMap.get("tag");
+    if (tag){
+      console.log(tag);
+      this.getAllTags(tag);
+    }
+    else{
+      this.getAllTags();
+    }    
+    this.getRecomandedTags();
   }
 
   onTagClick(event, tag) {
@@ -51,7 +57,7 @@ export class TagSearchComponent implements OnInit {
   selectTag(tag){
     this.selected.push(tag);
     this.getRecomandedTags();
-    this.allTags = this.allTags.filter( el => el.name.valueOf() !== tag.name.valueOf()); 
+    //this.allTags = this.allTags.filter( el => el.name.valueOf() !== tag.name.valueOf()); 
     this.allTagNames = this.allTagNames.filter( el => el.valueOf() !== tag.name.valueOf()); 
     this.getRecipeSearch();
   }
@@ -78,12 +84,18 @@ export class TagSearchComponent implements OnInit {
   getRecomandedTags = async function() {
         this.recomandedTags = await this.api.getRecomandedTags(this.selected);
   }
-  getAllTags = async function() {
+  getAllTags = async function(SearchTagString?:string) {
     this.allTags = await this.api.getAllTags(this.selected);
     this.allTags.push({_id: null, name:"in Saison"});
     this.allTags.forEach(element => {
       this.allTagNames.push(element.name)
     });
+    if (SearchTagString){
+      const taggSearchResult = this.allTags.find(x => x.name === SearchTagString);
+      if (taggSearchResult){
+        this.selectTag(taggSearchResult);
+      }
+    }
     var filter = function(value: string): string[] {
       const filterValue = value.toLowerCase();
       return this.allTagNames.filter(tag => tag.toLowerCase().indexOf(filterValue) === 0);
