@@ -182,7 +182,13 @@ app.post('/images/upload', function(req, res) {
     filename =  req.file && req.file.filename ? req.file.filename: "";
     path = "./public/images/" + filename;
     console.log(path)
-    thumbnail.create(path, path.substr(0, path.lastIndexOf(".jpg")+1) + "_thumb.jpg")
+    // only jpg and png are allowed to be uploaded
+    if (path.lastIndexOf(".jpg") ==! -1){
+      thumbnail.create(path, path.substr(0, path.lastIndexOf(".jpg")+1) + "_thumb.jpg")
+    }
+    else{
+      thumbnail.create(path, path.substr(0, path.lastIndexOf(".png")+1) + "_thumb.jpg")
+    }
     res.json({error_code:0,err_desc:null, filename: filename});
   })
 });
