@@ -22,4 +22,10 @@ export class RecepiePreviewComponent implements OnInit {
   onClick(){
     this.router.navigateByUrl(this.url);
   }
+  getThumbnailName(path){
+    if (path.includes(".jpg")){
+     return path.substr(0, path.lastIndexOf(".jpg")+1) + "_thumb.jpg";
+    }
+    return path.substr(0, path.lastIndexOf(".png")+1) + "_thumb.jpg";
+  }
 }
