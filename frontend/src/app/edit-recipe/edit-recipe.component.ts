@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../api.service';
-import { Recipe , Ingredient}from '../recipe';
+import { Recipe , Ingredient, Heading}from '../recipe';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup } from "@angular/forms";
 import { ActivatedRoute } from '@angular/router';
@@ -46,6 +46,18 @@ export class EditRecipeComponent implements OnInit {
   addIngredient(){
     this.recipe.ingredients.push(new Ingredient());
   }
+  addHeading(position: number){
+    if (!this.getHeading(position)){
+      this.recipe.headings.push(new Heading(position));
+    }
+  }
+  getHeading(position: number){
+    return this.recipe.headings.filter(x => x.position === position)[0];
+  }
+  removeHeading(position: number){
+    var index = this.recipe.headings.indexOf(this.getHeading(position));
+    this.recipe.headings.splice(index, 1)
+  }
   removeIngredient(index:number){
     this.recipe.ingredients.splice(index, 1)
   }
@@ -90,6 +102,7 @@ export class EditRecipeComponent implements OnInit {
     this.tags.push(tag);
     this.selectedTags = this.selectedTags.filter( el => el.name.valueOf() !== tag.name.valueOf()); 
   }
+
 
   uploadImage() {
     var blob = this.dataURItoBlob(this.croppedImage);

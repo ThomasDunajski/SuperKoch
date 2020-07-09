@@ -5,6 +5,7 @@ export class Recipe {
   imageUri: string;
   name: string;
   ingredients: Ingredient[];
+  headings: Heading[];
   instructions: string[];
   cookingDuration: number;
   restDuration: number;
@@ -17,15 +18,23 @@ export class Recipe {
     this.imageUri = "";
     this.ingredients = [];
     this.instructions = [];
+    this.headings = [];
     this.cookingDuration = null;
     this.restDuration = null;
     this.tags = [];
     this.season = [];
     this.ingredients.push(new Ingredient());
     this.instructions.push("");
+  }
 }
+export class Heading{
+  text: string;
+  position: number;
+  constructor(position){
+    this.text = "";
+    this.position = position;
+  }
 }
-
 export class Ingredient {
   name: string;
   quantity: number;

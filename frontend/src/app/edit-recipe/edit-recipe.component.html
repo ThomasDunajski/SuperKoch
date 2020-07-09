@@ -28,8 +28,20 @@
       </mat-form-field>
     </p>
     <h3>Zutaten</h3>
-    <div class="centered">
-      <p  *ngFor="let ingredient of recipe.ingredients; let i = index">
+    <div *ngFor="let ingredient of recipe.ingredients; let i = index" class="centered">
+      <p *ngIf="getHeading(i)">
+        <mat-form-field id="heading">
+          <mat-label>Überschrift</mat-label>
+          <input [(ngModel)]="getHeading(i).text" matInput placeholder="z.B. für den Teig">
+        </mat-form-field>
+        <button mat-button (click)="removeHeading(i)" class="red">
+          <mat-icon>remove_circle_outline</mat-icon>
+        </button>
+      </p>
+      <p>
+        <button mat-button (click)="addHeading(i)" class="green">
+          <mat-icon>add_comment</mat-icon>
+        </button>
         <mat-form-field id="ingredient">
           <mat-label>Zutat</mat-label>
           <input [(ngModel)]="ingredient.name" matInput placeholder="z.B. Tomate">
