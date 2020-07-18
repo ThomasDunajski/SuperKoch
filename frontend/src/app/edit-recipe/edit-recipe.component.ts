@@ -47,12 +47,15 @@ export class EditRecipeComponent implements OnInit {
     this.recipe.ingredients.push(new Ingredient());
   }
   addHeading(position: number){
+    if(!this.recipe.headings){
+      this.recipe.headings = [];
+    }
     if (!this.getHeading(position)){
       this.recipe.headings.push(new Heading(position));
     }
   }
   getHeading(position: number){
-    return this.recipe.headings.filter(x => x.position === position)[0];
+    return this.recipe.headings ? this.recipe.headings.filter(x => x.position === position)[0] : null;
   }
   removeHeading(position: number){
     var index = this.recipe.headings.indexOf(this.getHeading(position));

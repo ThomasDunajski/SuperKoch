@@ -5,9 +5,9 @@
 </p>
 <table *ngIf="entries" class="ingredients-table">
     <tr *ngFor="let ingredient of entries, let isEven=even, let i = index" class="left">
-        <th class="heading" *ngIf="getHeading(i)"> {{getHeading(i).text}}</th>
+        <th class="heading" *ngIf="ingredient.text"> {{ingredient.text}}</th>
 
-        <th *ngIf="!getHeading(i)" [class.even]="isEven">{{ingredient.name}}</th>   
-        <th *ngIf="!getHeading(i)" [class.even]="isEven">{{getQuantity(ingredient.quantity)}} {{ingredient.unit}}</th>
+        <th *ngIf="ingredient.name" [class.even]="isEven">{{ingredient.name}}</th>   
+        <th *ngIf="ingredient.name" [class.even]="isEven">{{getQuantity(ingredient.quantity)}} {{ingredient.unit}}</th>
     </tr>
 </table>

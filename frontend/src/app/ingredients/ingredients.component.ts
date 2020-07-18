@@ -32,6 +32,6 @@ export class IngredientsComponent implements OnInit {
     return quantity ? quantity * this.servings :"";
   }
   getHeading(position: number){
-    return this.headings.filter(x => x.position === position)[0];
+    return this.headings ? this.headings.filter(x => x.position === position)[0] : null;
   }
 }
