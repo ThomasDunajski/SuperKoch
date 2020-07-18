@@ -3,11 +3,15 @@
     margin-right:auto;
     width: 100%;
 }
-.ingredient{
+.left{
     text-align: left;
 }
 .even{
     background-color: lightgray;
+}
+.heading{
+    font-weight: bold;
+    font-size: larger;
 }
 input{
     max-width: 6%;

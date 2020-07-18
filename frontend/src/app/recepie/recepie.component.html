@@ -12,7 +12,7 @@
     </div>
     <div class="recepie">
         <app-season-viewer id="season-viewer" *ngIf="recepie.season.length >0" class="recepie" [season]="recepie.season"></app-season-viewer>
-        <app-ingredients [ingredients]="recepie.ingredients" [servings]="recepie.servings" class="app-ingredients"></app-ingredients>
+        <app-ingredients [ingredients]="recepie.ingredients" [servings]="recepie.servings" [headings]="recepie.headings" class="app-ingredients"></app-ingredients>
         <span class="growing">
             <p *ngFor="let instruction of recepie.instructions">
                 {{instruction}}

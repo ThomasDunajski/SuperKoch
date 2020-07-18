@@ -3,9 +3,11 @@
     {{servings}} Portionen
     <button mat-button (click)="incServings()">+</button>
 </p>
-<table class="ingredients-table">
-    <tr *ngFor="let ingredient of ingredients, let isEven=even" [class.even]="isEven" >
-        <th class="ingredient">{{ingredient.name}}</th>   
-        <th>{{getQuantity(ingredient.quantity)}} {{ingredient.unit}}</th>
+<table *ngIf="entries" class="ingredients-table">
+    <tr *ngFor="let ingredient of entries, let isEven=even, let i = index" class="left">
+        <th class="heading" *ngIf="getHeading(i)"> {{getHeading(i).text}}</th>
+
+        <th *ngIf="!getHeading(i)" [class.even]="isEven">{{ingredient.name}}</th>   
+        <th *ngIf="!getHeading(i)" [class.even]="isEven">{{getQuantity(ingredient.quantity)}} {{ingredient.unit}}</th>
     </tr>
 </table>
