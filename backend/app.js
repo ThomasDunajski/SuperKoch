@@ -4,6 +4,7 @@ var cors = require('cors');
 var app = express();
 var upload = require('./upload');
 var thumbnail = require('./thumbnail');
+var path = require('path');
 
 app.use(cors());
 app.use(bodyParser.json());
@@ -183,7 +184,7 @@ app.post('/images/upload', function(req, res) {
     path = "./public/images/" + filename;
     console.log(path)
     // only jpg and png are allowed to be uploaded
-    if (path.lastIndexOf(".jpg") ==! -1){
+    if (path.includes(".jpg")){
       thumbnail.create(path, path.substr(0, path.lastIndexOf(".jpg")+1) + "_thumb.jpg")
     }
     else{
