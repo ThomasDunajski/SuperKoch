@@ -40,7 +40,10 @@ export class EditRecipeComponent implements OnInit {
       this.recipe.instructions.map( x=> this.instructions.push({value:x}));
       this.recipe.ingredients.map(x => x.quantity *= this.recipe.servings);
       this.selectedTags = this.recipe.tags;
-      console.log(this.recipe)
+      //filter out already used tags
+      this.tags = this.tags.filter(y => !this.selectedTags.some(x=> x.name.valueOf() === y.name.valueOf()));
+      //filter out  "in saison"
+      this.tags = this.tags.filter(x=> x.name.valueOf() !== "in Saison".valueOf())
     }
   }
   addIngredient(){
@@ -77,10 +80,6 @@ export class EditRecipeComponent implements OnInit {
     this.recipe.season = value.map(Number);
   }
   saveRecipe(){
-    this.recipe.instructions = this.instructions.map( x=> x.value)
-    .filter(x => x !== "");
-    this.recipe.ingredients.map(x=>x.quantity = x.quantity / this.recipe.servings);
-    this.recipe.tags = this.selectedTags.map(x => x._id);
     if (!this.recipe.name || !this.recipe.servings){
       alert("Ein Rezept braucht einen Namen und die Anzahl der Portionen um gespeichert werden zu können");
       return
@@ -89,6 +88,10 @@ export class EditRecipeComponent implements OnInit {
       alert("Ein Rezept braucht mindestens einen Tag um gespeichert werden zu können");
       return
     }
+    this.recipe.instructions = this.instructions.map( x=> x.value)
+    .filter(x => x !== "");
+    this.recipe.ingredients.map(x=>x.quantity = x.quantity / this.recipe.servings);
+    this.recipe.tags = this.selectedTags.map(x => x._id);
     console.log(this.recipe);
     this.api.addRecipe(this.recipe)
     .then((res:Response) => this.router.navigate([res.url]))
