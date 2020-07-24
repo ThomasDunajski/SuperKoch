@@ -5,6 +5,7 @@ import {map, startWith, take } from 'rxjs/operators';
 import {Observable} from 'rxjs';
 import {ActivatedRoute} from '@angular/router'
 
+
 export interface Tag {
   name: string;
   _id: string;
@@ -112,5 +113,8 @@ export class TagSearchComponent implements OnInit {
     this.searchName = name;
     this.getRecipeSearch();
   }
+  onScroll = async function()  {
+    var newRecipes = await this.api.getRecipeSearch(this.selected, this.searchName, this.recepies.length, 4);
+    this.recepies = this.recepies.concat(newRecipes);
+  }
 }
-

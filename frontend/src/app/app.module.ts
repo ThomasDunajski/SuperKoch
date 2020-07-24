@@ -25,6 +25,7 @@ import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import {MatExpansionModule} from '@angular/material/expansion';
 import { ImageCropperModule } from 'ngx-image-cropper';
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
 import { RecepieComponent } from './recepie/recepie.component';
 import { TagSearchComponent } from './tag-search/tag-search.component';
@@ -62,6 +63,7 @@ import { EditRecipeComponent } from './edit-recipe/edit-recipe.component';
     MatExpansionModule,
     MatButtonToggleModule,
     MatInputModule,
+    InfiniteScrollModule,
     MatMenuModule,
     ImageCropperModule,
     FormsModule,

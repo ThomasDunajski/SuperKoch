@@ -25,9 +25,10 @@ export class ApiService {
   getRecepie(number) {
     return this.http.get(localUrl + "recepie/" + number).toPromise();
   }
-  getRecipeSearch(selectedTags, searchName:string) {
+  getRecipeSearch(selectedTags, searchName:string, skip, limit) {
     var ids = [];
     var season = false;
+    if (!skip) skip = 0;
     selectedTags.forEach(element => {
       if (element._id){
         ids.push(element._id);
@@ -37,7 +38,7 @@ export class ApiService {
         season = true;
       }
     });
-    return this.http.post(localUrl+ "recepie/search", {selectedTags:ids, season: season, searchName: searchName}).toPromise();;
+    return this.http.post(localUrl+ "recepie/search", {selectedTags:ids, season: season, searchName: searchName, skip:skip, limit:limit}).toPromise();;
   }
   addRecipe(recipe:Recipe) {
     return this.http.post(localUrl+ "recepie", {"recipe":recipe}).toPromise();

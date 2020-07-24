@@ -86,7 +86,7 @@ async function addRecipe(recipe, req, res){
     }));
   });
 }
-function find(collection, query, limit, projection){
+function find(collection, query, limit, skip, projection){
   return new Promise(async (resolve, reject) => {
    
     const connection = await getDb();
@@ -95,6 +95,7 @@ function find(collection, query, limit, projection){
      .collection(collection)
      .find(query)
      .project(projection ? projection : {})
+     .skip(skip)
      .limit(limit)
      .toArray(function(err, data) {
         err 
@@ -154,16 +155,17 @@ app.get('/recepie/:recepieId', async function (req, res) {
 app.post('/recepie/search', async function (req, res) {
   const selectedTags = req.body.selectedTags.length > 0 ? {tags: {$all: req.body.selectedTags}} : {};
   const season = req.body.season ?  {season: new Date().getMonth() + 1}: {};
+  const skip = req.body.skip ?  parseInt(req.body.skip): 0;
   const searchName = req.body.searchName ?{$text: {$search:req.body.searchName}} : {};
   const projection = {name:1, imageUri:1, number:1, _id:0}
-  const limit = 10;
+  const limit = req.body.limit ?  parseInt(req.body.limit): 10;
   if (selectedTags === undefined){
       res.statusMessage = "selectedTags undefined";
       res.status(400).send();
   }
   else
   {
-    var recipes = await find("recipes", {$and:[searchName,{$and:[selectedTags, season]}]}, limit,  projection);
+    var recipes = await find("recipes", {$and:[searchName,{$and:[selectedTags, season]}]}, limit, skip, projection);
     res.json(recipes);
   }
 });
@@ -197,18 +199,23 @@ app.post('/images/upload', function(req, res) {
 // GET home page.
 var path = require('path');
 app.get('/', function(req, res, next) {
-  res.status(200).sendFile(path.join(__dirname, '/public/index.html')); 
+  sendIndex(res);
 });
 
 app.use(function(req, res) {
-  res.status(200).sendFile(path.join(__dirname, '/public/index.html')); 
+  sendIndex(res);
  });
+
+const indexPath = path.join(__dirname, '/public/index.html');
+function sendIndex(res){
+  res.status(200).sendFile(indexPath); 
+} 
 
 var fs = require('fs');
 var url = JSON.parse(fs.readFileSync(path.join(__dirname, 'config.json'), 'utf8')).url;
 async function initTags(){
   //initalize tags
-  tags = await find("Tags", {}, 100);
+  tags = await find("Tags", {}, 100, 0);
 }
 
 initTags();
@@ -218,4 +225,3 @@ var server_port = 8080;
 app.listen(server_port, function () {
   console.log("Listening on port " , server_port)
 });
-
