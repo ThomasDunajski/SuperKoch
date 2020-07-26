@@ -90,14 +90,16 @@ async function addRecipe(recipe, req, res){
 function find(collection, query, limit, skip, projection){
   return new Promise(async (resolve, reject) => {
    
+    if (!limit) limit = 0;
+    if (!skip) skip = 0;
     const connection = await getDb();
     const db = connection.db("SuperKoch");
      db
      .collection(collection)
      .find(query)
      .project(projection ? projection : {})
-     .skip(skip ? skip : 0)
-     .limit(limit ? linit : 0)
+     .skip(skip)
+     .limit(limit)
      .toArray(function(err, data) {
         err 
            ? reject(err) 
