@@ -28,6 +28,7 @@ export class TagSearchComponent implements OnInit {
   tagCtrl = new FormControl();
   allTagNames: string[] = [];
   searchName:string = "";
+  isLoading = false;
 
   constructor(private api: ApiService, private route: ActivatedRoute) {
     this.allTags=[];
@@ -114,7 +115,11 @@ export class TagSearchComponent implements OnInit {
     this.getRecipeSearch();
   }
   onScroll = async function()  {
-    var newRecipes = await this.api.getRecipeSearch(this.selected, this.searchName, this.recepies.length, 4);
-    this.recepies = this.recepies.concat(newRecipes);
+    if (!this.isLoading){
+      this.isLoading = true;
+      var newRecipes = await this.api.getRecipeSearch(this.selected, this.searchName, this.recepies.length, 4);
+      this.recepies = this.recepies.concat(newRecipes);
+      this.isLoading = false;
+    }
   }
 }
