@@ -12,23 +12,24 @@ app.use(express.static('public'));
 
 var MongoClient = require('mongodb').MongoClient;
 
-var tags;
 
-app.get('/tags', function (req, res) {
-    res.json(tags);
+app.get('/tags', async function (req, res) {
+  var tags = await find("Tags", {});
+  res.json(tags);
 });
 
-app.post('/tags/recomanded', function (req, res) {
+app.post('/tags/recomanded', async function (req, res) {
     var selectedTags = req.body.selectedTags;
     if (selectedTags === undefined){
         res.statusMessage = "selectedTags undefined";
         res.status(400).send();
     }
     else{
-        response = tags;
+        var response = await find("Tags", {});
         selectedTags.forEach(selected => {
-            response = response.filter( el => el.name.valueOf() !== selected.name.valueOf() );      
+            response = response.filter( el => el.name.valueOf() !== selected.name.valueOf());      
         });
+        response = response.sort(function(a, b){return a.category.number - b.category.number}); 
         res.json(response);
     }
 });
@@ -95,8 +96,8 @@ function find(collection, query, limit, skip, projection){
      .collection(collection)
      .find(query)
      .project(projection ? projection : {})
-     .skip(skip)
-     .limit(limit)
+     .skip(skip ? skip : 0)
+     .limit(limit ? linit : 0)
      .toArray(function(err, data) {
         err 
            ? reject(err) 
@@ -213,12 +214,6 @@ function sendIndex(res){
 
 var fs = require('fs');
 var url = JSON.parse(fs.readFileSync(path.join(__dirname, 'config.json'), 'utf8')).url;
-async function initTags(){
-  //initalize tags
-  tags = await find("Tags", {}, 100, 0);
-}
-
-initTags();
    
 //start server
 var server_port = 8080;
