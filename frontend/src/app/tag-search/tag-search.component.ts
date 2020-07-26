@@ -26,7 +26,6 @@ export class TagSearchComponent implements OnInit {
   recepies = [];
   allTags:Tag[];
   tagCtrl = new FormControl();
-  allTagNames: string[] = [];
   searchName:string = "";
   isLoading = false;
 
@@ -59,8 +58,6 @@ export class TagSearchComponent implements OnInit {
   selectTag(tag){
     this.selected.push(tag);
     this.getRecomandedTags();
-    //this.allTags = this.allTags.filter( el => el.name.valueOf() !== tag.name.valueOf()); 
-    this.allTagNames = this.allTagNames.filter( el => el.valueOf() !== tag.name.valueOf()); 
     this.getRecipeSearch();
   }
 
@@ -71,7 +68,6 @@ export class TagSearchComponent implements OnInit {
     }
     this.getRecomandedTags();
     this.allTags.push(tag);
-    this.allTagNames.push(tag.name)
     this.getRecipeSearch();
   }
 
@@ -88,23 +84,13 @@ export class TagSearchComponent implements OnInit {
   }
   getAllTags = async function(SearchTagString?:string) {
     this.allTags = await this.api.getAllTags(this.selected);
-    this.allTags.push({_id: null, name:"in Saison"});
-    this.allTags.forEach(element => {
-      this.allTagNames.push(element.name)
-    });
+
     if (SearchTagString){
       const taggSearchResult = this.allTags.find(x => x.name === SearchTagString);
       if (taggSearchResult){
         this.selectTag(taggSearchResult);
       }
-    }
-    var filter = function(value: string): string[] {
-      const filterValue = value.toLowerCase();
-      return this.allTagNames.filter(tag => tag.toLowerCase().indexOf(filterValue) === 0);
-    }
-    this.tagsForAutocomplete = this.tagCtrl.valueChanges.pipe(
-      startWith(null),
-      map((tag: string | null) => tag ? filter(tag) : this.allTagNames.slice()));          
+    } 
   }
   
   getRecipeSearch = async function() {
