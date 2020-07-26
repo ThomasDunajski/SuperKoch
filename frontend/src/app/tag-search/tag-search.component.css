@@ -13,3 +13,9 @@ mat-form-field {
     margin-right: auto;
     width: 90%;
 }
+#search-field{
+    width: calc(100% - 70px)
+}
+.span{
+    width: 100%;
+}

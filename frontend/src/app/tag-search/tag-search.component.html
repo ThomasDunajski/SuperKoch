@@ -1,8 +1,13 @@
 <div class="centered"> 
-    <mat-form-field id="search-field">
-        <mat-label>Name</mat-label>
-        <input #nameInput matInput [(ngModel)]="searchName" (change)="nameChanged(nameInput.value)">
-      </mat-form-field>    
+    <span>
+        <mat-form-field id="search-field">
+            <mat-label>Name</mat-label>
+            <input #nameInput matInput [(ngModel)]="searchName" (keyup.enter)="nameChanged(nameInput.value)">
+          </mat-form-field>   
+          <button mat-button id="search-button" (click)="nameChanged(nameInput.value)">
+            <mat-icon>search</mat-icon>
+        </button> 
+    </span>
     <h3 class="left">
         Empfohlene Kategorien
     </h3>
