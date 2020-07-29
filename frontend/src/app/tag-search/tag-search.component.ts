@@ -24,7 +24,6 @@ export class TagSearchComponent implements OnInit {
 
   @ViewChild('tagInput') tagInput: ElementRef<HTMLInputElement>;
   filterTagsForAutocomplete
-  recomandedTags:Tag[];
   selected:Tag[] = [];
   tagsForAutocomplete:Observable<string[]>;
   recepies = [];
@@ -52,7 +51,6 @@ export class TagSearchComponent implements OnInit {
     else{
       this.getAllTags();
     }    
-    this.getRecomandedTags();
   }
 
   onTagClick(event, tag) {
@@ -62,7 +60,6 @@ export class TagSearchComponent implements OnInit {
 
   selectTag(tag){
     this.selected.push(tag);
-    this.getRecomandedTags();
     this.getRecipeSearch();
   }
 
@@ -71,7 +68,6 @@ export class TagSearchComponent implements OnInit {
     if (index >= 0) {
       this.selected.splice(index, 1);
     }
-    this.getRecomandedTags();
     this.allTags.push(tag);
     this.getRecipeSearch();
   }
@@ -84,9 +80,6 @@ export class TagSearchComponent implements OnInit {
     //this.selectTag(tag);
   }
 
-  getRecomandedTags = async function() {
-        this.recomandedTags = await this.api.getRecomandedTags(this.selected);
-  }
   getAllTags = async function(SearchTagString?:string) {
     this.allTags = await this.api.getAllTags();
     this.processTags();

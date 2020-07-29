@@ -16,9 +16,6 @@ export class ApiService {
       localUrl = "api/"
     }
  }
-  getRecomandedTags(selectedTags) {
-    return this.http.post(localUrl+ "tags/recomanded", {selectedTags:selectedTags}).toPromise();
-  }
   getAllTags() {
     return this.http.get(localUrl + "tags").toPromise();
   }
