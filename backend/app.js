@@ -11,6 +11,7 @@ app.use(bodyParser.json());
 app.use(express.static('public'));
 
 var MongoClient = require('mongodb').MongoClient;
+var ObjectId = require('mongodb').ObjectId; 
 
 
 app.get('/tags', async function (req, res) {
@@ -133,25 +134,19 @@ function getDb(){
   });
   });
 };
-function resolveTags(tagIds){
-  var recepieTags =[];
-  // resolve tags
-  var tagIdString
+async function resolveTags(tagIds){
+  if (!tagIds) return [];
+  var idObjects = [];
   tagIds.forEach(tagId =>{
-    tagIdString = JSON.stringify(tagId);
-    tags.forEach(tag =>{
-      if (JSON.stringify(tag._id) === tagIdString){
-        recepieTags.push(tag);
-      }
-    });
-  });
-  return recepieTags;
+    idObjects.push(new ObjectId(tagId));
+  }); 
+  return find("Tags", {_id: {$in:idObjects}});
 }
 
 app.get('/recepie/:recepieId', async function (req, res) {
     var recepieId = parseInt(req.params.recepieId);
     var recipe = await findOne({number:recepieId});
-    recipe.tags = resolveTags(recipe.tags);
+    recipe.tags = await resolveTags(recipe.tags);
     res.json(recipe);
 });
 
