@@ -8,6 +8,10 @@ import {ActivatedRoute} from '@angular/router'
 
 export interface Tag {
   name: string;
+  category:{
+    name:string,
+    number:number
+  }
   _id: string;
 }
 
@@ -28,6 +32,7 @@ export class TagSearchComponent implements OnInit {
   tagCtrl = new FormControl();
   searchName:string = "";
   isLoading = false;
+  tagCategorys = [];
 
   constructor(private api: ApiService, private route: ActivatedRoute) {
     this.allTags=[];
@@ -83,7 +88,8 @@ export class TagSearchComponent implements OnInit {
         this.recomandedTags = await this.api.getRecomandedTags(this.selected);
   }
   getAllTags = async function(SearchTagString?:string) {
-    this.allTags = await this.api.getAllTags(this.selected);
+    this.allTags = await this.api.getAllTags();
+    this.processTags();
 
     if (SearchTagString){
       const taggSearchResult = this.allTags.find(x => x.name === SearchTagString);
@@ -93,6 +99,15 @@ export class TagSearchComponent implements OnInit {
     } 
   }
   
+  processTags(){
+    var categorys = {};
+    this.allTags.forEach(tag => {
+      if (!categorys.hasOwnProperty(tag.category.number)) categorys[tag.category.number] = [];
+      categorys[tag.category.number].push(tag);
+    });
+    this.tagCategorys = [];
+    Object.keys(categorys).map( x=> this.tagCategorys.push(categorys[x]))
+  }
   getRecipeSearch = async function() {
     this.recepies = await this.api.getRecipeSearch(this.selected, this.searchName);
   }

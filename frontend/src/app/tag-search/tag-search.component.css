@@ -4,9 +4,6 @@ mat-form-field {
 .left{
     text-align: left;
 }
-.left.bold{
-    font-weight: bold;
-}
 .centered{
     display: block;
     margin-left: auto;
@@ -15,7 +12,4 @@ mat-form-field {
 }
 #search-field{
     width: calc(100% - 70px)
-}
-.span{
-    width: 100%;
 }

@@ -1,35 +1,32 @@
 <div class="centered"> 
-    <span>
-        <mat-form-field id="search-field">
-            <mat-label>Name</mat-label>
+    <h3>Suche:</h3>
+
+        <mat-form-field>
+            <mat-label>Name oder Zutat</mat-label>
             <input #nameInput matInput [(ngModel)]="searchName" (keyup.enter)="nameChanged(nameInput.value)">
+            <button matSuffix  mat-button (click)="nameChanged(nameInput.value)">
+                <mat-icon>search</mat-icon>
+            </button> 
           </mat-form-field>   
-          <button mat-button id="search-button" (click)="nameChanged(nameInput.value)">
-            <mat-icon>search</mat-icon>
-        </button> 
-    </span>
-    <h3 class="left">
-        Empfohlene Kategorien
-    </h3>
-    <div>
+
+    <h3>Filter:</h3>
+
+    <div *ngFor="let category of tagCategorys, let  i = index;">
+        <span> {{tagCategorys[i][0].category.name + ":"}} </span>
         <mat-form-field>
         <mat-chip-list #tags>
-            <mat-chip color="primary"  *ngFor="let tag of recomandedTags" (click)="onTagClick($event, tag)">{{tag.name}}</mat-chip>
+            <mat-chip color="primary" *ngFor="let tag of tagCategorys[i]" (click)="onTagClick($event, tag)">{{tag.name}}</mat-chip>
         </mat-chip-list>
         </mat-form-field>
     </div>
     
-    <h3 class="left bold">
-        Ausgewählte Kategorien
-    </h3>
+    <h3>Rezepte:</h3>
     
     <mat-chip-list #chipList>
         <mat-chip selected *ngFor="let tag of selected" [removable]="true" (removed)="remove(tag)">{{tag.name}} 
           <mat-icon matChipRemove>cancel</mat-icon>
         </mat-chip>
     </mat-chip-list>  
-
-
     
      <p class="left" infiniteScroll
      [infiniteScrollDistance]="2"
