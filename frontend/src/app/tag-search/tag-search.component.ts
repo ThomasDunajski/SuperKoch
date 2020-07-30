@@ -23,12 +23,9 @@ export interface Tag {
 export class TagSearchComponent implements OnInit {
 
   @ViewChild('tagInput') tagInput: ElementRef<HTMLInputElement>;
-  filterTagsForAutocomplete
   selected:Tag[] = [];
-  tagsForAutocomplete:Observable<string[]>;
   recepies = [];
   allTags:Tag[];
-  tagCtrl = new FormControl();
   searchName:string = "";
   isLoading = false;
   tagCategorys = [];
@@ -61,23 +58,19 @@ export class TagSearchComponent implements OnInit {
   selectTag(tag){
     this.selected.push(tag);
     this.getRecipeSearch();
+    this.tagCategorys = this.tagCategorys.map(category=> 
+      category.filter(element => element.name !== tag.name));
   }
+
 
   remove(tag: Tag): void {
     const index = this.selected.indexOf(tag);
     if (index >= 0) {
       this.selected.splice(index, 1);
     }
-    this.allTags.push(tag);
     this.getRecipeSearch();
-  }
-
-  autocompleteSelected(event){
-    //console.log('autocomplete ' + tag.name +' clicked')
-    this.selectTag({name:event.option.viewValue});
-    this.tagInput.nativeElement.value = '';
-    this.tagCtrl.setValue(null);
-    //this.selectTag(tag);
+    this.tagCategorys = this.tagCategorys.map(category =>
+       (category[0].category.name === tag.category.name) ? category.concat(tag) : category );
   }
 
   getAllTags = async function(SearchTagString?:string) {
