@@ -1,4 +1,5 @@
-dbService = require("./db-service");
+var dbService = require("./db-service");
+var ObjectId = require('mongodb').ObjectId; 
 
 exports.getTags = async (req, res) => {
     var tags = await dbService.find({collection:"Tags", query:{}, sort:{name:1}});

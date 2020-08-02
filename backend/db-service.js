@@ -30,6 +30,7 @@ exports.find = (options) => {
      .limit(options.limit)
      .sort(options.sort)
      .toArray(function(err, data) {
+       connection.close();
         err 
            ? reject(err) 
            : resolve(data);
