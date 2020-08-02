@@ -2,9 +2,12 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var cors = require('cors');
 var app = express();
+var path = require('path');
+
 var upload = require('./upload');
 var thumbnail = require('./thumbnail');
-var path = require('path');
+
+var tagsController = require('./tags-controller');
 
 app.use(cors());
 app.use(bodyParser.json());
@@ -14,20 +17,9 @@ var MongoClient = require('mongodb').MongoClient;
 var ObjectId = require('mongodb').ObjectId; 
 
 
-app.get('/tags', async (req, res) => {
-  var tags = await find({collection:"Tags", query:{}, sort:{name:1}});
-  res.json(tags);
-});
+app.get('/tags', tagsController.getTags);
 
-app.post('/tags', async (req, res) => {
-  var tag = req.body.tag;
-  var connection = await getDb();
-  var db = connection.db("SuperKoch");
-  db.collection("Tags").insertOne(tag, function(){
-    connection.close();
-  });
-  res.json(tag);
-});
+app.post('/tags', tagsController.addTag);
 
 app.post('/recepie', async (req, res) =>{
   var recipe = req.body.recipe;
@@ -134,19 +126,10 @@ function getDb(){
   });
 };
 
-async function resolveTags(tagIds){
-  if (!tagIds) return [];
-  var idObjects = [];
-  tagIds.forEach(tagId =>{
-    idObjects.push(new ObjectId(tagId));
-  }); 
-  return find({collection:"Tags", query:{_id: {$in:idObjects}}});
-}
-
 app.get('/recepie/:recepieId', async  (req, res) => {
     var recepieId = parseInt(req.params.recepieId);
     var recipe = await findOne({number:recepieId});
-    recipe.tags = await resolveTags(recipe.tags);
+    recipe.tags = await tagsController.resolveTags(recipe.tags);
     res.json(recipe);
 });
 
