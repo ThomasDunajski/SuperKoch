@@ -14,12 +14,12 @@ var MongoClient = require('mongodb').MongoClient;
 var ObjectId = require('mongodb').ObjectId; 
 
 
-app.get('/tags', async function (req, res) {
+app.get('/tags', async (req, res) => {
   var tags = await find({collection:"Tags", query:{}, sort:{name:1}});
   res.json(tags);
 });
 
-app.post('/tags', async function (req, res) {
+app.post('/tags', async (req, res) => {
   var tag = req.body.tag;
   var connection = await getDb();
   var db = connection.db("SuperKoch");
@@ -29,7 +29,7 @@ app.post('/tags', async function (req, res) {
   res.json(tag);
 });
 
-app.post('/recepie', async function (req, res) {
+app.post('/recepie', async (req, res) =>{
   var recipe = req.body.recipe;
   if (recipe === undefined){
       res.statusMessage = "recipe undefined";
@@ -143,14 +143,14 @@ async function resolveTags(tagIds){
   return find({collection:"Tags", query:{_id: {$in:idObjects}}});
 }
 
-app.get('/recepie/:recepieId', async function (req, res) {
+app.get('/recepie/:recepieId', async  (req, res) => {
     var recepieId = parseInt(req.params.recepieId);
     var recipe = await findOne({number:recepieId});
     recipe.tags = await resolveTags(recipe.tags);
     res.json(recipe);
 });
 
-app.post('/recepie/search', async function (req, res) {
+app.post('/recepie/search', async (req, res) => {
   const selectedTags = req.body.selectedTags.length > 0 ? {tags: {$all: req.body.selectedTags}} : {};
   const season = req.body.season ?  {season: new Date().getMonth() + 1}: {};
   const skip = req.body.skip ?  parseInt(req.body.skip): 0;
@@ -202,11 +202,11 @@ app.post('/images/upload', (req, res) => {
 
 // GET home page.
 var path = require('path');
-app.get('/', function(req, res, next) {
+app.get('/', (req, res) => {
   sendIndex(res);
 });
 
-app.use(function(req, res) {
+app.use((req, res) => {
   sendIndex(res);
  });
 
