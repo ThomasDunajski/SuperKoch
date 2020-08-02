@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Recipe , Ingredient}from './recipe';
+import { Recipe }from './recipe';
 import { Observable } from 'rxjs';
 import { isDevMode } from '@angular/core';
 
