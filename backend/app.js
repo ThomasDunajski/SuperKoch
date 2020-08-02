@@ -15,7 +15,7 @@ var ObjectId = require('mongodb').ObjectId;
 
 
 app.get('/tags', async function (req, res) {
-  var tags = await find("Tags", {});
+  var tags = await find({collection:"Tags", query:{}, sort:{name:1}});
   res.json(tags);
 });
 
@@ -51,6 +51,7 @@ app.post('/recepie', async function (req, res) {
     }
   }
 });
+
 async function updateRecipe(recipe, req, res){
   delete recipe._id;
   var connection = await getDb();
@@ -63,6 +64,7 @@ async function updateRecipe(recipe, req, res){
     connection.close();
   });
 }
+
 async function addRecipe(recipe, req, res){
   var connection = await getDb();
   var db = connection.db("SuperKoch");
@@ -82,19 +84,22 @@ async function addRecipe(recipe, req, res){
     }));
   });
 }
-function find(collection, query, limit, skip, projection){
+function find(options){
+  // collection, query, limit, skip, projection
   return new Promise(async (resolve, reject) => {
-   
-    if (!limit) limit = 0;
-    if (!skip) skip = 0;
+    if (!options.limit) options.limit = 0;
+    if (!options.skip) options.skip = 0;
+    if (!options.projection) options.projection = {};
+    if (!options.sort) options.sort = {};
     const connection = await getDb();
     const db = connection.db("SuperKoch");
      db
-     .collection(collection)
-     .find(query)
-     .project(projection ? projection : {})
-     .skip(skip)
-     .limit(limit)
+     .collection(options.collection)
+     .find(options.query)
+     .project(options.projection )
+     .skip(options.skip)
+     .limit(options.limit)
+     .sort(options.sort)
      .toArray(function(err, data) {
         err 
            ? reject(err) 
@@ -128,13 +133,14 @@ function getDb(){
   });
   });
 };
+
 async function resolveTags(tagIds){
   if (!tagIds) return [];
   var idObjects = [];
   tagIds.forEach(tagId =>{
     idObjects.push(new ObjectId(tagId));
   }); 
-  return find("Tags", {_id: {$in:idObjects}});
+  return find({collection:"Tags", query:{_id: {$in:idObjects}}});
 }
 
 app.get('/recepie/:recepieId', async function (req, res) {
@@ -157,12 +163,18 @@ app.post('/recepie/search', async function (req, res) {
   }
   else
   {
-    var recipes = await find("recipes", {$and:[searchName,{$and:[selectedTags, season]}]}, limit, skip, projection);
+    var recipes = await find({
+      collection:"recipes", 
+      query:{$and:[searchName,{$and:[selectedTags, season]}]}, 
+      limit:limit, 
+      skip:skip, 
+      projection:projection
+    });
     res.json(recipes);
   }
 });
 
-app.post('/images/upload', function(req, res) {
+app.post('/images/upload', (req, res) => {
   upload.upload(req,res,function(err){
     if(req.fileValidationError) {
       console.log(req.fileValidationError);
