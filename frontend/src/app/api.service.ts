@@ -40,6 +40,9 @@ export class ApiService {
   addRecipe(recipe:Recipe) {
     return this.http.post(localUrl+ "recepie", {"recipe":recipe}).toPromise();
   }
+  addTag(tag) {
+    return this.http.post(localUrl+ "tags", {"tag":tag}).toPromise();
+  }
   uploadImage(profileImage: File): Observable<any> {
     var formData: any = new FormData();
     formData.append("file", profileImage);

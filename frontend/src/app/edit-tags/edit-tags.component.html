@@ -1,0 +1,24 @@
+<div class="centered">
+    <h3>Tag hinzufügen</h3>
+    <p>
+        <mat-form-field>
+            <mat-label>Name</mat-label>
+            <input [(ngModel)]="tag.name" matInput placeholder="z.B. einfach">
+        </mat-form-field>
+    </p>
+    <p>
+        <mat-form-field id="unit">
+            <mat-label>Kategorie</mat-label>
+            <mat-select [(ngModel)]="tag.category">
+                <mat-option *ngFor="let category of categories" [value]="category">
+                {{category.name}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+    </p>
+    <p class="center_button">
+        <button mat-button (click)="addTag()" class="green">
+          <mat-icon>add_circle_outline</mat-icon>
+        </button>
+      </p>
+</div>

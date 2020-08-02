@@ -1,30 +1,29 @@
 <div class="centered">
     <p>
-        <mat-form-field class="centered">
+        <mat-form-field>
             <mat-label>Name</mat-label>
             <input [(ngModel)]="recipe.name" matInput required placeholder="z.B. Tomatensalat">
             <mat-hint>Hint</mat-hint>
           </mat-form-field>
     </p>
     <p>
-      <mat-form-field class="centered">
+      <mat-form-field>
           <mat-label>Kochzeit</mat-label>
           <input [(ngModel)]="recipe.cookingDuration" type="number" matInput placeholder="z.B. 15">
           <mat-hint>Minuten</mat-hint>
         </mat-form-field>
     </p>
     <p>
-    <mat-form-field class="centered">
+    <mat-form-field>
       <mat-label>Wartezeit</mat-label>
       <input [(ngModel)]="recipe.restDuration" type="number" matInput placeholder="z.B. 15">
       <mat-hint>Minuten</mat-hint>
     </mat-form-field>
     </p>
     <p>
-      <mat-form-field class="centered">
+      <mat-form-field>
         <mat-label>Portionen</mat-label>
         <input [(ngModel)]="recipe.servings" type="number" matInput required placeholder="z.B. 4">
-        <mat-hint>Hint</mat-hint>
       </mat-form-field>
     </p>
     <h3>Zutaten</h3>
