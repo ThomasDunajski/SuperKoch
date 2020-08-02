@@ -35,6 +35,7 @@ import { IngredientsComponent } from './ingredients/ingredients.component';
 import { SeasonViewerComponent } from './season-viewer/season-viewer.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { EditRecipeComponent } from './edit-recipe/edit-recipe.component';
+import { EditTagsComponent } from './edit-tags/edit-tags.component';
 
 
 
@@ -49,7 +50,8 @@ import { EditRecipeComponent } from './edit-recipe/edit-recipe.component';
     IngredientsComponent,
     SeasonViewerComponent,
     NotFoundComponent,
-    EditRecipeComponent
+    EditRecipeComponent,
+    EditTagsComponent
   ],
   imports: [
     BrowserModule,
@@ -79,6 +81,7 @@ import { EditRecipeComponent } from './edit-recipe/edit-recipe.component';
       { path: 'recipe/:id', component: RecepieComponent },
       { path: 'recipe/edit/:id', component: EditRecipeComponent },
       { path: 'add-recepie', component: EditRecipeComponent },
+      { path: 'edit-tags', component: EditTagsComponent },
       {path: '404', component: NotFoundComponent},
       {path: '**', redirectTo: '/404'}
     ])

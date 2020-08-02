@@ -19,20 +19,14 @@ app.get('/tags', async function (req, res) {
   res.json(tags);
 });
 
-app.post('/tags/recomanded', async function (req, res) {
-    var selectedTags = req.body.selectedTags;
-    if (selectedTags === undefined){
-        res.statusMessage = "selectedTags undefined";
-        res.status(400).send();
-    }
-    else{
-        var response = await find("Tags", {});
-        selectedTags.forEach(selected => {
-            response = response.filter( el => el.name.valueOf() !== selected.name.valueOf());      
-        });
-        response = response.sort(function(a, b){return a.category.number - b.category.number}); 
-        res.json(response);
-    }
+app.post('/tags', async function (req, res) {
+  var tag = req.body.tag;
+  var connection = await getDb();
+  var db = connection.db("SuperKoch");
+  db.collection("Tags").insertOne(tag, function(){
+    connection.close();
+  });
+  res.json(tag);
 });
 
 app.post('/recepie', async function (req, res) {
