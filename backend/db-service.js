@@ -41,7 +41,7 @@ exports.find = (options) => {
 exports.findOne =  (query) => {
   return new Promise(async (resolve, reject) => {
 
-    const connection = await exports.getDb();
+    const connection = await exports.getDB();
     const db = connection.db("SuperKoch");
      db
      .collection('recipes')
