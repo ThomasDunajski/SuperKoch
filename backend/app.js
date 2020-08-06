@@ -14,7 +14,7 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(express.static('public'));
 
-
+// routes
 app.get('/tags', tagsController.getTags);
 
 app.post('/tags', tagsController.addTag);
