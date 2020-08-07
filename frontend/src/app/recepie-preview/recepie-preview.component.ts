@@ -12,6 +12,7 @@ export class RecepiePreviewComponent implements OnInit {
   constructor(private api: ApiService, private router: Router) { }
 
   @Input() data;
+  @Input() imageOnly;
   url;
   ngOnInit(): void {
     this.url = "/recipe/" + this.data.number

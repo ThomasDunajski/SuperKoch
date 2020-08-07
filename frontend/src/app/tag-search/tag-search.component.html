@@ -20,8 +20,17 @@
         </mat-form-field>
     </div>
     
+    <p class="view-buttons">
+        <button mat-button (click)="imageOnlyView=true">
+            <mat-icon>view_comfy</mat-icon>
+        </button> 
+        <button mat-button (click)="imageOnlyView=false">
+            <mat-icon>list</mat-icon>
+        </button> 
+    </p>
+
     <h3>Rezepte:</h3>
-    
+
     <mat-chip-list #chipList>
         <mat-chip selected *ngFor="let tag of selected" [removable]="true" (removed)="remove(tag)">{{tag.name}} 
           <mat-icon matChipRemove>cancel</mat-icon>
@@ -32,6 +41,6 @@
      [infiniteScrollDistance]="2"
      [infiniteScrollThrottle]="50"
      (scrolled)="onScroll()">
-        <app-recepie-preview *ngFor="let recepie of recepies" [data]="recepie"></app-recepie-preview>
+        <app-recepie-preview *ngFor="let recepie of recepies" [data]="recepie" [imageOnly]="imageOnlyView"></app-recepie-preview>
      </p>
 </div>

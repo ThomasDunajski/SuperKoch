@@ -13,3 +13,7 @@ mat-form-field {
 #search-field{
     width: calc(100% - 70px)
 }
+.view-buttons{
+    position: absolute;
+    right: 4%;
+}

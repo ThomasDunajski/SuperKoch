@@ -1,14 +1,25 @@
-.mat-card {
+.normal-card {
     display: inline-block;
     margin-bottom: 1%;
     width: 100%;
   }
-  img {
+  .normal-img {
     vertical-align: middle;
     max-width: 10%;
     border-radius: 4px;
   }
+  .img-only {
+    vertical-align: middle;
+    border-radius: 4px;
+    width: 100%;
+  }
+  .img-only-card {
+    display: inline-block;
+    margin: 1%;
+    width: 21%;
+  }
   span {
     display: inline-block;
     vertical-align: middle;
+    margin-left: 2%;
   }

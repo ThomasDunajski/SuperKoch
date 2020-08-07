@@ -29,6 +29,7 @@ export class TagSearchComponent implements OnInit {
   searchName:string = "";
   isLoading = false;
   tagCategorys = [];
+  imageOnlyView = false;
 
   constructor(private api: ApiService, private route: ActivatedRoute) {
     this.allTags=[];
@@ -104,7 +105,7 @@ export class TagSearchComponent implements OnInit {
   onScroll = async function()  {
     if (!this.isLoading){
       this.isLoading = true;
-      var newRecipes = await this.api.getRecipeSearch(this.selected, this.searchName, this.recepies.length, 4);
+      var newRecipes = await this.api.getRecipeSearch(this.selected, this.searchName, this.recepies.length, 5);
       this.recepies = this.recepies.concat(newRecipes);
       this.isLoading = false;
     }

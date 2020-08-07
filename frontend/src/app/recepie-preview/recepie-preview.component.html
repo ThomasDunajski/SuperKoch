@@ -1,6 +1,6 @@
-<mat-card class="content" (click)="onClick()">
-        <img src={{getThumbnailName(data.imageUri)}}>
-        <span class="recepieName">
+<mat-card [class]="imageOnly ? 'img-only-card' : 'normal-card'" (click)="onClick()">
+        <img [class]="imageOnly ? 'img-only' : 'normal-img'" src={{getThumbnailName(data.imageUri)}}>
+        <span *ngIf="!imageOnly" class="recepieName">
             {{data.name}}
         </span>
 </mat-card>
