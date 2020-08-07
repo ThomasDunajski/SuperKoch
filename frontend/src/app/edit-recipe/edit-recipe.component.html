@@ -118,24 +118,31 @@
       </mat-chip>
       </mat-chip-list>  
     </p>
-    <h3>Bild hochladen
-    </h3>
-  
-    <input type="file" (change)="fileChangeEvent($event)" *ngIf="!this.recipe.imageUri"/>
-  
-    <div style="display: flex; ">
-      <image-cropper 
-      *ngIf="!this.recipe.imageUri"
-      [imageChangedEvent]="imageChangedEvent" 
-      [maintainAspectRatio]="true" 
-      [aspectRatio]="4 / 4"
-      format="jpg" 
-      (imageCropped)="imageCropped($event)" 
-      style="flex-grow: 1; min-width: 20em;"></image-cropper>
-      <img id="image" [src]="croppedImage" style="max-width:20em; max-height: 20em;" />
+    <div *ngIf="recipe.imageUri === ''">
+      <h3>Bild hochladen</h3>
+
+      <input type="file" (change)="fileChangeEvent($event)" *ngIf="!this.recipe.imageUri"/>
+    
+      <div style="display: flex; ">
+        <image-cropper 
+        [imageChangedEvent]="imageChangedEvent" 
+        [maintainAspectRatio]="true" 
+        [aspectRatio]="4 / 4"
+        format="jpg" 
+        (imageCropped)="imageCropped($event)" 
+        style="flex-grow: 1; min-width: 20em;"></image-cropper>
+        <img id="image" [src]="croppedImage" style="max-width:20em; max-height: 20em;" />
+      </div>
+      <button (click)="uploadImage()" *ngIf="!this.recipe.imageUri" mat-button>Upload</button>
     </div>
-    <button (click)="uploadImage()" *ngIf="!this.recipe.imageUri" mat-button>Upload</button>
-  
+    <div *ngIf="recipe.imageUri !== ''">
+      <h3>Bild</h3>
+      <img class="previev-img" src="{{api.getImageUri(recipe.imageUri)}}">
+      <button id="delete-image-button" mat-button class="red" (click)="deleteImage()">
+        <mat-icon>remove_circle_outline</mat-icon>
+      </button>
+    </div>
+    
       <p>
         <button mat-button id="save-button" (click)="saveRecipe()">
           Rezept Speichern

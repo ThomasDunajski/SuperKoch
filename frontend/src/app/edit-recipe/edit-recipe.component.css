@@ -48,3 +48,11 @@
 #save-button{
     width: auto;
 }
+.previev-img{
+    width: 30%;
+}
+#delete-image-button {
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: 2%;
+}

@@ -24,7 +24,7 @@ export class EditRecipeComponent implements OnInit {
   form: FormGroup;
   progress: number = 0;
   instructions =[{value:""}];
-  constructor(private api: ApiService, private router: Router,public fb: FormBuilder, private actRoute: ActivatedRoute) { 
+  constructor(public api: ApiService, private router: Router,public fb: FormBuilder, private actRoute: ActivatedRoute) { 
     this.form = this.fb.group({
     name: [''],
     image: [null]
@@ -108,7 +108,18 @@ export class EditRecipeComponent implements OnInit {
     this.tags.push(tag);
     this.selectedTags = this.selectedTags.filter( el => el.name.valueOf() !== tag.name.valueOf()); 
   }
+  deleteImage(){
+    if (confirm('Sind Sie sicher, dass Sie das Bild löschen wollen?')) {
+      this.api.deleteImage(this.recipe.imageUri)
+      .then(()=> this.recipe.imageUri ="")
+      .catch(err=> console.log(err))
+      console.log('Thing was saved to the database.');
+    } else {
+      // Do nothing!
+      console.log('Thing was not saved to the database.');
+    }
 
+  }
 
   uploadImage() {
     var blob = this.dataURItoBlob(this.croppedImage);

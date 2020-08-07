@@ -51,6 +51,32 @@ app.post('/images/upload', (req, res) => {
   })
 });
 
+app.delete('/images/:imageId', (req, res) => {
+  var filename = req.params.imageId;
+  if (filename){
+    var path = __dirname + "/public/images/" +filename;
+    fs.unlink(path, (err) => {
+      if (err) {
+        console.log(err)
+      }
+      else{
+        console.log("File " + path + " was deleted.");
+      }
+    });
+      path =  path.substr(0, path.lastIndexOf(".jpg")+1) + "_thumb.jpg";
+      console.log(path)
+      fs.unlink(path, (err) => {
+        if (err) {
+          console.log(err)
+        }
+        else{
+          console.log("File " + path + " was deleted.");
+        }
+      });
+      res.json({error_code:0,err_desc:null, message:"successfull deleted"});
+  }
+});
+
 // GET home page.
 var path = require('path');
 app.get('/', (req, res) => {
