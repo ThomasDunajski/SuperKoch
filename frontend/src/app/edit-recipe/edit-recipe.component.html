@@ -89,7 +89,8 @@
     <p>
       <mat-checkbox [checked]="isSesonal" color="primary" (change)="onCheckboxChange($event.checked)">Saisonal</mat-checkbox>
     </p>
-    <p *ngIf="isSesonal">
+    <div *ngIf="isSesonal">
+    <p>
       <mat-button-toggle-group #season="matButtonToggleGroup" multiple="true" (change)="onSesonChanged(season.value)">
         <mat-button-toggle value="1">Jan</mat-button-toggle>
         <mat-button-toggle value="2">Feb</mat-button-toggle>
@@ -105,6 +106,11 @@
         <mat-button-toggle value="12">Dez</mat-button-toggle>
       </mat-button-toggle-group>
     </p>
+    <p>
+      <a target="_blank" rel="noopener noreferrer" href="https://www.verbraucherzentrale.de/sites/default/files/migration_files/media222992A.pdf">Saisonkalender</a>
+    </p>
+    </div>
+
     <h3>Tags</h3>
     <mat-form-field>
       <mat-chip-list>
