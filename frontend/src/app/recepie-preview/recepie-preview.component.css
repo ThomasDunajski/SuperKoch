@@ -23,7 +23,6 @@
     vertical-align: middle;
     margin-left: 2%;
   }
-  /* The overlay effect - lays on top of the container and over the image */
 .overlay {
   position: absolute;
   bottom: 0;
@@ -43,7 +42,7 @@
   border-bottom-right-radius: 4px;
 }
 
-/* When you mouse over the container, fade in the overlay title */
+/* When you mouse over the mat-card, fade in the overlay title */
 .mat-card:hover .overlay {
   opacity: 1;
 }
