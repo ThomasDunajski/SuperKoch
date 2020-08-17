@@ -21,12 +21,14 @@
     </div>
     
     <p class="view-buttons">
-        <button mat-button color="primary" (click)="imageOnlyView=true">
-            <mat-icon>view_comfy</mat-icon>
-        </button> 
-        <button mat-button color="primary" (click)="imageOnlyView=false">
-            <mat-icon>list</mat-icon>
-        </button> 
+        <mat-button-toggle-group name="fontStyle" aria-label="Font Style" value="normalView">
+            <mat-button-toggle color="primary" (click)="imageOnlyView=true" value="imageOnlyView">
+                <mat-icon>view_comfy</mat-icon>
+            </mat-button-toggle>
+            <mat-button-toggle color="primary" (click)="imageOnlyView=false"  value="normalView">
+                <mat-icon>list</mat-icon>
+            </mat-button-toggle>
+          </mat-button-toggle-group>
     </p>
 
     <h3>Rezepte:</h3>
