@@ -16,9 +16,16 @@
   .img-only-card {
     display: inline-block;
     margin: 1%;
-    width: 21%;
+    width: 20%;
   }
-  span {
+  @media screen and (max-width: 600px){
+    .img-only-card {
+      display: inline-block;
+      margin: 1%;
+      width: 39%;
+    }
+  }
+  .span {
     display: inline-block;
     vertical-align: middle;
     margin-left: 2%;
