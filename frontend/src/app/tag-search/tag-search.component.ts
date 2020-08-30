@@ -29,17 +29,20 @@ export class TagSearchComponent implements OnInit {
   tagCategorys = [];
   imageOnlyView = false;
 
-  constructor(private api: ApiService, private route: ActivatedRoute, private router: Router) {
+  constructor(private api: ApiService, private activatedRoute: ActivatedRoute, private router: Router) {
     this.allTags=[];
   }
 
   ngOnInit(): void {
-    // this.activatedRoute.queryParams.subscribe
-    this.searchName = this.route.snapshot.queryParamMap.get("searchName")
-    if (this.searchName && this.searchName.length > 0){
-      this.getRecipeSearch();
-    }
-    this.getAllTags( this.route.snapshot.queryParamMap.get("selectedTags"));
+    this.activatedRoute.queryParams.subscribe((params)=>{
+      this.searchName = params.searchName
+      console.log(this.searchName)
+      if (this.searchName && this.searchName.length > 0){
+        this.getRecipeSearch();
+      }
+    })
+
+    this.getAllTags( this.activatedRoute.snapshot.queryParamMap.get("selectedTags"));
 
   }
 
@@ -88,18 +91,13 @@ export class TagSearchComponent implements OnInit {
   getRecipeSearch = async function() {
     this.recepies = await this.api.getRecipeSearch(this.selected, this.searchName);
   }
-  nameChanged(name:string){
-    this.searchName = name;
-    this.getRecipeSearch();
-    this.updateUrlParams();
-  }
   updateUrlParams(){
     let tagString = "";
     this.selected.map( x=> tagString += x.name +";");
     tagString = tagString.slice(0, -1);
     this.router.navigate([], 
       {
-        relativeTo: this.route,
+        relativeTo: this.activatedRoute,
         queryParams: {selectedTags:tagString, searchName:this.searchName}, 
         // queryParamsHandling: 'merge', // remove to replace all query params by provided
       });
