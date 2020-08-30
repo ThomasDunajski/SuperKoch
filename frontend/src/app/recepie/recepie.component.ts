@@ -36,6 +36,6 @@ export class RecepieComponent implements OnInit {
     this.router.navigate(["/recipe/edit/" + this.actRoute.snapshot.params.id]);
   }
   onTagClick(tag){
-    this.router.navigate(["/"], {queryParams: {tag:tag.name}});
+    this.router.navigate(["/"], {queryParams: {selectedTags:tag.name}});
   }
 }

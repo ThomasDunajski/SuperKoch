@@ -1,8 +1,6 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { ApiService } from '../api.service';
-import {FormControl} from '@angular/forms';
-import {map, startWith, take } from 'rxjs/operators';
-import {Observable} from 'rxjs';
+import { Router } from '@angular/router';
 import {ActivatedRoute} from '@angular/router'
 
 
@@ -31,28 +29,21 @@ export class TagSearchComponent implements OnInit {
   tagCategorys = [];
   imageOnlyView = false;
 
-  constructor(private api: ApiService, private route: ActivatedRoute) {
+  constructor(private api: ApiService, private route: ActivatedRoute, private router: Router) {
     this.allTags=[];
   }
 
   ngOnInit(): void {
-    
+    // this.activatedRoute.queryParams.subscribe
     this.searchName = this.route.snapshot.queryParamMap.get("searchName")
     if (this.searchName && this.searchName.length > 0){
       this.getRecipeSearch();
     }
-    const tag = this.route.snapshot.queryParamMap.get("tag");
-    if (tag){
-      console.log(tag);
-      this.getAllTags(tag);
-    }
-    else{
-      this.getAllTags();
-    }    
+    this.getAllTags( this.route.snapshot.queryParamMap.get("selectedTags"));
+
   }
 
   onTagClick(event, tag) {
-    console.log(tag.name +' clicked')
     this.selectTag(tag);
   }
 
@@ -61,9 +52,8 @@ export class TagSearchComponent implements OnInit {
     this.getRecipeSearch();
     this.tagCategorys = this.tagCategorys.map(category=> 
       category.filter(element => element.name !== tag.name));
+    this.updateUrlParams();
   }
-
-
   remove(tag: Tag): void {
     const index = this.selected.indexOf(tag);
     if (index >= 0) {
@@ -71,18 +61,18 @@ export class TagSearchComponent implements OnInit {
     }
     this.getRecipeSearch();
     this.tagCategorys = this.tagCategorys.map(category =>
-       (category[0].category.name === tag.category.name) ? category.concat(tag) : category );
+      (category[0].category.name === tag.category.name) ? category.concat(tag) : category );
+    this.updateUrlParams();
   }
 
-  getAllTags = async function(SearchTagString?:string) {
+  getAllTags = async function(selectedTagsString?:string) {
     this.allTags = await this.api.getAllTags();
     this.processTags();
 
-    if (SearchTagString){
-      const taggSearchResult = this.allTags.find(x => x.name === SearchTagString);
-      if (taggSearchResult){
-        this.selectTag(taggSearchResult);
-      }
+    if (selectedTagsString){
+      let selectedTagNames = selectedTagsString.split(";");
+      selectedTagNames.forEach((tagName)=>
+        this.selectTag(this.allTags.find(x => x.name === tagName)));
     } 
   }
   
@@ -101,6 +91,18 @@ export class TagSearchComponent implements OnInit {
   nameChanged(name:string){
     this.searchName = name;
     this.getRecipeSearch();
+    this.updateUrlParams();
+  }
+  updateUrlParams(){
+    let tagString = "";
+    this.selected.map( x=> tagString += x.name +";");
+    tagString = tagString.slice(0, -1);
+    this.router.navigate([], 
+      {
+        relativeTo: this.route,
+        queryParams: {selectedTags:tagString, searchName:this.searchName}, 
+        // queryParamsHandling: 'merge', // remove to replace all query params by provided
+      });
   }
   onScroll = async function()  {
     if (!this.isLoading){
