@@ -18,7 +18,7 @@ function addIndex(option){
 };
 
 function createIndex(){
-  addIndex({name: "text"});
+  addIndex({name: "text", "ingredients.name": "text"});
   addIndex({tags: 1});
 }
 
