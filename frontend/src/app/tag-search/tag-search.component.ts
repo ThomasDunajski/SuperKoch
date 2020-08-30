@@ -36,14 +36,15 @@ export class TagSearchComponent implements OnInit {
   ngOnInit(): void {
     this.activatedRoute.queryParams.subscribe((params)=>{
       this.searchName = params.searchName
-      console.log(this.searchName)
-      if (this.searchName && this.searchName.length > 0){
-        this.getRecipeSearch();
+      if (this.allTags && this.allTags.length > 0){
+        this.selected = [];
+        this.processSelectedTags(params.selectedTags);
       }
+      else{
+        this.getAllTags( this.activatedRoute.snapshot.queryParamMap.get("selectedTags"));
+      }
+      this.getRecipeSearch();
     })
-
-    this.getAllTags( this.activatedRoute.snapshot.queryParamMap.get("selectedTags"));
-
   }
 
   onTagClick(event, tag) {
@@ -51,27 +52,30 @@ export class TagSearchComponent implements OnInit {
   }
 
   selectTag(tag){
-    this.selected.push(tag);
-    this.getRecipeSearch();
-    this.tagCategorys = this.tagCategorys.map(category=> 
-      category.filter(element => element.name !== tag.name));
-    this.updateUrlParams();
+    if (!this.selected.includes(tag)){
+      this.selected.push(tag);
+      this.tagCategorys = this.tagCategorys.map(category=> 
+        category.filter(element => element.name !== tag.name));
+      this.updateSearchParams();
+    }
   }
   remove(tag: Tag): void {
     const index = this.selected.indexOf(tag);
     if (index >= 0) {
       this.selected.splice(index, 1);
+      this.tagCategorys = this.tagCategorys.map(category =>
+        (category[0].category.name === tag.category.name) ? category.concat(tag) : category );
+      this.updateSearchParams();
     }
-    this.getRecipeSearch();
-    this.tagCategorys = this.tagCategorys.map(category =>
-      (category[0].category.name === tag.category.name) ? category.concat(tag) : category );
-    this.updateUrlParams();
   }
 
   getAllTags = async function(selectedTagsString?:string) {
     this.allTags = await this.api.getAllTags();
     this.processTags();
+    this.processSelectedTags(selectedTagsString)
+  }
 
+  processSelectedTags(selectedTagsString){
     if (selectedTagsString){
       let selectedTagNames = selectedTagsString.split(";");
       selectedTagNames.forEach((tagName)=>
@@ -91,7 +95,7 @@ export class TagSearchComponent implements OnInit {
   getRecipeSearch = async function() {
     this.recepies = await this.api.getRecipeSearch(this.selected, this.searchName);
   }
-  updateUrlParams(){
+  updateSearchParams(){
     let tagString = "";
     this.selected.map( x=> tagString += x.name +";");
     tagString = tagString.slice(0, -1);

@@ -3,8 +3,8 @@
 
         <mat-form-field>
             <mat-label>Name oder Zutat</mat-label>
-            <input #nameInput matInput [(ngModel)]="searchName" (keyup.enter)="updateUrlParams()">
-            <button matSuffix  mat-button (click)="updateUrlParams()">
+            <input #nameInput matInput [(ngModel)]="searchName" (keyup.enter)="updateSearchParams()">
+            <button matSuffix  mat-button (click)="updateSearchParams()">
                 <mat-icon>search</mat-icon>
             </button> 
           </mat-form-field>   
