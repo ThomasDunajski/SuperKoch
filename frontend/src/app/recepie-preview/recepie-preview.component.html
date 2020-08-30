@@ -1,7 +1,9 @@
-<mat-card [class]="imageOnly ? 'img-only-card' : 'normal-card'" (click)="onClick()">
+<a href="{{url}}">
+    <mat-card [class]="imageOnly ? 'img-only-card' : 'normal-card'">
         <img [class]="imageOnly ? 'img-only' : 'normal-img'" src={{getThumbnailName(data.imageUri)}}>
         <div *ngIf="imageOnly" class="overlay">{{data.name}}</div>
         <span *ngIf="!imageOnly" class="recepieName">
             {{data.name}}
         </span>
-</mat-card>
+    </mat-card>
+</a>
