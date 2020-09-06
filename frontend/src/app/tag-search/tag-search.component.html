@@ -21,11 +21,11 @@
     </div>
     
     <p class="view-buttons">
-        <mat-button-toggle-group name="fontStyle" aria-label="Font Style" value="normalView">
-            <mat-button-toggle color="primary" (click)="imageOnlyView=true" value="imageOnlyView">
+        <mat-button-toggle-group name="fontStyle" aria-label="Font Style" value='{{largeImages ? "imageOnlyView" : "normalView"}}'>
+            <mat-button-toggle color="primary" (click)="largeImages=true; updateSearchParams()" value="imageOnlyView">
                 <mat-icon>view_comfy</mat-icon>
             </mat-button-toggle>
-            <mat-button-toggle color="primary" (click)="imageOnlyView=false"  value="normalView">
+            <mat-button-toggle color="primary" (click)="largeImages=false; updateSearchParams()"  value="normalView">
                 <mat-icon>list</mat-icon>
             </mat-button-toggle>
           </mat-button-toggle-group>
@@ -43,6 +43,6 @@
      [infiniteScrollDistance]="2"
      [infiniteScrollThrottle]="50"
      (scrolled)="onScroll()">
-        <app-recepie-preview *ngFor="let recepie of recepies" [data]="recepie" [imageOnly]="imageOnlyView"></app-recepie-preview>
+        <app-recepie-preview *ngFor="let recepie of recepies" [data]="recepie" [imageOnly]="largeImages"></app-recepie-preview>
      </p>
 </div>

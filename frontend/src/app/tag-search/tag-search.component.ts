@@ -27,7 +27,7 @@ export class TagSearchComponent implements OnInit {
   searchName:string = "";
   isLoading = false;
   tagCategorys = [];
-  imageOnlyView = false;
+  largeImages = false;
 
   constructor(private api: ApiService, private activatedRoute: ActivatedRoute, private router: Router) {
     this.allTags=[];
@@ -36,6 +36,8 @@ export class TagSearchComponent implements OnInit {
   ngOnInit(): void {
     this.activatedRoute.queryParams.subscribe((params)=>{
       this.searchName = params.searchName
+      if (params.largeImages == 1) this.largeImages = true;
+      // TODO largeImages bei click auf toogle aktualisieren
       if (this.allTags && this.allTags.length > 0){
         this.selected = [];
         this.processSelectedTags(params.selectedTags);
@@ -102,7 +104,7 @@ export class TagSearchComponent implements OnInit {
     this.router.navigate([], 
       {
         relativeTo: this.activatedRoute,
-        queryParams: {selectedTags:tagString, searchName:this.searchName}, 
+        queryParams: {selectedTags:tagString, searchName:this.searchName, largeImages: this.largeImages ? 1 : 0}
         // queryParamsHandling: 'merge', // remove to replace all query params by provided
       });
   }
