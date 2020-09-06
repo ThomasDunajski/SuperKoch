@@ -30,7 +30,9 @@ export class RecepieComponent implements OnInit {
   getFormatedTime = function (time:number) {
     const minutes = time % 60 !== 0 ? time % 60 + " min" : "";
     const hours = time > 59 ? Math.floor(time / 60) + " Stunden " : ""
-    return hours + minutes;
+    if ((hours + minutes).length > 0)
+      return hours + minutes;
+    return "0";
   }
   goToEdit(){
     this.router.navigate(["/recipe/edit/" + this.actRoute.snapshot.params.id]);
