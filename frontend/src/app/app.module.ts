@@ -26,6 +26,7 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
 import {MatExpansionModule} from '@angular/material/expansion';
 import { ImageCropperModule } from 'ngx-image-cropper';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
+import { ClipboardModule } from 'ngx-clipboard';
 
 import { RecepieComponent } from './recepie/recepie.component';
 import { TagSearchComponent } from './tag-search/tag-search.component';
@@ -61,6 +62,7 @@ import { EditTagsComponent } from './edit-tags/edit-tags.component';
     BrowserAnimationsModule,
     MatButtonModule,
     MatAutocompleteModule,
+    ClipboardModule,
     MatProgressBarModule,
     MatExpansionModule,
     MatButtonToggleModule,

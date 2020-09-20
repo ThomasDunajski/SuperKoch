@@ -1,4 +1,5 @@
 import { Component, OnInit, Input} from '@angular/core';
+import { ClipboardService } from 'ngx-clipboard'
 
 @Component({
   selector: 'app-ingredients',
@@ -7,7 +8,7 @@ import { Component, OnInit, Input} from '@angular/core';
 })
 export class IngredientsComponent implements OnInit {
 
-  constructor() { }
+  constructor(private clipboardService: ClipboardService) { }
   entries=[];
   ngOnInit(): void {
     for (let index = 0; index < this.ingredients.length; index++) {
@@ -33,5 +34,10 @@ export class IngredientsComponent implements OnInit {
   }
   getHeading(position: number){
     return this.headings ? this.headings.filter(x => x.position === position)[0] : null;
+  }
+  copyToClipboard(){
+    let ingredients:string = "";
+    this.ingredients.map((ingredient)=> ingredients += ingredient.name + " " + ingredient.quantity * this.servings + " " + ingredient.unit + "\n");
+    this.clipboardService.copy(ingredients);
   }
 }

@@ -17,10 +17,10 @@ input{
     max-width: 6%;
 }
 button{
-    max-width: 6%;
     background-color: lightgray;
     font-weight: bold;
 }
-p{
+div{
     text-align: center;
+    margin: 2px;
 }

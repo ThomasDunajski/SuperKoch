@@ -1,8 +1,8 @@
-<p>
+<div>
     <button mat-button (click)="decServings()">-</button>
     {{servings}} Portionen
     <button mat-button (click)="incServings()">+</button>
-</p>
+</div>
 <table *ngIf="entries" class="ingredients-table">
     <tr *ngFor="let ingredient of entries, let isEven=even, let i = index" class="left">
         <th class="heading" *ngIf="ingredient.text"> {{ingredient.text}}</th>
@@ -11,3 +11,12 @@
         <th *ngIf="ingredient.name" [class.even]="isEven">{{getQuantity(ingredient.quantity)}} {{ingredient.unit}}</th>
     </tr>
 </table>
+<div>
+    <button mat-button (click)="copyToClipboard()">
+        <mat-icon>content_paste</mat-icon>
+        <span>
+            in Zwischenablage kopieren
+        </span>
+    </button>
+</div>
+
