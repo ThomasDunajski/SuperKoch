@@ -42,10 +42,12 @@ app.post('/images/upload', (req, res) => {
     console.log(path)
     // only jpg and png are allowed to be uploaded
     if (path.includes(".jpg")){
-      thumbnail.create(path, path.substr(0, path.lastIndexOf(".jpg")+1) + "_thumb.jpg")
+      thumbnail.createThumbnail(path, path.substr(0, path.lastIndexOf(".jpg")) + "_thumb.jpg")
+      thumbnail.createLarge(path, path.substr(0, path.lastIndexOf(".jpg")) + "_large.jpg")
     }
     else{
-      thumbnail.create(path, path.substr(0, path.lastIndexOf(".png")+1) + "_thumb.jpg")
+      thumbnail.createThumbnail(path, path.substr(0, path.lastIndexOf(".png")) + "_thumb.jpg")
+      thumbnail.createLarge(path, path.substr(0, path.lastIndexOf(".png")) + "_large.jpg")
     }
     res.json({error_code:0,err_desc:null, filename: filename});
   })
@@ -63,7 +65,17 @@ app.delete('/images/:imageId', (req, res) => {
         console.log("File " + path + " was deleted.");
       }
     });
-      path =  path.substr(0, path.lastIndexOf(".jpg")+1) + "_thumb.jpg";
+      path =  path.substr(0, path.lastIndexOf(".jpg")) + "_thumb.jpg";
+      console.log(path)
+      fs.unlink(path, (err) => {
+        if (err) {
+          console.log(err)
+        }
+        else{
+          console.log("File " + path + " was deleted.");
+        }
+      });
+      path =  path.substr(0, path.lastIndexOf(".jpg")) + "_large.jpg";
       console.log(path)
       fs.unlink(path, (err) => {
         if (err) {

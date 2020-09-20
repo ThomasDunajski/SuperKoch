@@ -1,6 +1,6 @@
 <div *ngIf="recepie" class="centered"> 
     <h1>{{recepie.name}}</h1>
-    <img src={{recepie.imageUri}}>
+    <img src={{getImageName(recepie.imageUri)}}>
     <div style="text-align: center;">
         <span style="margin-right: 1%;">Kochzeit {{getFormatedTime(recepie.cookingDuration)}}</span>
         <span>Wartezeit {{getFormatedTime(recepie.restDuration)}}</span>

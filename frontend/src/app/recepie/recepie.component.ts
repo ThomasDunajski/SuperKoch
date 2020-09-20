@@ -40,4 +40,10 @@ export class RecepieComponent implements OnInit {
   onTagClick(tag){
     this.router.navigate(["/"], {queryParams: {selectedTags:tag.name}});
   }
+  getImageName(path){
+    if (path.includes(".jpg")){
+     return path.substr(0, path.lastIndexOf(".jpg")) + "_large.jpg";
+    }
+    return path.substr(0, path.lastIndexOf(".png")) + "_large.jpg";
+  }
 }
