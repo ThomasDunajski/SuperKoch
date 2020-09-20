@@ -37,7 +37,14 @@ export class IngredientsComponent implements OnInit {
   }
   copyToClipboard(){
     let ingredients:string = "";
-    this.ingredients.map((ingredient)=> ingredients += ingredient.name + " " + ingredient.quantity * this.servings + " " + ingredient.unit + "\n");
+    let quantitiy:number;
+    let quantitiyString:string;
+    this.ingredients.map((ingredient)=> {
+      quantitiy = ingredient.quantity * this.servings;
+      // if quantity is 0 ignore it
+      quantitiyString = quantitiy == 0 ? "" : quantitiy + " ";
+      ingredients += ingredient.name + " " + quantitiyString + ingredient.unit + "\n"
+    });
     this.clipboardService.copy(ingredients);
   }
 }
