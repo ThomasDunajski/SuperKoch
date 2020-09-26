@@ -95,7 +95,7 @@ export class TagSearchComponent implements OnInit {
     Object.keys(categorys).map( x=> this.tagCategorys.push(categorys[x]))
   }
   getRecipeSearch = async function() {
-    this.recepies = await this.api.getRecipeSearch(this.selected, this.searchName);
+    this.recepies = await this.api.getRecipeSearch(this.selected, this.searchName, 10);
   }
   updateSearchParams(){
     let tagString = "";
@@ -111,7 +111,7 @@ export class TagSearchComponent implements OnInit {
   onScroll = async function()  {
     if (!this.isLoading){
       this.isLoading = true;
-      var newRecipes = await this.api.getRecipeSearch(this.selected, this.searchName, this.recepies.length, 5);
+      var newRecipes = await this.api.getRecipeSearch(this.selected, this.searchName, this.recepies.length, 10);
       this.recepies = this.recepies.concat(newRecipes);
       this.isLoading = false;
     }
