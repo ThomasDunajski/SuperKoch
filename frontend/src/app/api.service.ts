@@ -58,4 +58,10 @@ export class ApiService {
   deleteImage(uri) {
     return this.http.delete(localUrl+ "images/" + uri).toPromise();
   }
+  getCollection(number) {
+    return this.http.get(localUrl + "collection/" + number).toPromise();
+  }
+  getCollections() {
+    return this.http.get(localUrl + "collection").toPromise();
+  }
 }

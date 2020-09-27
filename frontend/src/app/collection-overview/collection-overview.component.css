@@ -1,0 +1,9 @@
+.centered{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 90%;
+}
+.app-collection-preview{
+    width: 45%
+}

@@ -1,0 +1,14 @@
+.centered {
+    text-align: center;
+}
+.mat-card{
+    margin: 5%;
+}
+img{
+    width: 90%;
+}
+p{
+    text-align: left;
+    width: 90%;
+    margin-left: 5%;
+}

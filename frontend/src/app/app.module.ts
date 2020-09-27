@@ -37,6 +37,9 @@ import { SeasonViewerComponent } from './season-viewer/season-viewer.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { EditRecipeComponent } from './edit-recipe/edit-recipe.component';
 import { EditTagsComponent } from './edit-tags/edit-tags.component';
+import { CollectionComponent } from './collection/collection.component';
+import { CollectionOverviewComponent } from './collection-overview/collection-overview.component';
+import { CollectionPreviewComponent } from './collection-preview/collection-preview.component';
 
 
 
@@ -52,7 +55,10 @@ import { EditTagsComponent } from './edit-tags/edit-tags.component';
     SeasonViewerComponent,
     NotFoundComponent,
     EditRecipeComponent,
-    EditTagsComponent
+    EditTagsComponent,
+    CollectionComponent,
+    CollectionOverviewComponent,
+    CollectionPreviewComponent
   ],
   imports: [
     BrowserModule,
@@ -84,6 +90,8 @@ import { EditTagsComponent } from './edit-tags/edit-tags.component';
       { path: 'recipe/edit/:id', component: EditRecipeComponent },
       { path: 'add-recepie', component: EditRecipeComponent },
       { path: 'edit-tags', component: EditTagsComponent },
+      { path: 'collection', component: CollectionOverviewComponent },
+      { path: 'collection/:id', component: CollectionComponent },
       {path: '404', component: NotFoundComponent},
       {path: '**', redirectTo: '/404'}
     ])

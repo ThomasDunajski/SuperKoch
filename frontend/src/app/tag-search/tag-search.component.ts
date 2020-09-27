@@ -95,7 +95,7 @@ export class TagSearchComponent implements OnInit {
     Object.keys(categorys).map( x=> this.tagCategorys.push(categorys[x]))
   }
   getRecipeSearch = async function() {
-    this.recepies = await this.api.getRecipeSearch(this.selected, this.searchName, 10);
+    this.recepies = await this.api.getRecipeSearch(this.selected, this.searchName);
   }
   updateSearchParams(){
     let tagString = "";

@@ -1,0 +1,9 @@
+<div *ngIf="collection" class="centered">
+    <h1>{{collection.name}}</h1>
+    <img src={{(collection.imageUrl)}}>
+    <p>{{collection.text}}</p>
+    <mat-card *ngFor="let number of collection.recipes">
+        <app-recepie [recipeNumber]=number></app-recepie>
+    </mat-card>
+    
+</div>
