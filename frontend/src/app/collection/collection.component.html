@@ -2,8 +2,33 @@
     <h1>{{collection.name}}</h1>
     <img src={{(collection.imageUrl)}}>
     <p>{{collection.text}}</p>
-    <mat-card *ngFor="let number of collection.recipes">
-        <app-recepie [recipeNumber]=number></app-recepie>
-    </mat-card>
-    
+    <mat-expansion-panel class="category" *ngFor="let section of collection.sections">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            {{section.name}}
+          </mat-panel-title>
+          <mat-panel-description>
+            {{section.description}}
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <mat-expansion-panel *ngFor="let recipe of section.recipes" class="recepie-container">
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                {{recipe.name}}
+              </mat-panel-title>
+              <mat-checkbox (click)="$event.stopPropagation();" color="primary">hinzufügen</mat-checkbox>
+            </mat-expansion-panel-header>
+                <app-recepie [recipeNumber]=recipe.number ></app-recepie>
+          </mat-expansion-panel>
+      </mat-expansion-panel>
+
+      <mat-expansion-panel class="category" >
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+              Zusammenfassung
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <h3>X von Y Rezepten ausgewählt</h3>
+          <app-ingredients [ingredients]="collection.sections[0].recipes[0].ingredients" [servings]=4  class="app-ingredients"></app-ingredients>
+      </mat-expansion-panel>
 </div>
