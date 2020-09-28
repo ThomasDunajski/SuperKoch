@@ -9,7 +9,7 @@ import { ApiService } from '../api.service';
 export class CollectionComponent implements OnInit {
 
   constructor(private api:ApiService) { }
-
+  teaser;
   ngOnInit(): void {
     this.getCollection(1);
   }
@@ -17,6 +17,11 @@ export class CollectionComponent implements OnInit {
 
   getCollection = async function(number){
     this.collection = await this.api.getCollection(number);
+    this.teaser = {
+      imageUrl:this.collection.imageUrl,
+      heading:this.collection.name,
+      text:this.collection.text
+    }
   }
 
 }

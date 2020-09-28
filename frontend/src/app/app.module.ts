@@ -40,6 +40,7 @@ import { EditTagsComponent } from './edit-tags/edit-tags.component';
 import { CollectionComponent } from './collection/collection.component';
 import { CollectionOverviewComponent } from './collection-overview/collection-overview.component';
 import { CollectionPreviewComponent } from './collection-preview/collection-preview.component';
+import { TeaserImageComponent } from './teaser-image/teaser-image.component';
 
 
 
@@ -58,7 +59,8 @@ import { CollectionPreviewComponent } from './collection-preview/collection-prev
     EditTagsComponent,
     CollectionComponent,
     CollectionOverviewComponent,
-    CollectionPreviewComponent
+    CollectionPreviewComponent,
+    TeaserImageComponent
   ],
   imports: [
     BrowserModule,
