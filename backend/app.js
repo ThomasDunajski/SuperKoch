@@ -90,7 +90,8 @@ app.delete('/images/:imageId', (req, res) => {
 });
 
 app.get('/collection', (req, res) => {
-  res.json([{name:"collection1", number:1, text: "Lorem Ipsum", imageUrl:"api/images/1591724229216.XZgui_thumb.jpg"},{name:"collection2", number:2, text: "Lorem Ipsum", imageUrl:"api/images/1591724229216.XZgui_thumb.jpg"},{name:"collection3", number:3, text: "Lorem Ipsum", imageUrl:"api/images/1591724229216.XZgui_thumb.jpg"},{name:"collection4", number:4, text: "Lorem Ipsum", imageUrl:"api/images/1591724229216.XZgui_thumb.jpg"}]);
+  var imgurl="http://sf1.mariefranceasia.com/wp-content/uploads/sites/7/2017/06/dimsum-1.jpg";
+  res.json([{name:"collection1", number:1, text: "Lorem Ipsum", imageUrl:imgurl},{name:"collection2", number:2, text: "Lorem Ipsum", imageUrl:imgurl},{name:"collection3", number:3, text: "Lorem Ipsum", imageUrl:"api/images/1591724229216.XZgui_thumb.jpg"},{name:"collection4", number:4, text: "Lorem Ipsum", imageUrl:"api/images/1591724229216.XZgui_thumb.jpg"}]);
 });
 app.get('/collection/:collectionId', (req, res) => {
   res.json({name:"collection1",imageUrl:"http://sf1.mariefranceasia.com/wp-content/uploads/sites/7/2017/06/dimsum-1.jpg", 
