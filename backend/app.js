@@ -39,5 +39,6 @@ function sendIndex(req, res){
 //start server
 var server_port = process.env.PORT || 8080;
 app.listen(server_port, function () {
-  console.log("Listening on port " , server_port)
+  console.log("Listening on port " , server_port);
+  console.log(process.env.DB_CONNECTION_STRING)
 });
