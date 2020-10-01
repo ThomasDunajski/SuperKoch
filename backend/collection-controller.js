@@ -71,6 +71,8 @@ exports.getCollection = async  (req, res) => {
 }
 
 exports.getCollections = async  (req, res) => {
-  var imgurl="http://sf1.mariefranceasia.com/wp-content/uploads/sites/7/2017/06/dimsum-1.jpg";
-  res.json([{name:"collection1", number:1, text: "Lorem Ipsum", imageUrl:imgurl},{name:"collection2", number:2, text: "Lorem Ipsum", imageUrl:imgurl},{name:"collection3", number:3, text: "Lorem Ipsum", imageUrl:"api/images/1591724229216.XZgui_thumb.jpg"},{name:"collection4", number:4, text: "Lorem Ipsum", imageUrl:"api/images/1591724229216.XZgui_thumb.jpg"}]);
+  let options = {collection: "collections", query:{}, projection:{name:1,imageUrl:1, number:1, text:1}}
+  collections = await dbService.find(options)
+  res.json(collections);
 }
+
