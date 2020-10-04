@@ -1,0 +1,41 @@
+<div class="centered">
+    <p>
+        <mat-form-field>
+            <mat-label>Name</mat-label>
+            <input [(ngModel)]="collection.name" matInput placeholder="z.B. Festessen">
+            <mat-hint>Name der Sammlung</mat-hint>
+        </mat-form-field>
+    </p>
+    <p>
+        <mat-form-field>
+            <mat-label>Unterüberschrift</mat-label>
+            <input [(ngModel)]="collection.text" matInput placeholder="z.B. Wenn es mal etwas länger dauern darf">
+            <mat-hint>Name der Sammlung</mat-hint>
+        </mat-form-field>
+    </p>
+    <h1>Kategoreien</h1>
+    <p>
+        <mat-card *ngFor="let section of collection.sections; let i = index, let last = last">
+            <mat-form-field id="section-name">
+                <mat-label>Name</mat-label>
+                <textarea [(ngModel)]="section.name" matInput placeholder="z.B. Vorspeisen"></textarea>
+              </mat-form-field>
+              <button mat-button class="red">
+                <mat-icon>remove_circle_outline</mat-icon>
+              </button>
+              <p class="preview">
+                <app-recepie-preview *ngFor="let recepie of section.recipes" [data]="recipeMock" ></app-recepie-preview>
+              </p>
+              <p *ngIf="last">
+                <button mat-button class="green">
+                    <mat-icon>add_circle_outline</mat-icon>
+                </button>
+              </p>
+        </mat-card>
+    </p>
+    <p>
+        <button mat-button class="green">
+            <mat-icon>add_circle_outline</mat-icon>
+        </button>
+    </p>
+</div>

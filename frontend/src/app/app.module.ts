@@ -41,6 +41,7 @@ import { CollectionComponent } from './collection/collection.component';
 import { CollectionOverviewComponent } from './collection-overview/collection-overview.component';
 import { CollectionPreviewComponent } from './collection-preview/collection-preview.component';
 import { TeaserImageComponent } from './teaser-image/teaser-image.component';
+import { EditCollectionComponent } from './edit-collection/edit-collection.component';
 
 
 
@@ -60,7 +61,8 @@ import { TeaserImageComponent } from './teaser-image/teaser-image.component';
     CollectionComponent,
     CollectionOverviewComponent,
     CollectionPreviewComponent,
-    TeaserImageComponent
+    TeaserImageComponent,
+    EditCollectionComponent
   ],
   imports: [
     BrowserModule,
@@ -93,6 +95,7 @@ import { TeaserImageComponent } from './teaser-image/teaser-image.component';
       { path: 'add-recepie', component: EditRecipeComponent },
       { path: 'edit-tags', component: EditTagsComponent },
       { path: 'collection', component: CollectionOverviewComponent },
+      { path: 'collection/edit', component: EditCollectionComponent },
       { path: 'collection/:id', component: CollectionComponent },
       {path: '404', component: NotFoundComponent},
       {path: '**', redirectTo: '/404'}

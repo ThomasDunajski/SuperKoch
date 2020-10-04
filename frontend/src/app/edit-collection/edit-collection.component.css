@@ -1,0 +1,45 @@
+.centered{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+.centered.narrow {
+    width: 90%;
+  }
+.mat-form-field {
+    width: 90%;
+  }
+.mat-form-field.centered{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+.mat-button{
+    width: 5%;
+}
+#save-button{
+    width: auto;
+}
+#delete-image-button {
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: 2%;
+}
+.red{
+    color: darkred;
+}
+.green{
+    color: green;
+}
+#section-name{
+    width: 85%;
+}
+.mat-card{
+    width: 90%;
+    margin-left: 5%;
+}
+.preview{
+    width: 90%;
+    text-align: center;
+}
