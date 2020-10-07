@@ -8,7 +8,7 @@ exports.getCollection = async  (req, res) => {
   let collection = collections[0];
   let newSections = [];
   for (const section of collection.sections) {
-    const recipes = await Promise.all(section.recipes.map(async (number) => await recipeService.getRecipe(number)));
+    const recipes = await recipeService.getRecipes(section.recipes);
     section.recipes = recipes;
     newSections.push(section);
   }

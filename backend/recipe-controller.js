@@ -64,6 +64,12 @@ exports.getRecipe = async  (req, res) => {
   res.json(recipe);
 }
 
+exports.getRecipes = async  (req, res) => {
+  var recipeNumbers = req.body.recipeNumbers;
+  var recipes = await recipeService.getRecipes(recipeNumbers)
+  res.json(recipes);
+}
+
 exports.searchRecipe = async (req, res) => {
   const selectedTags = req.body.selectedTags.length > 0 ? {tags: {$all: req.body.selectedTags}} : {};
   const season = req.body.season ?  {season: new Date().getMonth() + 1}: {};

@@ -22,6 +22,9 @@ export class ApiService {
   getRecepie(number) {
     return this.http.get(localUrl + "recepie/" + number).toPromise();
   }
+  getRecepies(recipeNumbers) {
+    return this.http.post(localUrl + "recipes/", {recipeNumbers:recipeNumbers}).toPromise();
+  }
   getRecipeSearch(selectedTags, searchName:string, skip, limit) {
     var ids = [];
     var season = false;
@@ -35,7 +38,7 @@ export class ApiService {
         season = true;
       }
     });
-    return this.http.post(localUrl+ "recepie/search", {selectedTags:ids, season: season, searchName: searchName, skip:skip, limit:limit}).toPromise();;
+    return this.http.post(localUrl+ "recepie/search", {selectedTags:ids, season: season, searchName: searchName, skip:skip, limit:limit}).toPromise();
   }
   addRecipe(recipe:Recipe) {
     return this.http.post(localUrl+ "recepie", {"recipe":recipe}).toPromise();

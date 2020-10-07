@@ -20,8 +20,8 @@
                 <mat-label>Name</mat-label>
                 <textarea [(ngModel)]="section.name" matInput placeholder="z.B. Vorspeisen"></textarea>
               </mat-form-field>
-              <p class="preview" *ngFor="let recepie of section.recipes,let j = index">
-                <app-recepie-preview [data]="recipeMock" ></app-recepie-preview>
+              <p class="preview" *ngFor="let recipe of section.resolvedRecipes,let j = index">
+                <app-recepie-preview [data]="recipe" ></app-recepie-preview>
                 <button mat-button (click)="removeRecipe(i,j)" class="red">
                     <mat-icon>remove_circle_outline</mat-icon>
                   </button>
