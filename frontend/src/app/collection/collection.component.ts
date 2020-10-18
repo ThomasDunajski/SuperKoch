@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../api.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-collection',
@@ -8,10 +9,10 @@ import { ApiService } from '../api.service';
 })
 export class CollectionComponent implements OnInit {
 
-  constructor(private api:ApiService) { }
+  constructor(private api:ApiService,  private actRoute: ActivatedRoute) { }
   teaser;
   ngOnInit(): void {
-    this.getCollection(1);
+    this.getCollection(this.actRoute.snapshot.params.id);
   }
   collection;
 

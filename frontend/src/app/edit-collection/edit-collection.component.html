@@ -20,7 +20,7 @@
                 <mat-label>Name</mat-label>
                 <textarea [(ngModel)]="section.name" matInput placeholder="z.B. Vorspeisen"></textarea>
               </mat-form-field>
-              <p class="preview" *ngFor="let recipe of section.resolvedRecipes,let j = index">
+              <p class="preview" *ngFor="let recipe of section.recipes,let j = index">
                 <app-recepie-preview [data]="recipe" ></app-recepie-preview>
                 <button mat-button (click)="removeRecipe(i,j)" class="red">
                     <mat-icon>remove_circle_outline</mat-icon>
@@ -41,4 +41,24 @@
             <mat-icon>add_circle_outline</mat-icon>
         </button>
     </p>
+
+    <p>
+        <button mat-button (click)="saveCollection()">
+            Speichern
+        </button>
+    </p>
+</div>
+
+<!-- The Modal -->
+<div id="myModal" (click)="hideModal()" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+        <mat-card class="modal-card" (click)="interceptModalClose($event)">
+            <p *ngFor="let recipe of allRecipes, let i = index" >
+                <app-recepie-preview [data]="recipe" (click)="recipeSelectedEvent(recipe.number)"></app-recepie-preview>
+            </p>
+        </mat-card>
+  </div>
+
 </div>

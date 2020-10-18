@@ -95,8 +95,9 @@ import { EditCollectionComponent } from './edit-collection/edit-collection.compo
       { path: 'add-recepie', component: EditRecipeComponent },
       { path: 'edit-tags', component: EditTagsComponent },
       { path: 'collection', component: CollectionOverviewComponent },
-      { path: 'collection/edit', component: EditCollectionComponent },
+      { path: 'collection/edit/:id', component: EditCollectionComponent },
       { path: 'collection/:id', component: CollectionComponent },
+      { path: 'add-collection', component: EditCollectionComponent },
       {path: '404', component: NotFoundComponent},
       {path: '**', redirectTo: '/404'}
     ])
