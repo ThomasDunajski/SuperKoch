@@ -22,3 +22,59 @@ exports.getCollections = async  (req, res) => {
   res.json(collections);
 }
 
+exports.saveCollection = async (req, res) =>{
+  var collection = req.body.collection;
+  if (collection === undefined){
+      res.statusMessage = "recipe undefined";
+      res.status(400).send();
+  }
+  else{
+    // trim all strings
+    for (let key in collection) {
+      if (typeof collection[key] === 'string' || collection[key] instanceof String){
+        collection[key] = collection[key].trim();
+      }
+    }
+    if (collection.number)
+    {
+      updateCollection(collection, req, res);
+    }
+    else{
+      addCollection(collection, req, res);
+    }
+  }
+}
+
+async function updateCollection(collection, req, res){
+  delete collection._id;
+  var connection = await dbService.getDB();
+  var db = connection.db("SuperKoch");
+  db.collection("collections").update({number:collection.number}, collection, function(err, result){
+    if(err){
+      console.log(err);
+    }
+    res.json({message:"success", url:"/collection/" + collection.number});
+    connection.close();
+  });
+}
+
+async function addCollection(collection, req, res){
+console.log(collection)
+  var connection = await dbService.getDB();
+  var db = connection.db("SuperKoch");
+  db.collection("collections").aggregate([
+    {"$project": { number : 1 }},
+    {"$sort": {"number":-1}},
+    {"$limit": 1}
+  ]).next().then((data) => {
+    collection.number = data ? data.number +1 : 1;
+    db.collection("collections").insert(collection,(function(err, result) {
+      if(err){
+        console.log(err);
+      }
+      console.log(result);
+      res.json({message:"success", url:"/collection/" + collection.number});
+      connection.close();
+    }));
+  });
+}

@@ -11,3 +11,8 @@ exports.getRecipes = async  (recipeNumbers) => {
   const recipes = await Promise.all(recipeNumbers.map(async (number) => await exports.getRecipe(number)));
   return recipes;
 }
+
+exports.getRecipeIds = async  () => {
+  const recipeIds = await dbService.find({collection:"recipes", projection:{name:1,number:1,imageUri:1}});
+  return recipeIds;
+}

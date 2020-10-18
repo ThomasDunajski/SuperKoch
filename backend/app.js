@@ -22,12 +22,14 @@ app.get('/tags', tagsController.getTags);
 app.post('/tags', tagsController.addTag);
 app.post('/recepie', recipeController.addRecipe);
 app.post('/recipes', recipeController.getRecipes);
+app.get('/all-recipe-teaser', recipeController.getRecipeIds);
 app.get('/recepie/:recepieId', recipeController.getRecipe);
 app.post('/recepie/search', recipeController.searchRecipe);
 app.post('/images/upload', imagesController.upload);
 app.delete('/images/:imageId', imagesController.deleteImage);
 app.get('/collection', collectionController.getCollections);
 app.get('/collection/:collectionId', collectionController.getCollection);
+app.post('/collection', collectionController.saveCollection);
 // app.use(sendIndex);
 
 // serve the frontend.
