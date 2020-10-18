@@ -17,7 +17,6 @@ app.use(bodyParser.json());
 app.use(express.static('public'));
 
 // routes
-app.get('/', sendIndex);
 app.get('/tags', tagsController.getTags);
 app.post('/tags', tagsController.addTag);
 app.post('/recepie', recipeController.addRecipe);
@@ -30,12 +29,23 @@ app.delete('/images/:imageId', imagesController.deleteImage);
 app.get('/collection', collectionController.getCollections);
 app.get('/collection/:collectionId', collectionController.getCollection);
 app.post('/collection', collectionController.saveCollection);
-// app.use(sendIndex);
 
 // serve the frontend.
 var path = require('path');
 const indexPath = path.join(__dirname, '/public/index.html');
 function sendIndex(req, res){
+  res.status(200).sendFile(indexPath); 
+} 
+
+app.get('/', (req, res) => {
+  sendIndex(res);
+});
+
+app.use((req, res) => {
+  sendIndex(res);
+ });
+
+function sendIndex(res){
   res.status(200).sendFile(indexPath); 
 } 
 
