@@ -43,6 +43,9 @@
      [infiniteScrollDistance]="2"
      [infiniteScrollThrottle]="50"
      (scrolled)="onScroll()">
-        <app-recepie-preview *ngFor="let recepie of recepies" [data]="recepie" [imageOnly]="largeImages"></app-recepie-preview>
+        <a *ngFor="let recipe of recepies" href="/recipe/{{recipe.number}}" target="_blank">
+            <app-recepie-preview [data]="recipe" [imageOnly]="largeImages"></app-recepie-preview>
+        </a>
+        
      </p>
 </div>

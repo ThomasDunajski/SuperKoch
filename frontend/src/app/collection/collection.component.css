@@ -15,3 +15,7 @@
 .image{
     margin: 5%;
 }
+#edit-button{
+    float: right;
+    margin-right: 6%;
+}

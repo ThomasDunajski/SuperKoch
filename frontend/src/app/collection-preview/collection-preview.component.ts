@@ -13,5 +13,4 @@ export class CollectionPreviewComponent implements OnInit {
   ngOnInit(): void {
     this.data.head = this.data.name;
   }
-
 }

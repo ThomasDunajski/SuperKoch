@@ -13,9 +13,7 @@ export class RecepiePreviewComponent implements OnInit {
 
   @Input() data;
   @Input() imageOnly;
-  url;
   ngOnInit(): void {
-    this.url = "/recipe/" + this.data.number
     // resolving imagename to url if its a uploaded file
     if (this.data.imageUri.indexOf("/") === -1)
     this.data.imageUri = this.api.getImageUri(this.data.imageUri);

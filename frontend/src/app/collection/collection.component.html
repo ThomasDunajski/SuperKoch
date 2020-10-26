@@ -32,4 +32,9 @@
           <h3>X von Y Rezepten ausgewählt</h3>
           <app-ingredients [ingredients]="collection.sections[0].recipes[0].ingredients" [servings]=4  class="app-ingredients"></app-ingredients>
       </mat-expansion-panel>
+      <a href="/collection/edit/{{collection.number}}">      
+        <button id="edit-button" mat-fab color="primary">
+          <mat-icon>edit</mat-icon>
+        </button>
+      </a>
 </div>

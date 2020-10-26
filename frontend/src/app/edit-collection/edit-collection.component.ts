@@ -10,6 +10,7 @@ interface Section{
 interface Collection{
   name:string;
   number?:number;
+  imageUrl?:string;
   text:string;
   sections:Section[];
 }
@@ -24,7 +25,7 @@ export class EditCollectionComponent implements OnInit {
   constructor(private api: ApiService, private actRoute: ActivatedRoute, private router: Router) { }
 
 
-  collection:Collection = {name:"", text:"", sections:[{name:"", recipes:[]}]}
+  collection:Collection = {name:"", text:"", imageUrl:"http://sf1.mariefranceasia.com/wp-content/uploads/sites/7/2017/06/dimsum-1.jpg", sections:[{name:"", recipes:[]}]}
   sectionSelectedForAdd;
   allRecipes;
 
@@ -64,6 +65,10 @@ export class EditCollectionComponent implements OnInit {
   }
   saveCollection = ()=>{
     let collection = this.collection
+    if (collection.sections.some((section) => section.recipes.length === 0)){
+      alert('Kategorien müssen midenstens ein Rezept enthalten.');
+      return;
+    }
     collection.sections.forEach((section)=>{
       let temp=[];
       section.recipes.map(recipe => temp.push(recipe.number));
