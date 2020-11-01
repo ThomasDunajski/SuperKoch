@@ -20,7 +20,7 @@ export class CollectionComponent implements OnInit {
     this.collection = await this.api.getCollection(number);
     this.teaser = {
       imageUrl:this.collection.imageUrl,
-      heading:this.collection.name,
+      head:this.collection.name,
       text:this.collection.text
     }
   }
