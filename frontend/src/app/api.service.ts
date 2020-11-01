@@ -31,11 +31,8 @@ export class ApiService {
     if (!skip) skip = 0;
     selectedTags.forEach(element => {
       if (element._id){
-        ids.push(element._id);
-      }
-      else if(element.name === "in Saison")
-      {
-        season = true;
+        // if tag is 'in Season' set season to true else add the tag
+        element.name === "in Saison" ? season = true : ids.push(element._id)
       }
     });
     return this.http.post(localUrl+ "recepie/search", {selectedTags:ids, season: season, searchName: searchName, skip:skip, limit:limit}).toPromise();
