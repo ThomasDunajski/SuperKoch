@@ -62,15 +62,15 @@ export class ApiService {
     return this.http.delete(localUrl+ "images/" + uri).toPromise();
   }
   getCollection(number) {
-    return this.http.get(localUrl + "collection/" + number).toPromise();
+    return this.http.get(localUrl + "collections/" + number).toPromise();
   }
   getCollections() {
-    return this.http.get(localUrl + "collection").toPromise();
+    return this.http.get(localUrl + "collections").toPromise();
   }
   getAllRecipeTeaserData() {
     return this.http.get(localUrl + "all-recipe-teaser").toPromise();
   }
   saveCollection(collection){
-    return this.http.post(localUrl+ "collection", {"collection":collection}).toPromise();
+    return this.http.post(localUrl+ "collections", {"collection":collection}).toPromise();
   }
 }

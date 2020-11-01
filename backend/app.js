@@ -26,9 +26,9 @@ app.get('/recepie/:recepieId', recipeController.getRecipe);
 app.post('/recepie/search', recipeController.searchRecipe);
 app.post('/images/upload', imagesController.upload);
 app.delete('/images/:imageId', imagesController.deleteImage);
-app.get('/collection', collectionController.getCollections);
-app.get('/collection/:collectionId', collectionController.getCollection);
-app.post('/collection', collectionController.saveCollection);
+app.get('/collections', collectionController.getCollections);
+app.get('/collections/:collectionId', collectionController.getCollection);
+app.post('/collections', collectionController.saveCollection);
 
 // serve the frontend.
 var path = require('path');
