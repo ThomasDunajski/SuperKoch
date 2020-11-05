@@ -43,7 +43,7 @@ export class IngredientsComponent implements OnInit {
       quantitiy = ingredient.quantity * this.servings;
       // if quantity is 0 ignore it
       quantitiyString = quantitiy == 0 ? "" : quantitiy + " ";
-      ingredients += ingredient.name + " " + quantitiyString + ingredient.unit + "\n"
+      ingredients += ingredient.name + " " + quantitiyString.trim() + ingredient.unit.trim() + "\n"
     });
     this.clipboardService.copy(ingredients);
   }
