@@ -1,7 +1,5 @@
 var MongoClient = require('mongodb').MongoClient;
-var path = require('path');
-var fs = require('fs');
-var url = process.env.DB_CONNECTION_STRING || JSON.parse(fs.readFileSync(path.join(__dirname, 'config.json'), 'utf8')).url;
+var url = process.env.DB;
 
 exports.getDB = () =>{
   return new Promise((resolve, reject) => {
