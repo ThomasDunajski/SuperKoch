@@ -43,7 +43,8 @@ export class EditRecipeComponent implements OnInit {
       //filter out already used tags
       this.tags = this.tags.filter(y => !this.selectedTags.some(x=> x.name.valueOf() === y.name.valueOf()));
       //filter out  "in saison"
-      this.tags = this.tags.filter(x=> x.name.valueOf() !== "in Saison".valueOf())
+      this.tags = this.tags.filter(x=> x.name.valueOf() !== "in Saison".valueOf());
+      this.sortTags();
     }
   }
   addIngredient(){
@@ -106,7 +107,11 @@ export class EditRecipeComponent implements OnInit {
   }
   removeTag(tag){
     this.tags.push(tag);
+    this.sortTags();
     this.selectedTags = this.selectedTags.filter( el => el.name.valueOf() !== tag.name.valueOf()); 
+  }
+  sortTags(){
+    this.tags = this.tags.sort((x ,y) => ('' + x.name).localeCompare(y.name));
   }
   deleteImage(){
     if (confirm('Sind Sie sicher, dass Sie das Bild löschen wollen?')) {
