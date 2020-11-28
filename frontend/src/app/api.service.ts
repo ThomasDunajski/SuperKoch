@@ -19,8 +19,11 @@ export class ApiService {
   getAllTags() {
     return this.http.get(localUrl + "tags").toPromise();
   }
-  getRecepie(number) {
-    return this.http.get(localUrl + "recepie/" + number).toPromise();
+  async getRecepie(number) {
+    var recipe:Recipe = await  this.http.get(localUrl + "recepie/" + number).toPromise() as Recipe;
+    recipe.imageUri = await this.getImageUri(recipe.imageUri);
+    recipe.tags = recipe.tags.sort((a, b) => a.category.number - b.category.number)
+    return recipe;
   }
   getRecepies(recipeNumbers) {
     return this.http.post(localUrl + "recipes/", {recipeNumbers:recipeNumbers}).toPromise();

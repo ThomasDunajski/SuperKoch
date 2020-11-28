@@ -9,7 +9,7 @@ export class Recipe {
   instructions: string[];
   cookingDuration: number;
   restDuration: number;
-  tags: string[];
+  tags: Tag[];
   season: number[];
   constructor() {
     this.name = "";
@@ -25,6 +25,13 @@ export class Recipe {
     this.season = [];
     this.ingredients.push(new Ingredient());
     this.instructions.push("");
+  }
+}
+export class Tag{
+  name:string;
+  category:{
+    name:string;
+    number:number;
   }
 }
 export class Heading{

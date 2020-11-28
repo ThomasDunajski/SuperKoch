@@ -27,9 +27,6 @@ export class RecepieComponent implements OnInit {
   
   getRecepie = async function(number){
       this.recepie = await this.api.getRecepie(number);
-      // resolving imagename
-      this.recepie.imageUri = await this.api.getImageUri(this.recepie.imageUri);
-      this.recepie.tags = this.recepie.tags.sort((a, b) => a.category.number - b.category.number)
   }
   
   getFormatedTime = function (time:number) {
