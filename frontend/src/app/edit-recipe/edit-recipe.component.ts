@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../api.service';
-import { Recipe , Ingredient, Heading}from '../recipe';
+import { Recipe , Ingredient, Heading}from '../types';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup } from "@angular/forms";
 import { ActivatedRoute } from '@angular/router';
