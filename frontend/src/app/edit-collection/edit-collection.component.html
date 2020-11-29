@@ -56,7 +56,7 @@
   <div class="modal-content">
         <mat-card class="modal-card" (click)="interceptModalClose($event)">
             <p *ngFor="let recipe of allRecipes, let i = index" >
-                <app-recepie-preview [data]="recipe" (click)="recipeSelectedEvent(recipe.number)"></app-recepie-preview>
+                <app-recepie-preview [data]="recipe" (click)="recipeSelectedEvent(i + 1)"></app-recepie-preview>
             </p>
         </mat-card>
   </div>
