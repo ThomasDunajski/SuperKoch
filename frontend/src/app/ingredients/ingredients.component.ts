@@ -31,6 +31,7 @@ export class IngredientsComponent implements OnInit, OnChanges {
     return this.headings ? this.headings.filter(x => x.position === position)[0] : null;
   }
   createCombinedIngredientsHeadingsEntires(){
+    this.entries = [];
     for (let index = 0; index < this.ingredients.length; index++) {
       if (this.getHeading(index)){
         this.entries.push(this.getHeading(index))
@@ -42,7 +43,9 @@ export class IngredientsComponent implements OnInit, OnChanges {
     let ingredients:string = "";
     let quantitiy:number;
     let quantitiyString:string;
-    this.ingredients.map((ingredient)=> {
+    this.ingredients
+    .filter((ingredient)=> !ingredient.disabled)
+    .map((ingredient)=> {
       quantitiy = ingredient.quantity * this.servings;
       // if quantity is 0 ignore it
       quantitiyString = quantitiy == 0 ? "" : quantitiy + " ";
@@ -52,5 +55,8 @@ export class IngredientsComponent implements OnInit, OnChanges {
   }
   ngOnChanges(changes: SimpleChanges): void {
     this.createCombinedIngredientsHeadingsEntires();
+  }
+  ingredientClicked(ingredient){
+    ingredient.disabled ? ingredient.disabled = false : ingredient.disabled = true
   }
 }
