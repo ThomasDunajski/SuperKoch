@@ -33,18 +33,17 @@ export class TagSearchComponent implements OnInit {
     this.allTags=[];
   }
 
-  ngOnInit(): void {
-    this.activatedRoute.queryParams.subscribe((params)=>{
+  async ngOnInit() {
+    this.activatedRoute.queryParams.subscribe(async (params)=>{
       this.searchName = params.searchName
       if (params.largeImages == 1) this.largeImages = true;
-      // TODO largeImages bei click auf toogle aktualisieren
       if (this.allTags && this.allTags.length > 0){
         this.selected = [];
-        this.processSelectedTags(params.selectedTags);
       }
       else{
-        this.getAllTags( this.activatedRoute.snapshot.queryParamMap.get("selectedTags"));
+        await this.getAllTags( this.activatedRoute.snapshot.queryParamMap.get("selectedTags"));
       }
+      this.processSelectedTags(params.selectedTags);
       this.getRecipeSearch();
     })
   }
