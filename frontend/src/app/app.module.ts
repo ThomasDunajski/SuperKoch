@@ -90,6 +90,7 @@ import { EditCollectionComponent } from './edit-collection/edit-collection.compo
     MatChipsModule,
     RouterModule.forRoot([
       { path: '', component: TagSearchComponent },
+      { path: 'search', component: TagSearchComponent },
       { path: 'recipe/:id', component: RecepieComponent },
       { path: 'recipe/edit/:id', component: EditRecipeComponent },
       { path: 'add-recepie', component: EditRecipeComponent },

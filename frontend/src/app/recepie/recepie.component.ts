@@ -25,7 +25,7 @@ export class RecepieComponent implements OnInit {
   recepie:Recipe;
   error;
   
-  getRecepie = async function(number){
+  getRecepie = async function(number:number){
       this.recepie = await this.api.getRecepie(number);
   }
   
@@ -38,9 +38,6 @@ export class RecepieComponent implements OnInit {
   }
   goToEdit(){
     this.router.navigate(["/recipe/edit/" + this.actRoute.snapshot.params.id]);
-  }
-  onTagClick(tag){
-    this.router.navigate(["/"], {queryParams: {selectedTags:tag.name}});
   }
   getImageName(path){
     if (path.includes(".jpg")){

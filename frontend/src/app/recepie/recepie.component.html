@@ -7,7 +7,9 @@
     </div>    
     <div id="chips-container">
     <mat-chip-list>
-        <mat-chip (click)="onTagClick(tag)" color="primary" selected *ngFor="let tag of recepie.tags">{{tag.name}}</mat-chip>
+        <a *ngFor="let tag of recepie.tags" href="/search?selectedTags={{tag.name}}" target="_blank">
+            <mat-chip color="primary" selected >{{tag.name}}</mat-chip>
+        </a>
     </mat-chip-list>
     </div>
     <div class="recepie">
