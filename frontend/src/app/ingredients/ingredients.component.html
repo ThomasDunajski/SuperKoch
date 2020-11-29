@@ -7,8 +7,8 @@
     <tr *ngFor="let ingredient of entries, let isEven=even, let i = index" class="left">
         <th class="heading" *ngIf="ingredient.text"> {{ingredient.text}}</th>
 
-        <th *ngIf="ingredient.name" [class.even]="isEven">{{ingredient.name}}</th>   
-        <th *ngIf="ingredient.name" [class.even]="isEven">{{getQuantity(ingredient.quantity)}} {{ingredient.unit}}</th>
+        <td *ngIf="ingredient.name" [class.even]="isEven">{{ingredient.name}}</td>   
+        <td *ngIf="ingredient.name" [class.even]="isEven">{{getQuantity(ingredient.quantity)}} {{ingredient.unit}}</td>
     </tr>
 </table>
 <div>

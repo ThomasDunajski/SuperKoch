@@ -1,4 +1,4 @@
-import { Component, OnInit, Input} from '@angular/core';
+import { Component, OnInit, Input, SimpleChanges, OnChanges} from '@angular/core';
 import { ClipboardService } from 'ngx-clipboard'
 
 @Component({
@@ -6,17 +6,12 @@ import { ClipboardService } from 'ngx-clipboard'
   templateUrl: './ingredients.component.html',
   styleUrls: ['./ingredients.component.css']
 })
-export class IngredientsComponent implements OnInit {
+export class IngredientsComponent implements OnInit, OnChanges {
 
   constructor(private clipboardService: ClipboardService) { }
   entries=[];
   ngOnInit(): void {
-    for (let index = 0; index < this.ingredients.length; index++) {
-      if (this.getHeading(index)){
-        this.entries.push(this.getHeading(index))
-      }
-      this.entries.push(this.ingredients[index]);
-    }
+    this.createCombinedIngredientsHeadingsEntires();
   }
 
   @Input() ingredients;
@@ -35,6 +30,14 @@ export class IngredientsComponent implements OnInit {
   getHeading(position: number){
     return this.headings ? this.headings.filter(x => x.position === position)[0] : null;
   }
+  createCombinedIngredientsHeadingsEntires(){
+    for (let index = 0; index < this.ingredients.length; index++) {
+      if (this.getHeading(index)){
+        this.entries.push(this.getHeading(index))
+      }
+      this.entries.push(this.ingredients[index]);
+    }
+  }
   copyToClipboard(){
     let ingredients:string = "";
     let quantitiy:number;
@@ -46,5 +49,8 @@ export class IngredientsComponent implements OnInit {
       ingredients += ingredient.name + " " + quantitiyString.trim() + ingredient.unit.trim() + "\n"
     });
     this.clipboardService.copy(ingredients);
+  }
+  ngOnChanges(changes: SimpleChanges): void {
+    this.createCombinedIngredientsHeadingsEntires();
   }
 }

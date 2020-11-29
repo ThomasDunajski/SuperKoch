@@ -17,7 +17,7 @@
               <mat-panel-title>
                 {{recipe.name}}
               </mat-panel-title>
-              <mat-checkbox (click)="$event.stopPropagation();" color="primary">hinzufügen</mat-checkbox>
+              <mat-checkbox (click)="checkboxChanged($event, recipe.number)" color="primary">hinzufügen</mat-checkbox>
             </mat-expansion-panel-header>
                 <app-recepie [recipeNumber]=recipe.number ></app-recepie>
           </mat-expansion-panel>
@@ -29,8 +29,8 @@
               Zusammenfassung
             </mat-panel-title>
           </mat-expansion-panel-header>
-          <h3>X von Y Rezepten ausgewählt</h3>
-          <app-ingredients [ingredients]="collection.sections[0].recipes[0].ingredients" [servings]=4  class="app-ingredients"></app-ingredients>
+          <h3>{{selectedRecipes.length}} von {{summary.recipeCount}} Rezepten ausgewählt</h3>
+          <app-ingredients [ingredients]="summary.ingredients" [servings]=4  class="app-ingredients"></app-ingredients>
       </mat-expansion-panel>
       <a href="/collection/edit/{{collection.number}}">      
         <button id="edit-button" mat-fab color="primary">
