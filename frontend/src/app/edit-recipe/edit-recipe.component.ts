@@ -115,13 +115,14 @@ export class EditRecipeComponent implements OnInit {
   }
   deleteImage(){
     if (confirm('Sind Sie sicher, dass Sie das Bild löschen wollen?')) {
+      console.log(this.recipe.imageUri)
       this.api.deleteImage(this.recipe.imageUri)
       .then(()=> this.recipe.imageUri ="")
-      .catch(err=> console.log(err))
-      console.log('Thing was saved to the database.');
+      .catch(err=> console.log(err));
+      // TODO find the reason why then block does not work
+      this.recipe.imageUri ='';
     } else {
       // Do nothing!
-      console.log('Thing was not saved to the database.');
     }
 
   }
