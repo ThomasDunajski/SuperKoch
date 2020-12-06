@@ -1,7 +1,9 @@
 var dbService = require("./db-service");
 var recipeService = require("./recipe-service");
+var express = require('express')
+var router = express.Router()
 
-exports.getCollection = async  (req, res) => {
+router.get('/:collectionId', async  (req, res) => {
   var collectionId = parseInt(req.params.collectionId);
   let options = {collection: "collections", query:{number:collectionId}}
   let collections = await dbService.find(options);
@@ -14,15 +16,16 @@ exports.getCollection = async  (req, res) => {
   }
   collection.sections = newSections;
   res.json(collection);
-}
+});
 
-exports.getCollections = async  (req, res) => {
+router.get('/', async  (req, res) => {
+  console.log('kommt an')
   let options = {collection: "collections", query:{}, projection:{name:1,imageUrl:1, number:1, text:1}}
   collections = await dbService.find(options)
   res.json(collections);
-}
+});
 
-exports.saveCollection = async (req, res) =>{
+router.post('/', async (req, res) =>{
   var collection = req.body.collection;
   if (collection === undefined){
       res.statusMessage = "recipe undefined";
@@ -43,7 +46,7 @@ exports.saveCollection = async (req, res) =>{
       addCollection(collection, req, res);
     }
   }
-}
+});
 
 async function updateCollection(collection, req, res){
   delete collection._id;
@@ -78,3 +81,5 @@ console.log(collection)
     }));
   });
 }
+
+module.exports = router;

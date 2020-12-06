@@ -1,9 +1,9 @@
 var dbService = require("./db-service");
-var tagsController = require('./tags-controller');
+var tagsService = require('./tags-service');
 
 exports.getRecipe = async  (number) => {
   var recipe = await dbService.findOne({number:number});
-  recipe.tags = await tagsController.resolveTags(recipe.tags);
+  recipe.tags = await tagsService.resolveTags(recipe.tags);
   return recipe;
 }
 
