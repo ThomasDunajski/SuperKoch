@@ -1,15 +1,15 @@
 
-.wp-caption {
+.caption {
     position: relative;
     padding: 0;
 }
-.wp-caption img {
+.caption img {
     display: block;
     width: 100%;
     height: auto;
     border-radius: 8px;
 } 
-.wp-caption:after {
+.caption:after {
     content: "";
     position: absolute;
     display: block;
@@ -21,7 +21,7 @@
     z-index: 1;
     border-radius: 8px;
 }
-.wp-caption-text {
+.caption-text {
     text-align: left;
     display: block;
     position: absolute;
@@ -33,7 +33,8 @@
     z-index: 2;
     -webkit-box-sizing: border-box;
     box-sizing: border-box; 
-    margin-bottom: -0.5em;   
+    margin-bottom: -0.5em; 
+    padding-left: 2%;
 }
 h1{
     margin-bottom: -0.4em;

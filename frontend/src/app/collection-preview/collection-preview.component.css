@@ -2,6 +2,7 @@
     display: inline-block;
     margin: 1%;
     width: 45%;
+    overflow: hidden;
   }
   @media screen and (max-width: 600px){
     .mat-card {
@@ -11,6 +12,6 @@
     }
   }
 .image:hover{
-  transform: scale(1.05);
+  transform: scale(1.08);
   transition: transform .3s; 
 }
