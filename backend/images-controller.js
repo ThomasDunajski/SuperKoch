@@ -1,9 +1,10 @@
-var dbService = require("./db-service");
 var fs = require('fs');
 var upload = require('./upload');
 var thumbnail = require('./thumbnail');
+var express = require('express')
+var router = express.Router()
 
-exports.upload = (req, res) => {
+router.post('/upload', (req, res) => {
   upload.upload(req,res,function(err){
     if(req.fileValidationError) {
       console.log(req.fileValidationError);
@@ -29,9 +30,9 @@ exports.upload = (req, res) => {
     }
     res.json({error_code:0,err_desc:null, filename: filename});
   })
-}
+});
   
-exports.deleteImage = async (req, res) => {
+router.delete('/images/:imageId', async (req, res) => {
   var filename = req.params.imageId;
   if (filename){
     const path = __dirname + "/public/images/" +filename;
@@ -63,4 +64,6 @@ exports.deleteImage = async (req, res) => {
       });
       res.json({error_code:0,err_desc:null, message:"successfull deleted"});
   }
-}
+});
+
+module.exports = router;

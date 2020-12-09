@@ -18,6 +18,7 @@ app.use(express.static('public'));
 
 app.use('/collections', collectionController);
 app.use('/tags', tagsController);
+app.use('/images', imagesController);
 
 // routes
 app.post('/recipe', recipeController.addRecipe);
@@ -25,10 +26,6 @@ app.post('/recipes', recipeController.getRecipes);
 app.get('/recipe/teaser-data/all', recipeController.getAllRecipeTeaserData);
 app.get('/recipe/:recepieId', recipeController.getRecipe);
 app.post('/recipe/search', recipeController.searchRecipe);
-app.post('/images/upload', imagesController.upload);
-app.delete('/images/:imageId', imagesController.deleteImage);
-
-
 
 // serve the frontend.
 var path = require('path');
