@@ -68,7 +68,7 @@ export class ApiService {
     return this.http.get(localUrl + "collections").toPromise();
   }
   getAllRecipeTeaserData() {
-    return this.http.get(localUrl + "recipe/all/teaser-data").toPromise();
+    return this.http.get(localUrl + "recipe/teaser-data/all").toPromise();
   }
   saveCollection(collection){
     return this.http.post(localUrl+ "collections", {"collection":collection}).toPromise();

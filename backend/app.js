@@ -22,7 +22,7 @@ app.use('/tags', tagsController);
 // routes
 app.post('/recipe', recipeController.addRecipe);
 app.post('/recipes', recipeController.getRecipes);
-app.get('/recipe/all/teaser-data', recipeController.getAllRecipeTeaserData);
+app.get('/recipe/teaser-data/all', recipeController.getAllRecipeTeaserData);
 app.get('/recipe/:recepieId', recipeController.getRecipe);
 app.post('/recipe/search', recipeController.searchRecipe);
 app.post('/images/upload', imagesController.upload);
