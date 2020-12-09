@@ -1,7 +1,9 @@
 var dbService = require("./db-service");
 var recipeService = require("./recipe-service");
+var express = require('express')
+var router = express.Router()
 
-exports.addRecipe = async (req, res) =>{
+router.post('/', async (req, res) =>{
   var recipe = req.body.recipe;
   if (recipe === undefined){
       res.statusMessage = "recipe undefined";
@@ -22,7 +24,7 @@ exports.addRecipe = async (req, res) =>{
       addRecipe(recipe, req, res);
     }
   }
-}
+});
 
 async function updateRecipe(recipe, req, res){
   delete recipe._id;
@@ -57,19 +59,19 @@ async function addRecipe(recipe, req, res){
   });
 }
 
-exports.getRecipe = async  (req, res) => {
+router.get('/:recepieId', async (req, res) => {
   var recepieId = parseInt(req.params.recepieId);
   var recipe = await recipeService.getRecipe(recepieId)
   res.json(recipe);
-}
+});
 
-exports.getRecipes = async  (req, res) => {
+router.post('/get-multiple', async  (req, res) => {
   var recipeNumbers = req.body.recipeNumbers;
   var recipes = await recipeService.getRecipes(recipeNumbers)
   res.json(recipes);
-}
+});
 
-exports.searchRecipe = async (req, res) => {
+router.post('/search', async (req, res) => {
   const selectedTags = req.body.selectedTags.length > 0 ? {tags: {$all: req.body.selectedTags}} : {};
   const season = req.body.season ?  {season: new Date().getMonth() + 1}: {};
   const skip = req.body.skip ?  parseInt(req.body.skip): 0;
@@ -91,9 +93,11 @@ exports.searchRecipe = async (req, res) => {
     });
     res.json(recipes);
   }
-}
+});
 
-exports.getAllRecipeTeaserData = async  (req, res) => {
+router.get('/teaser-data/all', async  (req, res) => {
   var recipeIds = await recipeService.getAllRecipeTeaserData();
   res.json(recipeIds);
-}
+});
+
+module.exports = router;

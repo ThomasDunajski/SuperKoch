@@ -16,16 +16,11 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(express.static('public'));
 
+// routes
 app.use('/collections', collectionController);
 app.use('/tags', tagsController);
 app.use('/images', imagesController);
-
-// routes
-app.post('/recipe', recipeController.addRecipe);
-app.post('/recipe/get-multiple', recipeController.getRecipes);
-app.get('/recipe/teaser-data/all', recipeController.getAllRecipeTeaserData);
-app.get('/recipe/:recepieId', recipeController.getRecipe);
-app.post('/recipe/search', recipeController.searchRecipe);
+app.use('/recipe', recipeController);
 
 // serve the frontend.
 var path = require('path');
@@ -42,7 +37,7 @@ app.use((req, res) => {
   sendIndex(res);
  });
 
-function sendIndex(res){
+sendIndex = (res) =>{
   res.status(200).sendFile(indexPath); 
 } 
 
