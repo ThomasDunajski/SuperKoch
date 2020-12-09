@@ -22,7 +22,7 @@ app.use('/images', imagesController);
 
 // routes
 app.post('/recipe', recipeController.addRecipe);
-app.post('/recipes', recipeController.getRecipes);
+app.post('/recipe/get-multiple', recipeController.getRecipes);
 app.get('/recipe/teaser-data/all', recipeController.getAllRecipeTeaserData);
 app.get('/recipe/:recepieId', recipeController.getRecipe);
 app.post('/recipe/search', recipeController.searchRecipe);

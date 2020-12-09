@@ -26,7 +26,7 @@ export class ApiService {
     return recipe;
   }
   getRecepies(recipeNumbers) {
-    return this.http.post(localUrl + "recipes/", {recipeNumbers:recipeNumbers}).toPromise();
+    return this.http.post(localUrl + "recipe/get-multiple/", {recipeNumbers:recipeNumbers}).toPromise();
   }
   getRecipeSearch(selectedTags, searchName:string, skip, limit) {
     var ids = [];
