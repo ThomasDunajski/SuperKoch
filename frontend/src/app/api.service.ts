@@ -20,7 +20,7 @@ export class ApiService {
     return this.http.get(localUrl + "tags").toPromise();
   }
   async getRecepie(number) {
-    var recipe:Recipe = await  this.http.get(localUrl + "recepie/" + number).toPromise() as Recipe;
+    var recipe:Recipe = await  this.http.get(localUrl + "recipe/" + number).toPromise() as Recipe;
     recipe.imageUri = await this.getImageUri(recipe.imageUri);
     recipe.tags = recipe.tags.sort((a, b) => a.category.number - b.category.number)
     return recipe;
@@ -38,10 +38,10 @@ export class ApiService {
         element.name === "in Saison" ? season = true : ids.push(element._id)
       }
     });
-    return this.http.post(localUrl+ "recepie/search", {selectedTags:ids, season: season, searchName: searchName, skip:skip, limit:limit}).toPromise();
+    return this.http.post(localUrl+ "recipe/search", {selectedTags:ids, season: season, searchName: searchName, skip:skip, limit:limit}).toPromise();
   }
   addRecipe(recipe:Recipe) {
-    return this.http.post(localUrl+ "recepie", {"recipe":recipe}).toPromise();
+    return this.http.post(localUrl+ "recipe", {"recipe":recipe}).toPromise();
   }
   addTag(tag) {
     return this.http.post(localUrl+ "tags", {"tag":tag}).toPromise();
@@ -68,7 +68,7 @@ export class ApiService {
     return this.http.get(localUrl + "collections").toPromise();
   }
   getAllRecipeTeaserData() {
-    return this.http.get(localUrl + "all-recipe-teaser").toPromise();
+    return this.http.get(localUrl + "recipe/all/teaser-data").toPromise();
   }
   saveCollection(collection){
     return this.http.post(localUrl+ "collections", {"collection":collection}).toPromise();

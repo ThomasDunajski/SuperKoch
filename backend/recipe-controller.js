@@ -93,7 +93,7 @@ exports.searchRecipe = async (req, res) => {
   }
 }
 
-exports.getRecipeIds = async  (req, res) => {
-  var recipeIds = await recipeService.getRecipeIds();
+exports.getAllRecipeTeaserData = async  (req, res) => {
+  var recipeIds = await recipeService.getAllRecipeTeaserData();
   res.json(recipeIds);
 }

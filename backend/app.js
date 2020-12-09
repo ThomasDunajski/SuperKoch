@@ -20,11 +20,11 @@ app.use('/collections', collectionController);
 app.use('/tags', tagsController);
 
 // routes
-app.post('/recepie', recipeController.addRecipe);
+app.post('/recipe', recipeController.addRecipe);
 app.post('/recipes', recipeController.getRecipes);
-app.get('/all-recipe-teaser', recipeController.getRecipeIds);
-app.get('/recepie/:recepieId', recipeController.getRecipe);
-app.post('/recepie/search', recipeController.searchRecipe);
+app.get('/recipe/all/teaser-data', recipeController.getAllRecipeTeaserData);
+app.get('/recipe/:recepieId', recipeController.getRecipe);
+app.post('/recipe/search', recipeController.searchRecipe);
 app.post('/images/upload', imagesController.upload);
 app.delete('/images/:imageId', imagesController.deleteImage);
 

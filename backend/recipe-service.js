@@ -12,7 +12,7 @@ exports.getRecipes = async  (recipeNumbers) => {
   return recipes;
 }
 
-exports.getRecipeIds = async  () => {
+exports.getAllRecipeTeaserData = async  () => {
   const recipeIds = await dbService.find({collection:"recipes", projection:{name:1,number:1,imageUri:1}});
   return recipeIds;
 }
