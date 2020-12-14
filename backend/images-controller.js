@@ -21,12 +21,13 @@ router.post('/upload', (req, res) => {
     console.log(path)
     // only jpg and png are allowed to be uploaded
     if (path.includes(".jpg")){
-      thumbnail.createThumbnail(path, path.substr(0, path.lastIndexOf(".jpg")) + "_thumb.jpg")
-      thumbnail.createLarge(path, path.substr(0, path.lastIndexOf(".jpg")) + "_large.jpg")
+      thumbnail.createThumbnail(path, "./public/images/thumb/" + filename)
+      thumbnail.createLarge(path, "./public/images/large/" + filename)
     }
     else{
-      thumbnail.createThumbnail(path, path.substr(0, path.lastIndexOf(".png")) + "_thumb.jpg")
-      thumbnail.createLarge(path, path.substr(0, path.lastIndexOf(".png")) + "_large.jpg")
+      const pngFilename = filename.substr(0, filename.lastIndexOf(".png")) + ".jpg";
+      thumbnail.createThumbnail(path, "./public/images/thumb/" + pngFilename)
+      thumbnail.createLarge(path, "./public/images/large/" + pngFilename)
     }
     res.json({error_code:0,err_desc:null, filename: filename});
   })
@@ -44,7 +45,7 @@ router.delete('/images/:imageId', async (req, res) => {
         console.log("File " + path + " was deleted.");
       }
     });
-      thumbPath =  path.substr(0, path.lastIndexOf(".jpg")) + "_thumb.jpg";
+      thumbPath =   "./public/images/thumb/" + filename;
       fs.unlink(thumbPath, (err) => {
         if (err) {
           console.log(err)
@@ -53,7 +54,7 @@ router.delete('/images/:imageId', async (req, res) => {
           console.log("File " + thumbPath + " was deleted.");
         }
       });
-      largePath =  path.substr(0, path.lastIndexOf(".jpg")) + "_large.jpg";
+      largePath =  "./public/images/large/" + filename;
       fs.unlink(largePath, (err) => {
         if (err) {
           console.log(err)
