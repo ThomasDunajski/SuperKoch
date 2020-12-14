@@ -12,7 +12,7 @@
     "sharp": "^0.25.4"
   },
   "scripts": {
-    "start":"pm2 start ecosystem.config.js --watch",
+    "start":"pm2 start ecosystem.config.js --watch & pm2 log",
     "stop":"pm2 stop ecosystem.config.js"
   }
 }
