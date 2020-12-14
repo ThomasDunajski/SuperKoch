@@ -3,6 +3,7 @@ export class Recipe {
   servings: number;
   number: number;
   imageUri: string;
+  images:string[];
   name: string;
   ingredients: Ingredient[];
   headings: Heading[];
@@ -16,6 +17,7 @@ export class Recipe {
     this.servings = null;
     this.number = null;
     this.imageUri = "";
+    this.images = [];
     this.ingredients = [];
     this.instructions = [];
     this.headings = [];

@@ -76,7 +76,7 @@ router.post('/search', async (req, res) => {
   const season = req.body.season ?  {season: new Date().getMonth() + 1}: {};
   const skip = req.body.skip ?  parseInt(req.body.skip): 0;
   const searchName = req.body.searchName ?{$text: {$search:req.body.searchName}} : {};
-  const projection = {name:1, imageUri:1, number:1, _id:0}
+  const projection = {name:1, images:1, number:1, _id:0}
   const limit = req.body.limit ?  parseInt(req.body.limit): 10;
   if (selectedTags === undefined){
       res.statusMessage = "selectedTags undefined";

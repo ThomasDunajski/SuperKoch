@@ -147,8 +147,8 @@ export class EditRecipeComponent implements OnInit {
             this.progress = 0;
           }
           else{
-            this.recipe.imageUri = resBody.filename;
-            console.log(this.recipe.imageUri);
+            this.recipe.images.push(resBody.filename);
+            alert("erfolgreich hochgeladen")
           }
       }
     })

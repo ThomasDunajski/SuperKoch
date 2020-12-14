@@ -14,14 +14,5 @@ export class RecepiePreviewComponent implements OnInit {
   @Input() data;
   @Input() imageOnly;
   ngOnInit(): void {
-    // resolving imagename to url if its a uploaded file
-    if (this.data.imageUri.indexOf("/") === -1)
-    this.data.imageUri = this.api.getImageUri(this.data.imageUri);
-  }
-  getThumbnailName(path){
-    if (path.includes(".jpg")){
-     return path.substr(0, path.lastIndexOf(".jpg")) + "_thumb.jpg";
-    }
-    return path.substr(0, path.lastIndexOf(".png")) + "_thumb.jpg";
   }
 }

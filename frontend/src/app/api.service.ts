@@ -22,7 +22,6 @@ export class ApiService {
   async getRecepie(number) {
     return new Promise(async (resolve, reject) => {
     var recipe:Recipe = await  this.http.get(localUrl + "recipe/" + number).toPromise() as Recipe;
-    recipe.imageUri = await this.getImageUri(recipe.imageUri);
     recipe.tags = recipe.tags.sort((a, b) => a.category.number - b.category.number)
     resolve(recipe);
     });
@@ -57,8 +56,11 @@ export class ApiService {
       observe: 'events'
     })
   }
+  getThumbImageUri(name:string){
+    return name ? localUrl + "images/thumb/" + name : localUrl + "images/thumb/no-image.png";
+  }
   getImageUri(name:string){
-    return name ? localUrl + "images/" + name : localUrl + "images/no-image.png";
+    return name ? localUrl + "images/large/" + name : localUrl + "images/large/no-image.png";
   }
   deleteImage(uri) {
     return this.http.delete(localUrl+ "images/" + uri).toPromise();

@@ -28,10 +28,12 @@ export class RecepieComponent implements OnInit {
   images=[];
   
   getRecepie = async function(number:number){
-      this.recepie = await this.api.getRecepie(number);
+    this.recepie = await this.api.getRecepie(number);
+    if (this.recepie.images){
       for (let image of this.recepie.images){
-        this.images.push({image:this.api.getImageUri(image+ "_large.jpg")})
+        this.images.push({image:this.api.getImageUri(image)})
       }
+    }
   }
   
   getFormatedTime = function (time:number) {
