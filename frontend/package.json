@@ -21,6 +21,7 @@
     "@angular/platform-browser": "~9.0.6",
     "@angular/platform-browser-dynamic": "~9.0.6",
     "@angular/router": "~9.0.6",
+    "@ngbmodule/material-carousel": "^0.7.1",
     "body-parser": "^1.19.0",
     "component": "^1.1.0",
     "ngx-clipboard": "^13.0.1",

@@ -20,10 +20,12 @@ export class ApiService {
     return this.http.get(localUrl + "tags").toPromise();
   }
   async getRecepie(number) {
+    return new Promise(async (resolve, reject) => {
     var recipe:Recipe = await  this.http.get(localUrl + "recipe/" + number).toPromise() as Recipe;
     recipe.imageUri = await this.getImageUri(recipe.imageUri);
     recipe.tags = recipe.tags.sort((a, b) => a.category.number - b.category.number)
-    return recipe;
+    resolve(recipe);
+    });
   }
   getRecepies(recipeNumbers) {
     return this.http.post(localUrl + "recipe/get-multiple/", {recipeNumbers:recipeNumbers}).toPromise();

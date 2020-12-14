@@ -27,6 +27,7 @@ import {MatExpansionModule} from '@angular/material/expansion';
 import { ImageCropperModule } from 'ngx-image-cropper';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { ClipboardModule } from 'ngx-clipboard';
+import { MatCarouselModule } from '@ngbmodule/material-carousel';
 
 import { RecepieComponent } from './recepie/recepie.component';
 import { TagSearchComponent } from './tag-search/tag-search.component';
@@ -42,7 +43,7 @@ import { CollectionOverviewComponent } from './collection-overview/collection-ov
 import { CollectionPreviewComponent } from './collection-preview/collection-preview.component';
 import { TeaserImageComponent } from './teaser-image/teaser-image.component';
 import { EditCollectionComponent } from './edit-collection/edit-collection.component';
-
+import { GalleryComponent } from './gallery/gallery.component';
 
 
 @NgModule({
@@ -62,7 +63,8 @@ import { EditCollectionComponent } from './edit-collection/edit-collection.compo
     CollectionOverviewComponent,
     CollectionPreviewComponent,
     TeaserImageComponent,
-    EditCollectionComponent
+    EditCollectionComponent,
+    GalleryComponent
   ],
   imports: [
     BrowserModule,
@@ -74,6 +76,7 @@ import { EditCollectionComponent } from './edit-collection/edit-collection.compo
     MatAutocompleteModule,
     ClipboardModule,
     MatProgressBarModule,
+    MatCarouselModule.forRoot(),
     MatExpansionModule,
     MatButtonToggleModule,
     MatInputModule,
