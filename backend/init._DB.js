@@ -3,7 +3,7 @@ var fs = require('fs');
 
 function addIndex(option){
     MongoClient.connect(url, { useUnifiedTopology: true }, async function(err, con) {
-      var db = con.db("SuperKoch");
+      var db = con.db("rezeptekiste");
       db.collection("recipes").createIndex(option,
       function(err, res) {
         if (err) {

@@ -9,7 +9,7 @@ import {Router} from '@angular/router';
 })
 export class RecepiePreviewComponent implements OnInit {
 
-  constructor(private api: ApiService, private router: Router) { }
+  constructor(public api: ApiService, private router: Router) { }
 
   @Input() data;
   @Input() imageOnly;

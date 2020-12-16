@@ -11,7 +11,7 @@ router.get('/', async (req, res) => {
 router.post('/',  async (req, res) => {
   var tag = req.body.tag;
   var connection = await dbService.getDB();
-  var db = connection.db("SuperKoch");
+  var db = connection.db("rezeptekiste");
   db.collection("Tags").insertOne(tag, function(){
     connection.close();
   });

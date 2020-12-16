@@ -19,7 +19,7 @@ exports.find = (options) => {
     if (!options.projection) options.projection = {};
     if (!options.sort) options.sort = {};
     const connection = await exports.getDB();
-    const db = connection.db("SuperKoch");
+    const db = connection.db("rezeptekiste");
      db
      .collection(options.collection)
      .find(options.query)
@@ -40,7 +40,7 @@ exports.findOne =  (query) => {
   return new Promise(async (resolve, reject) => {
 
     const connection = await exports.getDB();
-    const db = connection.db("SuperKoch");
+    const db = connection.db("rezeptekiste");
      db
      .collection('recipes')
      .findOne(query, function(err, data) {

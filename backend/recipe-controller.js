@@ -29,7 +29,7 @@ router.post('/', async (req, res) =>{
 async function updateRecipe(recipe, req, res){
   delete recipe._id;
   var connection = await dbService.getDB();
-  var db = connection.db("SuperKoch");
+  var db = connection.db("rezeptekiste");
   db.collection("recipes").update({number:recipe.number}, recipe, function(err, result){
     if(err){
       console.log(err);
@@ -41,7 +41,7 @@ async function updateRecipe(recipe, req, res){
 
 async function addRecipe(recipe, req, res){
   var connection = await dbService.getDB();
-  var db = connection.db("SuperKoch");
+  var db = connection.db("rezeptekiste");
   db.collection("recipes").aggregate([
     {"$project": { number : 1 }},
     {"$sort": {"number":-1}},

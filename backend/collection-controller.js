@@ -51,7 +51,7 @@ router.post('/', async (req, res) =>{
 async function updateCollection(collection, req, res){
   delete collection._id;
   var connection = await dbService.getDB();
-  var db = connection.db("SuperKoch");
+  var db = connection.db("rezeptekiste");
   db.collection("collections").update({number:collection.number}, collection, function(err, result){
     if(err){
       console.log(err);
@@ -64,7 +64,7 @@ async function updateCollection(collection, req, res){
 async function addCollection(collection, req, res){
 console.log(collection)
   var connection = await dbService.getDB();
-  var db = connection.db("SuperKoch");
+  var db = connection.db("rezeptekiste");
   db.collection("collections").aggregate([
     {"$project": { number : 1 }},
     {"$sort": {"number":-1}},
