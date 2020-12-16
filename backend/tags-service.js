@@ -7,5 +7,5 @@ exports.resolveTags = (tagIds) => {
     tagIds.forEach(tagId =>{
       idObjects.push(new ObjectId(tagId));
     }); 
-    return dbService.find({collection:"Tags", query:{_id: {$in:idObjects}}});
+    return dbService.find({collection:"tags", query:{_id: {$in:idObjects}}});
   }

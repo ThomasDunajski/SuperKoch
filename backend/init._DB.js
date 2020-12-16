@@ -1,5 +1,5 @@
 var MongoClient = require('mongodb').MongoClient;
-var fs = require('fs');
+var url = '';
 
 function addIndex(option){
     MongoClient.connect(url, { useUnifiedTopology: true }, async function(err, con) {
@@ -22,6 +22,4 @@ function createIndex(){
   addIndex({tags: 1});
 }
 
-// read connection string with credentials from json
-var url = JSON.parse(fs.readFileSync('config.json', 'utf8')).url;
 createIndex();
