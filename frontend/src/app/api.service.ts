@@ -21,13 +21,13 @@ export class ApiService {
   }
   async getRecepie(number) {
     return new Promise(async (resolve, reject) => {
-    var recipe:Recipe = await  this.http.get(localUrl + "recipe/" + number).toPromise() as Recipe;
+    var recipe:Recipe = await  this.http.get(localUrl + "recipes/" + number).toPromise() as Recipe;
     recipe.tags = recipe.tags.sort((a, b) => a.category.number - b.category.number)
     resolve(recipe);
     });
   }
   getRecepies(recipeNumbers) {
-    return this.http.post(localUrl + "recipe/get-multiple/", {recipeNumbers:recipeNumbers}).toPromise();
+    return this.http.post(localUrl + "recipes/get-multiple/", {recipeNumbers:recipeNumbers}).toPromise();
   }
   getRecipeSearch(selectedTags, searchName:string, skip, limit) {
     var ids = [];
@@ -39,10 +39,10 @@ export class ApiService {
         element.name === "in Saison" ? season = true : ids.push(element._id)
       }
     });
-    return this.http.post(localUrl+ "recipe/search", {selectedTags:ids, season: season, searchName: searchName, skip:skip, limit:limit}).toPromise();
+    return this.http.post(localUrl+ "recipes/search", {selectedTags:ids, season: season, searchName: searchName, skip:skip, limit:limit}).toPromise();
   }
   addRecipe(recipe:Recipe) {
-    return this.http.post(localUrl+ "recipe", {"recipe":recipe}).toPromise();
+    return this.http.post(localUrl+ "recipes", {"recipe":recipe}).toPromise();
   }
   addTag(tag) {
     return this.http.post(localUrl+ "tags", {"tag":tag}).toPromise();
@@ -72,7 +72,7 @@ export class ApiService {
     return this.http.get(localUrl + "collections").toPromise();
   }
   getAllRecipeTeaserData() {
-    return this.http.get(localUrl + "recipe/teaser-data/all").toPromise();
+    return this.http.get(localUrl + "recipes/teaser-data/all").toPromise();
   }
   saveCollection(collection){
     return this.http.post(localUrl+ "collections", {"collection":collection}).toPromise();

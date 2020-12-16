@@ -20,7 +20,7 @@ app.use(express.static('public'));
 app.use('/collections', collectionController);
 app.use('/tags', tagsController);
 app.use('/images', imagesController);
-app.use('/recipe', recipeController);
+app.use('/recipes', recipeController);
 
 // serve the frontend.
 var path = require('path');
