@@ -124,6 +124,15 @@
       </mat-chip>
       </mat-chip-list>  
     </p>
+
+    <h3>Bilder</h3>
+    <div  *ngFor="let image of recipe.images; let i = index">
+      <img class="previev-img" src="{{api.getImageUri(image)}}">
+      <button class="delete-image-button" mat-button class="red" (click)="deleteImage(image, i)">
+        <mat-icon>remove_circle_outline</mat-icon>
+      </button>
+    </div>
+
     <div *ngIf="true">
       <h3>Bild hochladen</h3>
 
@@ -140,13 +149,6 @@
         <img id="image" [src]="croppedImage" style="max-width:20em; max-height: 20em;" />
       </div>
       <button (click)="uploadImage()" *ngIf="true" mat-button>Upload</button>
-    </div>
-    <div *ngIf="false">
-      <h3>Bild</h3>
-      <img class="previev-img" src="{{api.getImageUri(recipe.imageUri)}}">
-      <button id="delete-image-button" mat-button class="red" (click)="deleteImage()">
-        <mat-icon>remove_circle_outline</mat-icon>
-      </button>
     </div>
     
       <p>

@@ -113,14 +113,11 @@ export class EditRecipeComponent implements OnInit {
   sortTags(){
     this.tags = this.tags.sort((x ,y) => ('' + x.name).localeCompare(y.name));
   }
-  deleteImage(){
+  deleteImage(image, index){
     if (confirm('Sind Sie sicher, dass Sie das Bild löschen wollen?')) {
-      console.log(this.recipe.imageUri)
-      this.api.deleteImage(this.recipe.imageUri)
-      .then(()=> this.recipe.imageUri ="")
+      this.api.deleteImage(image)
+      .then(()=> this.recipe.images = this.recipe.images.splice(index, 1))
       .catch(err=> console.log(err));
-      // TODO find the reason why then block does not work
-      this.recipe.imageUri ='';
     } else {
       // Do nothing!
     }
