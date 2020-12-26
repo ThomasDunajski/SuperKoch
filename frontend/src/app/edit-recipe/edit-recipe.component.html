@@ -126,12 +126,10 @@
     </p>
 
     <h3>Bilder</h3>
-    <div  *ngFor="let image of recipe.images; let i = index">
+    <span *ngFor="let image of recipe.images; let i = index" class="image-comtainer">
       <img class="previev-img" src="{{api.getImageUri(image)}}">
-      <button class="delete-image-button" mat-button class="red" (click)="deleteImage(image, i)">
-        <mat-icon>remove_circle_outline</mat-icon>
-      </button>
-    </div>
+        <mat-icon class="red" (click)="deleteImage(image, i)">remove_circle_outline</mat-icon>
+    </span>
 
     <div *ngIf="true">
       <h3>Bild hochladen</h3>

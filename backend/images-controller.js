@@ -33,7 +33,8 @@ router.post('/upload', (req, res) => {
   })
 });
   
-router.delete('/images/:imageId', async (req, res) => {
+router.delete('/:imageId', async (req, res) => {
+  console.log('TEst')
   var filename = req.params.imageId;
   if (filename){
     const path = __dirname + "/public/images/" +filename;

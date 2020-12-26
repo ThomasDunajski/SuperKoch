@@ -115,8 +115,9 @@ export class EditRecipeComponent implements OnInit {
   }
   deleteImage(image, index){
     if (confirm('Sind Sie sicher, dass Sie das Bild löschen wollen?')) {
+      console.log('call delete image: ' +image)
       this.api.deleteImage(image)
-      .then(()=> this.recipe.images = this.recipe.images.splice(index, 1))
+      .then(()=> this.recipe.images.splice(index, 1))
       .catch(err=> console.log(err));
     } else {
       // Do nothing!

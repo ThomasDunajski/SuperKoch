@@ -49,6 +49,9 @@
     width: auto;
 }
 .previev-img{
-    width: 30%;
-
+    width: 25%;
+}
+.image-comtainer{
+    margin: 5%;
+    cursor: default;
 }
