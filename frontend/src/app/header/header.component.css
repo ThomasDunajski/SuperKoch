@@ -1,3 +1,13 @@
 .mat-toolbar{
     min-width: fit-content;
 }
+@media only screen and (max-width: 500px) {
+    #page-name {
+      display: none;
+    }
+  }
+  @media only screen and (min-width: 501px) {
+    #home-icon {
+      display: none;
+    }
+  }
