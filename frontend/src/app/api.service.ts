@@ -77,4 +77,7 @@ export class ApiService {
   saveCollection(collection){
     return this.http.post(localUrl+ "collections", {"collection":collection}).toPromise();
   }
+  getAutocompleteSugestions(query) {
+    return this.http.get(localUrl + "auto-complete?searchText=" + query).toPromise();
+  }
 }

@@ -6,10 +6,11 @@ var app = express();
 var path = require('path');
 
 // controllers
-var tagsController = require('./tags-controller');
-var recipeController = require('./recipe-controller');
-var collectionController = require('./collection-controller');
-var imagesController = require('./images-controller');
+const tagsController = require('./tags-controller');
+const recipeController = require('./recipe-controller');
+const collectionController = require('./collection-controller');
+const imagesController = require('./images-controller');
+const autoCompleteController = require('./auto-complete/auto-complete-controller');
 
 // middleware
 app.use(cors());
@@ -21,6 +22,7 @@ app.use('/collections', collectionController);
 app.use('/tags', tagsController);
 app.use('/images', imagesController);
 app.use('/recipes', recipeController);
+app.use('/auto-complete', autoCompleteController);
 
 // serve the frontend.
 var path = require('path');

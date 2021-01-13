@@ -3,7 +3,6 @@ import { ApiService } from '../api.service';
 import { Router } from '@angular/router';
 import {ActivatedRoute} from '@angular/router'
 
-
 export interface Tag {
   name: string;
   category:{
@@ -28,6 +27,7 @@ export class TagSearchComponent implements OnInit {
   isLoading = false;
   tagCategorys = [];
   largeImages = false;
+  autoCompleteSugestions: string[] = [];
 
   constructor(private api: ApiService, private activatedRoute: ActivatedRoute, private router: Router) {
     this.allTags=[];
@@ -83,7 +83,14 @@ export class TagSearchComponent implements OnInit {
         this.selectTag(this.allTags.find(x => x.name === tagName)));
     } 
   }
-  
+  autoComplete(){
+    interface AutocompleateEntry{
+      fullText:string;
+    }
+    this.api.getAutocompleteSugestions(this.searchName)
+    .then((res)=> this.autoCompleteSugestions = (res as Array<AutocompleateEntry>).map(element=> element.fullText))
+    .catch((res)=>console.log(res))
+  }
   processTags(){
     var categorys = {};
     this.allTags.forEach(tag => {
@@ -114,5 +121,9 @@ export class TagSearchComponent implements OnInit {
       this.recepies = this.recepies.concat(newRecipes);
       this.isLoading = false;
     }
+  }
+  direcktlyOpen(name:string){
+    // TODO: navigate to selected recipe 
+    // this.router.navigate(["/recipe/5"]);
   }
 }

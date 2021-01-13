@@ -3,10 +3,15 @@
 
         <mat-form-field>
             <mat-label>Name oder Zutat</mat-label>
-            <input #nameInput matInput [(ngModel)]="searchName" (keyup.enter)="updateSearchParams()">
+            <input #nameInput matInput [(ngModel)]="searchName" (keyup.enter)="updateSearchParams()" (keyup)="autoComplete()" [matAutocomplete]="auto">
             <button matSuffix  mat-button (click)="updateSearchParams()">
                 <mat-icon>search</mat-icon>
             </button> 
+            <mat-autocomplete #auto="matAutocomplete">
+                <mat-option *ngFor="let option of autoCompleteSugestions" [value]="option" (click)="direcktlyOpen(option)">
+                    {{option}}
+                </mat-option>
+            </mat-autocomplete>
           </mat-form-field>   
 
     <h3>Filter:</h3>
