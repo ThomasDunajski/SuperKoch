@@ -1,5 +1,6 @@
 var dbService = require("./db-service");
 var recipeService = require("./recipe-service");
+const autoCompleteService = require('./auto-complete/auto-complete-service');
 var express = require('express')
 var router = express.Router()
 
@@ -53,6 +54,7 @@ async function addRecipe(recipe, req, res){
         console.log(err);
       }
       console.log(result);
+      autoCompleteService.add(recipe.name)
       res.json({message:"success", url:"/recipe/" + recipe.number});
       connection.close();
     }));
