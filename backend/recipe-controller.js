@@ -3,6 +3,7 @@ var recipeService = require("./recipe-service");
 const autoCompleteService = require('./auto-complete/auto-complete-service');
 var express = require('express')
 var router = express.Router()
+const url = require('url');
 
 router.post('/', async (req, res) =>{
   var recipe = req.body.recipe;
@@ -61,12 +62,6 @@ async function addRecipe(recipe, req, res){
   });
 }
 
-router.get('/:recepieId', async (req, res) => {
-  var recepieId = parseInt(req.params.recepieId);
-  var recipe = await recipeService.getRecipe(recepieId)
-  res.json(recipe);
-});
-
 router.post('/get-multiple', async  (req, res) => {
   var recipeNumbers = req.body.recipeNumbers;
   var recipes = await recipeService.getRecipes(recipeNumbers)
@@ -102,4 +97,16 @@ router.get('/teaser-data/all', async  (req, res) => {
   res.json(recipeIds);
 });
 
+router.get('/number', async  (req, res) => {
+  const queryObject = url.parse(req.url,true).query;
+  const name = queryObject.name;
+  var recipeIds = await recipeService.getNumber(name);
+  res.json(recipeIds);
+});
+
+router.get('/:recepieId', async (req, res) => {
+  var recepieId = parseInt(req.params.recepieId);
+  var recipe = await recipeService.getRecipe(recepieId)
+  res.json(recipe);
+});
 module.exports = router;
