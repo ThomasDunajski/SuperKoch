@@ -80,4 +80,7 @@ export class ApiService {
   getAutocompleteSugestions(query) {
     return this.http.get(localUrl + "auto-complete?searchText=" + query).toPromise();
   }
+  getRecipeNumber(name) {
+    return this.http.get(localUrl + "recipes/number?name=" + name).toPromise();
+  }
 }

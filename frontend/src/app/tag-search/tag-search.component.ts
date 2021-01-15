@@ -122,8 +122,8 @@ export class TagSearchComponent implements OnInit {
       this.isLoading = false;
     }
   }
-  direcktlyOpen(name:string){
-    // TODO: navigate to selected recipe 
-    // this.router.navigate(["/recipe/5"]);
+  async direcktlyOpen(name:string){
+    const recipeNumber = await this.api.getRecipeNumber(name);
+    this.router.navigate(["/recipe/" + recipeNumber]);
   }
 }
