@@ -74,7 +74,7 @@
     <p  *ngFor="let instruction of instructions; let i = index">
       <mat-form-field id="instruction">
         <mat-label>Schritt</mat-label>
-        <textarea [(ngModel)]="instructions[i].value" matInput placeholder="z.B. Gemüse schneiden"></textarea>
+        <textarea [(ngModel)]="instructions[i].value" matInput rows="5" placeholder="z.B. Gemüse schneiden"></textarea>
         <mat-hint *ngIf="i===0">Für die Übersicht lohnt es sich meist das Rezept in mehrere Schritte zu unterteilen</mat-hint>
       </mat-form-field>
       <button mat-button (click)="removeInctruction(i)" class="red">

@@ -6,3 +6,5 @@ Todo.txt
 .vscode/launch.json
 backend/test.css
 ecosystem.config.js
+backend/server.cert
+backend/server.key
