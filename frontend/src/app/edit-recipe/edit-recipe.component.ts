@@ -24,6 +24,7 @@ export class EditRecipeComponent implements OnInit {
   form: FormGroup;
   progress: number = 0;
   instructions =[{value:""}];
+  pasteInstructionString="";
   constructor(public api: ApiService, private router: Router,public fb: FormBuilder, private actRoute: ActivatedRoute) { 
     this.form = this.fb.group({
     name: [''],
@@ -70,6 +71,11 @@ export class EditRecipeComponent implements OnInit {
   }
   addInstruction(){
     this.instructions.push({value:""});
+  }
+  pasteInstructions(){
+    const newInstructions = this.pasteInstructionString.split("\n").map(x=>({value:x}));
+    this.instructions = this.instructions.concat(newInstructions).filter(x=>x.value!=="");
+    this.hideModal();
   }
   removeInctruction(index:number){
     this.instructions.splice(index, 1)
@@ -123,6 +129,17 @@ export class EditRecipeComponent implements OnInit {
       // Do nothing!
     }
 
+  }
+
+  hideModal = function() {
+    document.getElementById("myModal").style.display = "none";
+   }
+  interceptModalClose = (event)=> {   
+   event.stopPropagation();
+  }
+  showImportModal(){
+    this.pasteInstructionString ='';
+    document.getElementById("myModal").style.display = "block";
   }
 
   uploadImage() {

@@ -85,6 +85,9 @@
     <button mat-button (click)="addInstruction()" class="green">
       <mat-icon>add_circle_outline</mat-icon>
     </button>
+    <button mat-button (click)="showImportModal()" class="green">
+      <mat-icon>content_paste</mat-icon>
+    </button>
     </p>
     <p>
       <mat-checkbox [checked]="isSesonal" color="primary" (change)="onCheckboxChange($event.checked)">Saisonal</mat-checkbox>
@@ -155,3 +158,18 @@
         </button>
       </p>
   </div>
+
+  <div id="myModal" (click)="hideModal()" class="modal">
+
+    <!-- Modal content -->
+    <div class="modal-content">
+        <mat-card class="modal-card" (click)="interceptModalClose($event)">
+          <mat-form-field>
+            <mat-label>Anleitung hier eifügen...</mat-label>
+            <textarea [(ngModel)]="pasteInstructionString" matInput rows="40"></textarea>
+          </mat-form-field>
+          <button mat-button (click)="pasteInstructions()" >
+            Hinzufügen
+          </button>
+        </mat-card>
+    </div>
