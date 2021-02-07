@@ -57,10 +57,10 @@ export class ApiService {
     })
   }
   getThumbImageUri(name:string){
-    return name ? localUrl + "images/thumb/" + name : localUrl + "images/thumb/no-image.png";
+    return name ? localUrl + "images/thumb/" + name : localUrl + "images/thumb/no-image.jpg";
   }
   getImageUri(name:string){
-    return name ? localUrl + "images/large/" + name : localUrl + "images/large/no-image.png";
+    return name ? localUrl + "images/large/" + name : localUrl + "images/large/no-image.jpg";
   }
   deleteImage(uri) {
     return this.http.delete(localUrl+ "images/" + uri).toPromise();

@@ -33,6 +33,7 @@ export class RecepieComponent implements OnInit {
       for (let image of this.recepie.images){
         this.images.push({image:this.api.getImageUri(image)})
       }
+      if (this.images.length === 0) this.images.push({image:this.api.getImageUri()})
     }
   }
   
