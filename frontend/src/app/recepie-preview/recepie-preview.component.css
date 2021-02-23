@@ -6,7 +6,7 @@
   }
   .normal-img {
     vertical-align: middle;
-    max-width: 10%;
+    max-width: 15%;
     border-radius: 4px;
   }
   .img-only {
@@ -15,7 +15,7 @@
     width: 100%;
     transition: transform .3s; 
   }  
-  .img-only:hover {
+  .img-only-card:hover >  .img-only{
     transform: scale(1.1);
   }
   .img-only-card {
