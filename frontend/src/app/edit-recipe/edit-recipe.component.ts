@@ -5,6 +5,8 @@ import { Router } from '@angular/router';
 import { FormBuilder, FormGroup } from "@angular/forms";
 import { ActivatedRoute } from '@angular/router';
 import { HttpEvent, HttpEventType } from '@angular/common/http';
+import {Subject} from 'rxjs';
+
 
 import { ImageCroppedEvent } from 'ngx-image-cropper';
 @Component({
@@ -23,7 +25,6 @@ export class EditRecipeComponent implements OnInit {
   selectedTags = [];
   form: FormGroup;
   progress: number = 0;
-  instructions =[{value:""}];
   pasteInstructionString="";
   constructor(public api: ApiService, private router: Router,public fb: FormBuilder, private actRoute: ActivatedRoute) { 
     this.form = this.fb.group({
@@ -37,8 +38,6 @@ export class EditRecipeComponent implements OnInit {
   async loadRecipe() {
     if (this.actRoute.snapshot.params.id){
       this.recipe = await this.api.getRecepie(this.actRoute.snapshot.params.id) as Recipe;
-      this.instructions = [];
-      this.recipe.instructions.map( x=> this.instructions.push({value:x}));
       this.recipe.ingredients.map(x => x.quantity *= this.recipe.servings);
       this.selectedTags = this.recipe.tags;
       //filter out already used tags
@@ -70,15 +69,10 @@ export class EditRecipeComponent implements OnInit {
     this.recipe.ingredients.splice(index, 1)
   }
   addInstruction(){
-    this.instructions.push({value:""});
-  }
-  pasteInstructions(){
-    const newInstructions = this.pasteInstructionString.split("\n").map(x=>({value:x}));
-    this.instructions = this.instructions.concat(newInstructions).filter(x=>x.value!=="");
-    this.hideModal();
+    this.recipe.instructions.push("");
   }
   removeInctruction(index:number){
-    this.instructions.splice(index, 1)
+    this.recipe.instructions.splice(index, 1)
   }
   onCheckboxChange(isChecked: boolean){
     this.isSesonal = isChecked;
@@ -95,8 +89,7 @@ export class EditRecipeComponent implements OnInit {
       alert("Ein Rezept braucht mindestens einen Tag um gespeichert werden zu können");
       return
     }
-    this.recipe.instructions = this.instructions.map( x=> x.value)
-    .filter(x => x !== "");
+    this.recipe.instructions = this.recipe.instructions.filter(x => x !== "");
     this.recipe.ingredients.map(x=>x.quantity = x.quantity / this.recipe.servings);
     this.recipe.tags = this.selectedTags.map(x => x._id);
     console.log(this.recipe);
@@ -129,17 +122,6 @@ export class EditRecipeComponent implements OnInit {
       // Do nothing!
     }
 
-  }
-
-  hideModal = function() {
-    document.getElementById("myModal").style.display = "none";
-   }
-  interceptModalClose = (event)=> {   
-   event.stopPropagation();
-  }
-  showImportModal(){
-    this.pasteInstructionString ='';
-    document.getElementById("myModal").style.display = "block";
   }
 
   uploadImage() {
@@ -210,5 +192,16 @@ export class EditRecipeComponent implements OnInit {
     }
     imageCropped(event: ImageCroppedEvent) {
         this.croppedImage = event.base64;
+    }
+
+    eventUplad: Subject<void> = new Subject<void>();
+
+    showUploadModal() {
+      this.eventUplad.next();
+    }
+    eventPasteRecipe: Subject<void> = new Subject<void>();
+
+    showPasteRecipeModal() {
+      this.eventPasteRecipe.next();
     }
 }

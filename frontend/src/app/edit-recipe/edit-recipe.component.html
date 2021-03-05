@@ -71,10 +71,10 @@
       </button>
     </p>
     <h3>Anleitung</h3>
-    <p  *ngFor="let instruction of instructions; let i = index">
+    <p  *ngFor="let instruction of recipe.instructions; let i = index">
       <mat-form-field id="instruction">
         <mat-label>Schritt</mat-label>
-        <textarea [(ngModel)]="instructions[i].value" matInput rows="5" placeholder="z.B. Gemüse schneiden"></textarea>
+        <textarea [(ngModel)]="recipe.instructions[i]" matInput rows="5" placeholder="z.B. Gemüse schneiden"></textarea>
         <mat-hint *ngIf="i===0">Für die Übersicht lohnt es sich meist das Rezept in mehrere Schritte zu unterteilen</mat-hint>
       </mat-form-field>
       <button mat-button (click)="removeInctruction(i)" class="red">
@@ -85,7 +85,7 @@
     <button mat-button (click)="addInstruction()" class="green">
       <mat-icon>add_circle_outline</mat-icon>
     </button>
-    <button mat-button (click)="showImportModal()" class="green">
+    <button mat-button (click)="showPasteRecipeModal()" class="green">
       <mat-icon>content_paste</mat-icon>
     </button>
     </p>
@@ -136,8 +136,10 @@
 
     <div *ngIf="true">
       <h3>Bild hochladen</h3>
-
       <input type="file" (change)="fileChangeEvent($event)" *ngIf="true"/>
+      <button mat-button (click)="showUploadModal()">
+        Bild hochladen modal öffnen
+      </button>
     
       <div style="display: flex; ">
         <image-cropper 
@@ -151,7 +153,6 @@
       </div>
       <button (click)="uploadImage()" *ngIf="true" mat-button>Upload</button>
     </div>
-    
       <p>
         <button mat-button id="save-button" (click)="saveRecipe()">
           Rezept Speichern
@@ -159,17 +160,7 @@
       </p>
   </div>
 
-  <div id="myModal" (click)="hideModal()" class="modal">
-
-    <!-- Modal content -->
-    <div class="modal-content">
-        <mat-card class="modal-card" (click)="interceptModalClose($event)">
-          <mat-form-field>
-            <mat-label>Anleitung hier eifügen...</mat-label>
-            <textarea [(ngModel)]="pasteInstructionString" matInput rows="40"></textarea>
-          </mat-form-field>
-          <button mat-button (click)="pasteInstructions()" >
-            Hinzufügen
-          </button>
-        </mat-card>
-    </div>
+  <app-modal-image-upload [events]="eventUplad.asObservable()">
+  </app-modal-image-upload>
+  <app-modal-paste-recipe [recipe]="recipe" [events]="eventPasteRecipe.asObservable()">
+  </app-modal-paste-recipe>

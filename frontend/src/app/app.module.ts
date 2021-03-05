@@ -44,6 +44,9 @@ import { CollectionPreviewComponent } from './collection-preview/collection-prev
 import { TeaserImageComponent } from './teaser-image/teaser-image.component';
 import { EditCollectionComponent } from './edit-collection/edit-collection.component';
 import { GalleryComponent } from './gallery/gallery.component';
+import { ModalComponent } from './modal/modal.component';
+import { ModalImageUploadComponent } from './modal-image-upload/modal-image-upload.component';
+import { ModalPasteRecipeComponent } from './modal-paste-recipe/modal-paste-recipe.component';
 
 
 @NgModule({
@@ -64,7 +67,10 @@ import { GalleryComponent } from './gallery/gallery.component';
     CollectionPreviewComponent,
     TeaserImageComponent,
     EditCollectionComponent,
-    GalleryComponent
+    GalleryComponent,
+    ModalComponent,
+    ModalImageUploadComponent,
+    ModalPasteRecipeComponent
   ],
   imports: [
     BrowserModule,
