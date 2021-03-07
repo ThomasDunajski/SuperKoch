@@ -45,9 +45,6 @@
     justify-content: center;
     flex-wrap: wrap;
 }
-#save-button{
-    width: auto;
-}
 .previev-img{
     width: 25%;
 }

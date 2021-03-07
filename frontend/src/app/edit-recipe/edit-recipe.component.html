@@ -133,34 +133,17 @@
       <img class="previev-img" src="{{api.getImageUri(image)}}">
         <mat-icon class="red" (click)="deleteImage(image, i)">remove_circle_outline</mat-icon>
     </span>
-
-    <div *ngIf="true">
-      <h3>Bild hochladen</h3>
-      <input type="file" (change)="fileChangeEvent($event)" *ngIf="true"/>
-      <button mat-button (click)="showUploadModal()">
-        Bild hochladen modal öffnen
-      </button>
-    
-      <div style="display: flex; ">
-        <image-cropper 
-        [imageChangedEvent]="imageChangedEvent" 
-        [maintainAspectRatio]="true" 
-        [aspectRatio]="4 / 4"
-        format="jpg" 
-        (imageCropped)="imageCropped($event)" 
-        style="flex-grow: 1; min-width: 20em;"></image-cropper>
-        <img id="image" [src]="croppedImage" style="max-width:20em; max-height: 20em;" />
-      </div>
-      <button (click)="uploadImage()" *ngIf="true" mat-button>Upload</button>
-    </div>
+    <button mat-flat-button color='primary' (click)="showUploadModal()">
+      Bild hinzufügen
+    </button>     
       <p>
-        <button mat-button id="save-button" (click)="saveRecipe()">
+        <button mat-flat-button color='primary' (click)="saveRecipe()">
           Rezept Speichern
         </button>
       </p>
   </div>
 
-  <app-modal-image-upload [events]="eventUplad.asObservable()">
+  <app-modal-image-upload [images]="recipe.images" [events]="eventUplad.asObservable()">
   </app-modal-image-upload>
   <app-modal-paste-recipe [recipe]="recipe" [events]="eventPasteRecipe.asObservable()">
   </app-modal-paste-recipe>

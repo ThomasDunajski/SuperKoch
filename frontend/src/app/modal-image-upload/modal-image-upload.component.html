@@ -3,7 +3,23 @@
     <!-- Modal content -->
     <div class="modal-content">
           <mat-card class="modal-card" (click)="interceptModalClose($event)">
-            <p>hier kommt der neue upload hin</p>
+            <div class="container" [hidden]="imageChangedEvent !==''">
+              <input type="file" #fileDropRef id="fileDropRef" (change)="fileChangeEvent($event)" />
+              <mat-icon >cloud_upload</mat-icon>
+              <h3>zieh ein Bild hier rein</h3>
+              <h3>oder</h3>
+              <button mat-flat-button color="primary" for="fileDropRef">wähle eine Datei</button>
+            </div>
+            <div *ngIf="imageChangedEvent !==''">
+              <button (click)="uploadImage()" *ngIf="true" mat-flat-button color='primary'>Upload</button>
+              <image-cropper 
+              [imageChangedEvent]="imageChangedEvent" 
+              [maintainAspectRatio]="true" 
+              [aspectRatio]="4 / 4"
+              format="jpg" 
+              (imageCropped)="imageCropped($event)" 
+              style="flex-grow: 1; min-width: 20em;"></image-cropper>
+            </div>
           </mat-card>
     </div>
   

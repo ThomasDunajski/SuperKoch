@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../api.service';
 import { Recipe , Ingredient, Heading}from '../types';
 import { Router } from '@angular/router';
-import { FormBuilder, FormGroup } from "@angular/forms";
 import { ActivatedRoute } from '@angular/router';
 import { HttpEvent, HttpEventType } from '@angular/common/http';
 import {Subject} from 'rxjs';
@@ -16,21 +15,15 @@ import { ImageCroppedEvent } from 'ngx-image-cropper';
 })
 export class EditRecipeComponent implements OnInit {
 
- 
-  public addForm: FormGroup;
   recipe:Recipe = new Recipe();
   isSesonal:boolean;
   units = ["g", "ml", "TL", "EL", "Stück", "Prise", "Schuss", "etwas", "Dose", "Bund", "Packung"]
   tags;
   selectedTags = [];
-  form: FormGroup;
   progress: number = 0;
   pasteInstructionString="";
-  constructor(public api: ApiService, private router: Router,public fb: FormBuilder, private actRoute: ActivatedRoute) { 
-    this.form = this.fb.group({
-    name: [''],
-    image: [null]
-  })}
+  constructor(public api: ApiService, private router: Router, private actRoute: ActivatedRoute) { }
+
   ngOnInit(): void {
     this.getAllTags();
     this.loadRecipe();
@@ -124,83 +117,11 @@ export class EditRecipeComponent implements OnInit {
 
   }
 
-  uploadImage() {
-    var blob = this.dataURItoBlob(this.croppedImage);
-    var file = new File([blob], "fileName.jpeg", {
-      type: "image/jpeg"
-    });
-    this.api.uploadImage(
-      file
-    ).subscribe((event: HttpEvent<any>) => {
-      switch (event.type) {
-        case HttpEventType.UploadProgress:
-          this.progress = Math.round(event.loaded / event.total * 100);
-          console.log(`Uploaded! ${this.progress}%`);
-          break;
-        case HttpEventType.Response:
-          console.log('Image successfully uploaded', event.body);
-          const resBody = JSON.parse(JSON.stringify(event.body));
-          if (resBody.filename ===""){
-            this.progress = 0;
-          }
-          else{
-            this.recipe.images.push(resBody.filename);
-            alert("erfolgreich hochgeladen")
-          }
-      }
-    })
-  }
-  uploadFile(event) {
-    const file = (event.target as HTMLInputElement).files[0];
-    this.form.patchValue({
-      image: file
-    });
-    this.form.get('image').updateValueAndValidity()
-  }
-
-
-
-  dataURItoBlob(dataURI) {
-
-    // convert base64/URLEncoded data component to raw binary data held in a string
-    var byteString;
-    if (dataURI.split(',')[0].indexOf('base64') >= 0)
-        byteString = atob(dataURI.split(',')[1]);
-    else
-        byteString = unescape(dataURI.split(',')[1]);
-
-    // separate out the mime component
-    var mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0];
-
-    // write the bytes of the string to a typed array
-    var ia = new Uint8Array(byteString.length);
-    for (var i = 0; i < byteString.length; i++) {
-        ia[i] = byteString.charCodeAt(i);
-    }
-
-    return new Blob([ia], {type:mimeString});
-}
-
-
-
-
-    imageChangedEvent: any = '';
-    croppedImage: any = '';
-
-    fileChangeEvent(event: any): void {
-        this.imageChangedEvent = event;
-    }
-    imageCropped(event: ImageCroppedEvent) {
-        this.croppedImage = event.base64;
-    }
-
     eventUplad: Subject<void> = new Subject<void>();
-
     showUploadModal() {
       this.eventUplad.next();
     }
     eventPasteRecipe: Subject<void> = new Subject<void>();
-
     showPasteRecipeModal() {
       this.eventPasteRecipe.next();
     }
