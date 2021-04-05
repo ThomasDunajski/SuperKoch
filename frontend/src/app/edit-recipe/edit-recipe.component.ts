@@ -125,4 +125,8 @@ export class EditRecipeComponent implements OnInit {
     showPasteRecipeModal() {
       this.eventPasteRecipe.next();
     }
+
+    getInstructionId(index : number, employee : any) {
+      return index;
+    }
 }

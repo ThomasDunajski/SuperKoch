@@ -71,7 +71,7 @@
       </button>
     </p>
     <h3>Anleitung</h3>
-    <p  *ngFor="let instruction of recipe.instructions; let i = index">
+    <p  *ngFor="let instruction of recipe.instructions; let i = index trackBy:getInstructionId">
       <mat-form-field id="instruction">
         <mat-label>Schritt</mat-label>
         <textarea [(ngModel)]="recipe.instructions[i]" matInput rows="5" placeholder="z.B. Gemüse schneiden"></textarea>
