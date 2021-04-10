@@ -31,7 +31,7 @@
       font-weight: 600;
       color: #38424c;
     }
-    .mat-icon {
+    #upload-icon {
         font-size: 100px;
         margin-left: -80px;
     }

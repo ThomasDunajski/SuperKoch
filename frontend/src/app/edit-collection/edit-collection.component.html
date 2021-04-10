@@ -13,6 +13,11 @@
             <mat-hint>Name der Sammlung</mat-hint>
         </mat-form-field>
     </p>
+    <p>
+        <button mat-flat-button color='primary' (click)="showUploadModal()">
+            Bild hochladen
+        </button>  
+    </p>
     <h1>Kategorien</h1>
     <p>
         <mat-card *ngFor="let section of collection.sections; let i = index">
@@ -43,7 +48,7 @@
     </p>
 
     <p>
-        <button mat-button (click)="saveCollection()">
+        <button mat-flat-button (click)="saveCollection()">
             Speichern
         </button>
     </p>
@@ -62,3 +67,6 @@
   </div>
 
 </div>
+
+<app-modal-image-upload [images]="collection.imageUrl" [aspectRatio]="16/9" [events]="eventUplad.asObservable()" (imageUrlChanged)="setImgePath($event)">
+</app-modal-image-upload>

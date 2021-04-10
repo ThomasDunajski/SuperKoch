@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { ApiService } from '../api.service';
 
 @Component({
   selector: 'app-teaser-image',
@@ -7,7 +8,7 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class TeaserImageComponent implements OnInit {
 
-  constructor() { }
+  constructor(public api: ApiService) { }
   @Input() data:Teaser;
   ngOnInit(): void {
   }

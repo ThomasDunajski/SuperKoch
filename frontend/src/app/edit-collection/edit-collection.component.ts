@@ -2,6 +2,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { ApiService } from '../api.service';
 import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
+import { Subject } from 'rxjs';
 
 interface Section{
   name:string;
@@ -25,10 +26,9 @@ export class EditCollectionComponent implements OnInit {
   constructor(private api: ApiService, private actRoute: ActivatedRoute, private router: Router) { }
 
 
-  collection:Collection = {name:"", text:"", imageUrl:"http://sf1.mariefranceasia.com/wp-content/uploads/sites/7/2017/06/dimsum-1.jpg", sections:[{name:"", recipes:[]}]}
+  collection:Collection = {name:"", text:"", imageUrl:"", sections:[{name:"", recipes:[]}]}
   sectionSelectedForAdd;
   allRecipes;
-
   ngOnInit(): void {
     this.loadCollection();
   }
@@ -84,5 +84,12 @@ export class EditCollectionComponent implements OnInit {
    }
   interceptModalClose = (event)=> {   
    event.stopPropagation();
+  }
+  eventUplad: Subject<void> = new Subject<void>();
+  showUploadModal() {
+    this.eventUplad.next();
+  }
+  setImgePath(url){
+    this.collection.imageUrl = url;
   }
  }

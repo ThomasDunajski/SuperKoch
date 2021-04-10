@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ModalComponent } from '../modal/modal.component';
 import { ImageCroppedEvent } from 'ngx-image-cropper';
 import { HttpEvent, HttpEventType } from '@angular/common/http';
@@ -15,7 +15,9 @@ export class ModalImageUploadComponent  extends ModalComponent  {
     super();
    }
   @Input() images;
-
+  @Output() imageUrlChanged: EventEmitter<string> = new EventEmitter();
+  @Input() aspectRatio = 4/4;
+  canvasRotation = 0;
   ngOnInit(): void {
     super.ngOnInit();
     super.modalName = 'uploadModal';
@@ -56,7 +58,12 @@ export class ModalImageUploadComponent  extends ModalComponent  {
             // this.progress = 0;
           }
           else{
-            this.images.push(resBody.filename);
+            if (Array.isArray(this.images)){
+              this.images.push(resBody.filename);
+            }
+            else if(typeof this.images === 'string'){
+              this.imageUrlChanged.emit(resBody.filename);
+            }
             this.hideModal();
           }
       }
