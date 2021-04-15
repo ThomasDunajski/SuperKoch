@@ -7,7 +7,6 @@
     display: block;
     width: 100%;
     object-fit: contain;
-    height: 30vh;
     border-radius: 8px;
 } 
 .caption:after {
