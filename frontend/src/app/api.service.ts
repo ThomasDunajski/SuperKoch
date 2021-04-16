@@ -65,6 +65,9 @@ export class ApiService {
   getOriginalImageUri(name:string){
     return name ? localUrl + "images/" + name : localUrl + "images/no-image.png";
   }
+  getWidemageUri(name:string){
+    return name ? localUrl + "images/wide/" + name : localUrl + "images/wide/no-image.png";
+  }
   deleteImage(uri) {
     return this.http.delete(localUrl+ "images/" + uri).toPromise();
   }

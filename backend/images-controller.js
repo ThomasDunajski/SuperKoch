@@ -1,6 +1,6 @@
 var fs = require('fs');
 var upload = require('./upload');
-var thumbnail = require('./thumbnail');
+var resizeService = require('./resize-service');
 var express = require('express')
 var router = express.Router()
 
@@ -21,13 +21,15 @@ router.post('/upload', (req, res) => {
     console.log(path)
     // only jpg and png are allowed to be uploaded
     if (path.includes(".jpg")){
-      thumbnail.createThumbnail(path, "./public/images/thumb/" + filename)
-      thumbnail.createLarge(path, "./public/images/large/" + filename)
+      resizeService.createThumbnail(path, "./public/images/thumb/" + filename)
+      resizeService.createLarge(path, "./public/images/large/" + filename)
+      resizeService.createWide(path, "./public/images/wide/" + filename)
     }
     else{
       const pngFilename = filename.substr(0, filename.lastIndexOf(".png")) + ".jpg";
-      thumbnail.createThumbnail(path, "./public/images/thumb/" + pngFilename)
-      thumbnail.createLarge(path, "./public/images/large/" + pngFilename)
+      resizeService.createThumbnail(path, "./public/images/thumb/" + pngFilename)
+      resizeService.createLarge(path, "./public/images/large/" + pngFilename)
+      resizeService.createWide(path, "./public/images/wide/" + pngFilename)
     }
     res.json({error_code:0,err_desc:null, filename: filename});
   })
