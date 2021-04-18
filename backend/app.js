@@ -4,6 +4,7 @@ var bodyParser = require('body-parser');
 var cors = require('cors');
 var app = express();
 var path = require('path');
+require('dotenv').config()
 
 // controllers
 const tagsController = require('./tags-controller');
