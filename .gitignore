@@ -8,3 +8,4 @@ backend/test.css
 ecosystem.config.js
 backend/server.cert
 backend/server.key
+backend/.env

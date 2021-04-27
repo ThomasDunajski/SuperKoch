@@ -1,8 +1,8 @@
 <!-- <a href="{{url}}"> -->
-    <mat-card [class]="imageOnly ? 'img-only-card' : 'normal-card'">
-        <img [class]="imageOnly ? 'img-only' : 'normal-img'" src={{api.getThumbImageUri(data.images[0])}}>
-        <div *ngIf="imageOnly" class="overlay">{{data.name}}</div>
-        <span *ngIf="!imageOnly" class="recepieName">
+    <mat-card [class]="previewStyle">
+        <img [class]="previewStyle" src={{api.getThumbImageUri(data.images[0])}}>
+        <div *ngIf="previewStyle === 'img-only'" class="overlay">{{data.name}}</div>
+        <span [class]="previewStyle">
             {{data.name}}
         </span>
     </mat-card>

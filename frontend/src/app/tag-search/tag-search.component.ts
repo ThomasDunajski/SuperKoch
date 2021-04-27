@@ -26,7 +26,7 @@ export class TagSearchComponent implements OnInit {
   searchName:string = "";
   isLoading = false;
   tagCategorys = [];
-  largeImages = false;
+  previewClass = 'img-only';
   autoCompleteSugestions: string[] = [];
 
   constructor(private api: ApiService, private activatedRoute: ActivatedRoute, private router: Router) {
@@ -36,7 +36,6 @@ export class TagSearchComponent implements OnInit {
   async ngOnInit() {
     this.activatedRoute.queryParams.subscribe(async (params)=>{
       this.searchName = params.searchName
-      if (params.largeImages == 1) this.largeImages = true;
       if (this.allTags && this.allTags.length > 0){
         this.selected = [];
       }
@@ -104,13 +103,14 @@ export class TagSearchComponent implements OnInit {
     this.recepies = await this.api.getRecipeSearch(this.selected, this.searchName);
   }
   updateSearchParams(){
+    // TODO so ändern, dass änderung als parameter übergeben werden oder aufteilen in verschiedene funktionen
     let tagString = "";
     this.selected.map( x=> tagString += x.name +";");
     tagString = tagString.slice(0, -1);
     this.router.navigate([], 
       {
         relativeTo: this.activatedRoute,
-        queryParams: {selectedTags:tagString, searchName:this.searchName, largeImages: this.largeImages ? 1 : 0}
+        queryParams: {selectedTags:tagString, searchName:this.searchName, previewClass: this.previewClass}
         // queryParamsHandling: 'merge', // remove to replace all query params by provided
       });
   }

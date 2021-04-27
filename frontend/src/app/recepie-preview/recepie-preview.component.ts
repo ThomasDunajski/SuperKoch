@@ -12,7 +12,9 @@ export class RecepiePreviewComponent implements OnInit {
   constructor(public api: ApiService, private router: Router) { }
 
   @Input() data;
-  @Input() imageOnly;
+  @Input() previewStyle;
   ngOnInit(): void {
+    console.log(this.previewStyle)
   }
+  test = ()=> true;
 }

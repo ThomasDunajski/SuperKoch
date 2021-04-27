@@ -1,7 +1,6 @@
 <div *ngIf="recepie" class="centered"> 
     <h1>{{recepie.name}}</h1>
-    <app-gallery id="image-gallery"
-    [images]="images"></app-gallery>
+    <app-gallery id="image-gallery" [images]="images"></app-gallery>
     <div style="text-align: center;">
         <span style="margin-right: 1%;">Kochzeit {{getFormatedTime(recepie.cookingDuration)}}</span>
         <span>Wartezeit {{getFormatedTime(recepie.restDuration)}}</span>

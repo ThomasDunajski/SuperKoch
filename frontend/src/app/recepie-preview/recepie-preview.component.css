@@ -1,10 +1,10 @@
-.normal-card {
+.mat-card.list-item{
     display: inline-block;
     margin-bottom: 1%;
     width: 100%;
     text-align: left;
   }
-  .normal-img {
+  img.list-item {
     vertical-align: middle;
     max-width: 15%;
     border-radius: 4px;
@@ -15,25 +15,29 @@
     width: 100%;
     transition: transform .3s; 
   }  
-  .img-only-card:hover >  .img-only{
+  .mat-card.img-only:hover >  .img-only{
     transform: scale(1.1);
   }
-  .img-only-card {
+  .mat-card.img-only {
     display: inline-block;
     margin: 1%;
     width: 20%;
   }
   @media screen and (max-width: 600px){
-    .img-only-card {
+    .mat-card.img-only{
       display: inline-block;
       margin: 1%;
       width: 38%;
     }
   }
-  .span {
+  span.list-item {
     display: inline-block;
     vertical-align: middle;
     margin-left: 2%;
+    font-size: large;
+  }
+  span.img-only {
+    display: none;
   }
 .overlay {
   position: absolute;

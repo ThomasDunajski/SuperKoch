@@ -26,12 +26,15 @@
     </div>
     
     <p class="view-buttons">
-        <mat-button-toggle-group name="fontStyle" aria-label="Font Style" value='{{largeImages ? "imageOnlyView" : "normalView"}}'>
-            <mat-button-toggle color="primary" (click)="largeImages=true; updateSearchParams()" value="imageOnlyView">
+        <mat-button-toggle-group name="fontStyle" aria-label="Font Style" value='imageOnlyView'>
+            <mat-button-toggle color="primary" (click)="previewClass='card'; updateSearchParams()" value="imageOnlyView">
+                <mat-icon>view_columny</mat-icon>
+            </mat-button-toggle>
+            <mat-button-toggle color="primary" (click)="previewClass='img-only'; updateSearchParams()" value="imageOnlyView">
                 <mat-icon>view_comfy</mat-icon>
             </mat-button-toggle>
-            <mat-button-toggle color="primary" (click)="largeImages=false; updateSearchParams()"  value="normalView">
-                <mat-icon>list</mat-icon>
+            <mat-button-toggle color="primary" (click)="previewClass='list-item'; updateSearchParams()"  value="normalView">
+                <mat-icon>view_list</mat-icon>
             </mat-button-toggle>
           </mat-button-toggle-group>
     </p>
@@ -49,7 +52,7 @@
      [infiniteScrollThrottle]="50"
      (scrolled)="onScroll()">
         <a *ngFor="let recipe of recepies" href="/recipe/{{recipe.number}}" target="_blank">
-            <app-recepie-preview [data]="recipe" [imageOnly]="largeImages"></app-recepie-preview>
+            <app-recepie-preview [data]="recipe" [previewStyle]="previewClass"></app-recepie-preview>
         </a>
         
      </p>
