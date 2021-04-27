@@ -35,6 +35,7 @@ export class TagSearchComponent implements OnInit {
 
   async ngOnInit() {
     this.activatedRoute.queryParams.subscribe(async (params)=>{
+      this.previewClass = params.previewClass;
       this.searchName = params.searchName
       if (this.allTags && this.allTags.length > 0){
         this.selected = [];
