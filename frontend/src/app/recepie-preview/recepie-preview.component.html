@@ -1,6 +1,6 @@
 <!-- <a href="{{url}}"> -->
     <mat-card [class]="previewStyle">
-        <img [class]="previewStyle" src={{api.getThumbImageUri(data.images[0])}}>
+        <img [class]="previewStyle" src={{api.getThumbImageUri(data.images[0])}} loading="lazy">
         <div *ngIf="previewStyle === 'img-only'" class="overlay">{{data.name}}</div>
         <span [class]="previewStyle">
             {{data.name}}

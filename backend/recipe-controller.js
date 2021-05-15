@@ -74,7 +74,7 @@ router.post('/search', async (req, res) => {
   const skip = req.body.skip ?  parseInt(req.body.skip): 0;
   const searchName = req.body.searchName ?{$text: {$search:req.body.searchName}} : {};
   const projection = {name:1, images:1, number:1, _id:0}
-  const limit = req.body.limit ?  parseInt(req.body.limit): 10;
+  const limit = req.body.limit ?  parseInt(req.body.limit): 0;
   if (selectedTags === undefined){
       res.statusMessage = "selectedTags undefined";
       res.status(400).send();

@@ -115,14 +115,7 @@ export class TagSearchComponent implements OnInit {
         // queryParamsHandling: 'merge', // remove to replace all query params by provided
       });
   }
-  onScroll = async function()  {
-    if (!this.isLoading){
-      this.isLoading = true;
-      var newRecipes = await this.api.getRecipeSearch(this.selected, this.searchName, this.recepies.length, 10);
-      this.recepies = this.recepies.concat(newRecipes);
-      this.isLoading = false;
-    }
-  }
+
   async direcktlyOpen(name:string){
     const recipeNumber = await this.api.getRecipeNumber(name);
     this.router.navigate(["/recipe/" + recipeNumber]);
