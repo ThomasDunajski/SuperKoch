@@ -20,16 +20,16 @@ router.post('/upload', (req, res) => {
     path = "./public/images/" + filename;
     console.log(path)
     // only jpg and png are allowed to be uploaded
+    const newFilename = filename.substr(0, filename.lastIndexOf(".") + '.webp');
     if (path.includes(".jpg")){
-      resizeService.createThumbnail(path, "./public/images/thumb/" + filename)
-      resizeService.createLarge(path, "./public/images/large/" + filename)
-      resizeService.createWide(path, "./public/images/wide/" + filename)
+      resizeService.createThumbnail(path, "./public/images/thumb/" + newFilename)
+      resizeService.createLarge(path, "./public/images/large/" + newFilename)
+      resizeService.createWide(path, "./public/images/wide/" + newFilename)
     }
     else{
-      const pngFilename = filename.substr(0, filename.lastIndexOf(".png")) + ".jpg";
-      resizeService.createThumbnail(path, "./public/images/thumb/" + pngFilename)
-      resizeService.createLarge(path, "./public/images/large/" + pngFilename)
-      resizeService.createWide(path, "./public/images/wide/" + pngFilename)
+      resizeService.createThumbnail(path, "./public/images/thumb/" + newFilename)
+      resizeService.createLarge(path, "./public/images/large/" + newFilename)
+      resizeService.createWide(path, "./public/images/wide/" + newFilename)
     }
     res.json({error_code:0,err_desc:null, filename: filename});
   })

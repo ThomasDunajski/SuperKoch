@@ -1,7 +1,7 @@
 var sharp = require('sharp');
  
 exports.createThumbnail = function(path, newPath){ 
-  createResizedCopy(path, newPath, 400, 400)
+  createResizedCopy(path, newPath, 400, 400, 50)
 }
 
 exports.createLarge = function(path, newPath){ 
@@ -12,10 +12,13 @@ exports.createWide = function(path, newPath){
   createResizedCopy(path, newPath, 1920 , 1080 )
 }
 
-function createResizedCopy(path, newPath, sizeX, sizeY){
+function createResizedCopy(path, newPath, sizeX, sizeY, quality = 80){
+  // newPath = newPath.replace('.jpg', '.webp')
   sharp(path)
     .resize(sizeX, sizeY)
-    .toFile(newPath, function(err) {
-      if(err) console.log(err.message);
+    .webp({quality:quality})
+    .toFile(newPath)
+    .catch((err) =>{
+      console.log(err.message);
     });
 }

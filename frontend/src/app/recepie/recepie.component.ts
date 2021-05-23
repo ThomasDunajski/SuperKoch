@@ -47,10 +47,4 @@ export class RecepieComponent implements OnInit {
   goToEdit(){
     this.router.navigate(["/recipe/edit/" + this.actRoute.snapshot.params.id]);
   }
-  getImageName(path){
-    if (path.includes(".jpg")){
-     return path.substr(0, path.lastIndexOf(".jpg")) + "_large.jpg";
-    }
-    return path.substr(0, path.lastIndexOf(".png")) + "_large.jpg";
-  }
 }
