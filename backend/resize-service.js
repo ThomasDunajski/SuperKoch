@@ -16,7 +16,7 @@ function createResizedCopy(path, newPath, sizeX, sizeY){
   // newPath = newPath.replace('.jpg', '.webp')
   sharp(path)
     .resize(sizeX, sizeY)
-    .webp({quality:90})
+    .webp({quality:85})
     .toFile(newPath)
     .catch((err) =>{
       console.log(err.message);
