@@ -26,7 +26,7 @@ export class TagSearchComponent implements OnInit {
   searchName:string = "";
   isLoading = false;
   tagCategorys = [];
-  previewClass = 'img-only';
+  previewClass;
   autoCompleteSugestions: string[] = [];
 
   constructor(private api: ApiService, private activatedRoute: ActivatedRoute, private router: Router) {
@@ -35,7 +35,7 @@ export class TagSearchComponent implements OnInit {
 
   async ngOnInit() {
     this.activatedRoute.queryParams.subscribe(async (params)=>{
-      this.previewClass = params.previewClass;
+      this.previewClass = params.previewClass || 'img-only';
       this.searchName = params.searchName
       if (this.allTags && this.allTags.length > 0){
         this.selected = [];
