@@ -13,7 +13,6 @@ exports.createWide = function(path, newPath){
 }
 
 function createResizedCopy(path, newPath, sizeX, sizeY){
-  // newPath = newPath.replace('.jpg', '.webp')
   sharp(path)
     .resize(sizeX, sizeY)
     .webp({quality:85})

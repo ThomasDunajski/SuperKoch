@@ -57,16 +57,16 @@ export class ApiService {
     })
   }
   getThumbImageUri(name:string){
-    return name ? localUrl + "images/thumb/" + name : localUrl + "images/thumb/no-image.jpg";
+    return name ? localUrl + "images/thumb/" + name.replace('.jpg', '.webp') : localUrl + "images/thumb/no-image.jpg";
   }
   getImageUri(name:string){
-    return name ? localUrl + "images/large/" + name : localUrl + "images/large/no-image.jpg";
+    return name ? localUrl + "images/large/" + name.replace('.jpg', '.webp') : localUrl + "images/large/no-image.jpg";
   }
   getOriginalImageUri(name:string){
     return name ? localUrl + "images/" + name : localUrl + "images/no-image.png";
   }
   getWidemageUri(name:string){
-    return name ? localUrl + "images/wide/" + name : localUrl + "images/wide/no-image.png";
+    return name ? localUrl + "images/wide/" + name.replace('.jpg', '.webp') : localUrl + "images/wide/no-image.png";
   }
   deleteImage(uri) {
     return this.http.delete(localUrl+ "images/" + uri).toPromise();
