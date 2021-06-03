@@ -44,7 +44,7 @@
         </mat-chip>
     </mat-chip-list>  
     
-     <p>
+     <p class="{{previewClass === 'img-only' ?  'results' : ''}}">
         <a *ngFor="let recipe of recepies" href="/recipe/{{recipe.number}}" target="_blank">
             <app-recepie-preview [data]="recipe" [previewStyle]="previewClass"></app-recepie-preview>
         </a>

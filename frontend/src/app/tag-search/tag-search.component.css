@@ -17,3 +17,18 @@ mat-form-field {
     position: absolute;
     right: 5%;
 }
+.results{
+    display: grid;
+    grid-template-columns: 50% 50%;
+    gap: 1rem;
+}
+@media screen and (max-width: 500px){
+    .results{
+        grid-template-columns: 100%;
+    }
+}
+@media screen and (min-width: 1000px){
+    .results{
+        grid-template-columns: 25% 25% 25% 25%;
+    }
+}
