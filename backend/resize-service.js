@@ -15,7 +15,7 @@ exports.createWide = function(path, newPath){
 function createResizedCopy(path, newPath, sizeX, sizeY){
   sharp(path)
     .resize(sizeX, sizeY)
-    .webp({quality:85})
+    .webp({quality:80})
     .toFile(newPath)
     .catch((err) =>{
       console.log(err.message);
