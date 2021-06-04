@@ -19,7 +19,7 @@ mat-form-field {
 }
 .results{
     display: grid;
-    grid-template-columns: 50% 50%;
+    grid-template-columns: 1fr 1fr;
     gap: 1rem;
 }
 @media screen and (max-width: 500px){
@@ -29,6 +29,6 @@ mat-form-field {
 }
 @media screen and (min-width: 1000px){
     .results{
-        grid-template-columns: 25% 25% 25% 25%;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
     }
 }
