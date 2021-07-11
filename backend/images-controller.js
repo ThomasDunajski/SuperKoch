@@ -41,7 +41,8 @@ router.delete('/:imageId', async (req, res) => {
         console.log("File " + path + " was deleted.");
       }
     });
-      thumbPath =   "./public/images/thumb/" + filename;
+    const newFilename = filename.substr(0, filename.lastIndexOf(".")) + '.webp';
+      thumbPath =   "./public/images/thumb/" + newFilename;
       fs.unlink(thumbPath, (err) => {
         if (err) {
           console.log(err)
@@ -50,7 +51,7 @@ router.delete('/:imageId', async (req, res) => {
           console.log("File " + thumbPath + " was deleted.");
         }
       });
-      largePath =  "./public/images/large/" + filename;
+      largePath =  "./public/images/large/" + newFilename;
       fs.unlink(largePath, (err) => {
         if (err) {
           console.log(err)
