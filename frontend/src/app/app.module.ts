@@ -47,6 +47,7 @@ import { GalleryComponent } from './gallery/gallery.component';
 import { ModalComponent } from './modal/modal.component';
 import { ModalImageUploadComponent } from './modal-image-upload/modal-image-upload.component';
 import { ModalPasteRecipeComponent } from './modal-paste-recipe/modal-paste-recipe.component';
+import { NavbarComponent } from './navbar/navbar.component';
 
 
 @NgModule({
@@ -70,7 +71,8 @@ import { ModalPasteRecipeComponent } from './modal-paste-recipe/modal-paste-reci
     GalleryComponent,
     ModalComponent,
     ModalImageUploadComponent,
-    ModalPasteRecipeComponent
+    ModalPasteRecipeComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
