@@ -19,7 +19,6 @@ router.get('/:collectionId', async  (req, res) => {
 });
 
 router.get('/', async  (req, res) => {
-  console.log('kommt an')
   let options = {collection: "collections", query:{}, projection:{name:1,imageUrl:1, number:1, text:1}}
   collections = await dbService.find(options)
   res.json(collections);
