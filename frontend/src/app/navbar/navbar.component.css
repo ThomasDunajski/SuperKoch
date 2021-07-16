@@ -67,6 +67,9 @@ main {
   color: var(--text-secondary);
 }
 
+.nav-link .mat-icon {
+  margin-top: -5px !important;
+}
 .link-text {
   display: none;
   margin-left: .5rem;
