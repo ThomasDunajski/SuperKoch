@@ -83,12 +83,14 @@ export class EditRecipeComponent implements OnInit {
       return
     }
     this.recipe.instructions = this.recipe.instructions.filter(x => x !== "");
-    this.recipe.ingredients.map(x=>x.quantity = x.quantity / this.recipe.servings);
+    this.recipe.ingredients.forEach(x=>x.quantity = x.quantity / this.recipe.servings);
     this.recipe.tags = this.selectedTags.map(x => x._id);
-    console.log(this.recipe);
     this.api.addRecipe(this.recipe)
     .then((res:Response) => this.router.navigate([res.url]))
-    .catch((err)=>console.log(err));
+    .catch((err)=>{
+      console.log(err);
+      this.recipe.ingredients.forEach(x=>x.quantity = x.quantity * this.recipe.servings);
+    });
   }
   getAllTags = async function() {
       this.tags = await this.api.getAllTags();
