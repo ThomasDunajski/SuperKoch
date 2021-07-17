@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { OptionsService } from '../services/options.service';
 
 @Component({
   selector: 'app-navbar',
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavbarComponent implements OnInit {
 
-  constructor() { }
+  constructor(private optionsService: OptionsService) { }
 
   navbarClass ='navbar'
   themes = ['dark', 'solar', 'light']
@@ -19,7 +20,7 @@ export class NavbarComponent implements OnInit {
     const theme =  localStorage.getItem('theme');
     if (!theme){
       return 'navbar ' +this.themes[0];
-    } else return 'navbar ' + theme
+    } else return 'navbar '// + theme
   } 
   togleTheme(){
     const theme =  localStorage.getItem('theme');
@@ -33,6 +34,22 @@ export class NavbarComponent implements OnInit {
       if (theme === 'light')
         localStorage.setItem('theme', 'dark')
     }
+  }
+  changeTheme(){
+    this.optionsService.changeOptions({theme:
+      {
+        '--item-primary': '#576e75',
+        '--item-secondary': '#35535c',
+        '--text-primary': '#576e75',
+        '--text-secondary': '#35535c',
+        '--bg-primary': '#fdf6e3',
+        '--bg-secondary': '#f5e5b8',
+        // --text-primary: #576e75;
+        // --text-secondary: #35535c;
+        // --bg-primary: #fdf6e3;
+        // --bg-secondary: #f5e5b8;
+      }
+    })
   }
 
 }

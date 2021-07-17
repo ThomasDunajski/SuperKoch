@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ModalComponent } from '../modal/modal.component';
 import { ImageCroppedEvent } from 'ngx-image-cropper';
 import { HttpEvent, HttpEventType } from '@angular/common/http';
-import { ApiService } from '../api.service';
+import { ApiService } from '../services/api.service';
 
 @Component({
   selector: 'app-modal-image-upload',

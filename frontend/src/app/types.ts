@@ -58,3 +58,14 @@ export class Ingredient {
 interface Id {
   '$oid': string;
 }
+
+export interface IOptions {
+  theme:{
+    '--item-primary':string;
+    '--item-secondary':string;
+    '--text-primary':string;
+    '--text-secondary':string;
+    '--bg-primary':string;
+    '--bg-secondary':string;
+  }
+}
