@@ -20,7 +20,7 @@ export class NavbarComponent implements OnInit {
       '--bg-secondary': '#141418',
     }, 
     {
-      '--item-primary': '#6DF2CB',
+      '--item-primary': '#5D6DA8',
       '--item-secondary': '#35535c',
       '--text-primary': '#576e75',
       '--text-secondary': '#35535c',

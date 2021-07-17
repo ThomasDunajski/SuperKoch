@@ -44,10 +44,6 @@ main {
   width: 100%;
 }
 
-.nav-item:last-child {
-  margin-top: auto;
-}
-
 .nav-link {
   display: flex;
   align-items: center;
@@ -56,12 +52,6 @@ main {
   text-decoration: none;
   filter: grayscale(100%) opacity(0.7);
   transition: var(--transition-speed);
-}
-
-.nav-link:hover {
-  filter: grayscale(0%) opacity(1);
-  background: var(--bg-secondary);
-  color: var(--text-secondary);
 }
 
 .nav-link .mat-icon {
@@ -131,7 +121,7 @@ main {
   .navbar {
     bottom: 0;
     width: 100vw;
-    height: 5rem;
+    height: 3.5rem;
     overflow-y: hidden;
   }
 
@@ -174,19 +164,14 @@ main {
   {
     left: 0px;
   }
-}
-.theme-icon {
-  display: none;
-}
+  
+  .nav-link:hover {
+    filter: grayscale(0%) opacity(1);
+    background: var(--bg-secondary);
+    color: var(--text-secondary);
+  }
 
-.dark #darkIcon {
-  display: block;
-}
-
-.light #lightIcon {
-  display: block;
-}
-
-.solar #solarIcon {
-  display: block;
+  .nav-item:last-child {
+    margin-top: auto;
+  }
 }
