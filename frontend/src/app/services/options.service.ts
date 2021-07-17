@@ -21,9 +21,16 @@ export class OptionsService {
     });
   currentOptions = this.messageSource.asObservable();
 
-  constructor() { }
+  constructor() { 
+    const storedOptions = localStorage.getItem('options');
+    console.log(storedOptions)
+    if (storedOptions){
+      this.changeOptions(JSON.parse(storedOptions))
+    }
+  }
 
   changeOptions(options: IOptions) {
     this.messageSource.next(options)
+    localStorage.setItem('options', JSON.stringify(options))
   }
 }
