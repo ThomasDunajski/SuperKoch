@@ -1,7 +1,7 @@
 const tokenizer = require('./tokenizer.js');
 var dbService = require(".././db-service");
 
-add = async (str)=>{
+save = async (str)=>{
     const entry = {
         fullText: str.trim(),
         tokens: tokenizer.tokenize(str)
@@ -31,11 +31,18 @@ remove = async (str)=>{
 }
 
 find = async (str)=>{
-    const fullText = str.trim();
+    const searchStr = str.trim().toLowerCase();
     var connection = await dbService.getDB();
     var db = connection.db("rezeptekiste");
     try {
-        reults = await db.collection("auto-complete-data").find({tokens: str}).project({_id:0, fullText:1}).limit(5).toArray();
+        reults = await db.collection("auto-complete-data")
+            .find({tokens: searchStr})
+            .project({_id:0, fullText:1})
+            .sort({fullText: 1})
+            .toArray();
+            results = reults
+            .sort( (x, y) => x.fullText.toLowerCase().indexOf(searchStr) - y.fullText.toLowerCase().indexOf(searchStr))
+            .splice(5);
         return reults
     } catch (error) {
         console.log(error);
@@ -44,4 +51,4 @@ find = async (str)=>{
         connection.close();
     }
 }
-module.exports = {find:find, add:add,remove:remove};
+module.exports = {find:find, save:save, remove:remove};
