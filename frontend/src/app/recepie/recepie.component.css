@@ -48,10 +48,19 @@ app-season-viewer{
 #edit-button{
     float: right;
     margin-right: 6%;
+    bottom: calc(var(--navbar-size) + 5px);
 }
 #image-gallery{
     max-width: 60%;
     display: block;
     margin-left: auto;
     margin-right: auto;
+}
+@media only screen and (max-width: 600px) {
+    .mat-chip-list{
+        padding-left: 10%;
+    }
+    .recepie{
+        padding-bottom: var(--navbar-size);
+    }
 }
