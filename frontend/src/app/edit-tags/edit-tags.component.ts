@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../services/api.service';
-import { TagContentType } from '@angular/compiler';
+import { Tag } from '../types'
 
 @Component({
   selector: 'app-edit-tags',
@@ -10,8 +10,10 @@ import { TagContentType } from '@angular/compiler';
 export class EditTagsComponent implements OnInit {
 
   constructor(private api: ApiService) { }
-
-  ngOnInit(): void {
+  tags: Tag[];
+  editedTag: Tag = new Tag;
+  async ngOnInit() {
+    this.tags = await this.api.getAllTags() as Tag[];
   }
   tag = {name:"", clickCount: 0, category: {number: 0, name:"not_Set"}}
   categories = [{number:10, name:"Tageszeit"},{number:20, name:"Hauptzutat"},{number:30, name:"Eigenschaften"},
@@ -22,4 +24,10 @@ export class EditTagsComponent implements OnInit {
     .then(res => this.tag = {name:"", clickCount: 0, category: {number: 0, name:"not_Set"}})
     .catch(err => console.log(err));
   }
+
+  compareCategoryObjects(object1: any, object2: any) {
+    return object1 && object2 && object1.number == object2.number;
+  }
+  saveEditedButton(){alert('TODO')}
+  deleteEditedButton(){alert('TODO')}
 }

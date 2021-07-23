@@ -7,7 +7,7 @@
         </mat-form-field>
     </p>
     <p>
-        <mat-form-field id="unit">
+        <mat-form-field>
             <mat-label>Kategorie</mat-label>
             <mat-select [(ngModel)]="tag.category">
                 <mat-option *ngFor="let category of categories" [value]="category">
@@ -21,4 +21,26 @@
           <mat-icon>add_circle_outline</mat-icon>
         </button>
       </p>
+    <h3>Tag editieren</h3>
+    <mat-form-field  >
+        <mat-label>Name</mat-label>
+        <input [(ngModel)]="editedTag.name" matInput disabled>
+    </mat-form-field>
+    <mat-form-field >
+        <mat-label>Kategorie</mat-label>
+        <mat-select [(ngModel)]="editedTag.category" [compareWith]="compareCategoryObjects">
+            <mat-option *ngFor="let category of categories" [value]="category">
+            {{category.name}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <P>
+        <button (click)="deleteEditedButton()" mat-flat-button color="primary" style="margin-right: 10px;">Löschen</button>
+        <button (click)="saveEditedButton()"mat-flat-button color="primary">Speichern</button>
+    </P>
+    <mat-form-field>
+      <mat-chip-list>
+        <mat-chip color="primary" (click)="editedTag = tag" *ngFor="let tag of tags">{{tag.name}}</mat-chip>
+      </mat-chip-list>
+    </mat-form-field>
 </div>
