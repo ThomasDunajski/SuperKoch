@@ -35,6 +35,14 @@ export class NavbarComponent implements OnInit {
       '--bg-primary': '#ffffff',
       '--bg-secondary': '#e4e4e4',
     }, 
+    {
+      '--item-primary': '#9AC2C9',
+      '--item-secondary': '#000000',
+      '--text-primary': '#000000',
+      '--text-secondary': '#000000',
+      '--bg-primary': '#F9DDF9',
+      '--bg-secondary': '#8D78A5',
+    }, 
   ]
   ngOnInit(): void {
 
@@ -43,7 +51,7 @@ export class NavbarComponent implements OnInit {
   changeTheme(){
     this.optionsService.changeOptions({theme:this.themes[this.index]});
     this.index++; 
-    if (this.index > 2) this.index = 0;
+    if (this.index > 3) this.index = 0;
   }
 
 }
