@@ -37,16 +37,14 @@ export class NavbarComponent implements OnInit {
     }, 
     {
       name:'purple',
-      '--item-primary': '#9AC2C9',
-      '--item-secondary': '#000000',
+      '--item-primary': '#6B3863',
+      '--item-secondary': '#B0CAD2',
       '--text-primary': '#000000',
-      '--bg-primary': '#F9DDF9',
-      '--bg-secondary': '#8D78A5',
+      '--bg-primary': '#F7E4F9',
+      '--bg-secondary': '#A193B5',
+      // light FCEEFC bg
     }, 
   ]
-  ngOnInit(): void {
-
-  }
 
   changeTheme(){
     this.optionsService.changeOptions({theme:this.themes[this.index]});
