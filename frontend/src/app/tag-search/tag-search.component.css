@@ -22,6 +22,9 @@ mat-form-field {
     grid-template-columns: 1fr 1fr;
     gap: 1rem;
 }
+a{
+    text-decoration: none;
+}
 @media screen and (max-width: 500px){
     .results{
         grid-template-columns: 100%;

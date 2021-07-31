@@ -2,6 +2,10 @@ p {
     word-wrap: break-word;
     width: 90%;
 }
+
+a{
+    text-decoration: none;
+}
 .centered {
     align-self: center;
 }
