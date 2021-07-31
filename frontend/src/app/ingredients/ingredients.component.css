@@ -27,3 +27,7 @@ div{
     text-align: center;
     margin: 2px;
 }
+td{
+padding: 1px 4px 1px 4px;
+border-radius: 4px;
+}
