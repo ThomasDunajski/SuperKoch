@@ -45,11 +45,11 @@ export class NavbarComponent implements OnInit {
       // light FCEEFC bg
     }, 
   ]
+  ngOnInit(): void {}
 
   changeTheme(){
     this.optionsService.changeOptions({theme:this.themes[this.index]});
     this.index++; 
     if (this.index > 3) this.index = 0;
   }
-
 }
