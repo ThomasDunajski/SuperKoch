@@ -11,10 +11,10 @@ export class OptionsService {
     {
       theme:
         {
+          name:'light',
           '--item-primary': '#b6b6b6',
           '--item-secondary': '#ececec',
           '--text-primary': '#b6b6b6',
-          '--text-secondary': '#ececec',
           '--bg-primary': '#23232e',
           '--bg-secondary': '#141418',
         }
