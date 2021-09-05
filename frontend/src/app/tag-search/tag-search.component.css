@@ -17,21 +17,21 @@ mat-form-field {
     position: absolute;
     right: 5%;
 }
-.results{
+a{
+    text-decoration: none;
+}
+.grid{
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 1rem;
 }
-a{
-    text-decoration: none;
-}
 @media screen and (max-width: 500px){
-    .results{
+    .grid{
         grid-template-columns: 100%;
     }
 }
 @media screen and (min-width: 1000px){
-    .results{
+    .grid{
         grid-template-columns: 1fr 1fr 1fr 1fr;
     }
 }

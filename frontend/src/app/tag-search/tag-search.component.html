@@ -26,7 +26,7 @@
     </div>
     
     <p class="view-buttons">
-        <mat-button-toggle-group name="fontStyle" aria-label="Font Style" value='imageOnlyView'>
+        <mat-button-toggle-group name="fontStyle" aria-label="Font Style" value="{{previewClass ==='img-only' ? 'imageOnlyView' : 'normalView'}}">
             <mat-button-toggle color="primary" (click)="previewClass='img-only'; updateSearchParams()" value="imageOnlyView">
                 <mat-icon>view_comfy</mat-icon>
             </mat-button-toggle>
@@ -44,9 +44,11 @@
         </mat-chip>
     </mat-chip-list>  
     
-     <p class="{{previewClass === 'img-only' ?  'results' : ''}}">
+     <p class="{{previewClass === 'img-only' ?  'grid' : ''}}">
         <a *ngFor="let recipe of recepies" href="/recipe/{{recipe.number}}" target="_blank">
-            <app-recepie-preview [data]="recipe" [previewStyle]="previewClass"></app-recepie-preview>
+            <div style="height: calc(100% - 1rem);">
+                <app-recepie-preview [data]="recipe" [previewStyle]="previewClass"></app-recepie-preview>
+            </div>
         </a>
      </p>
 </div>

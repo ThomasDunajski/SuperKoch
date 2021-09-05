@@ -48,6 +48,7 @@ import { ModalComponent } from './modal/modal.component';
 import { ModalImageUploadComponent } from './modal-image-upload/modal-image-upload.component';
 import { ModalPasteRecipeComponent } from './modal-paste-recipe/modal-paste-recipe.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { CardComponent } from './card/card.component';
 
 
 @NgModule({
@@ -72,7 +73,8 @@ import { NavbarComponent } from './navbar/navbar.component';
     ModalComponent,
     ModalImageUploadComponent,
     ModalPasteRecipeComponent,
-    NavbarComponent
+    NavbarComponent,
+    CardComponent
   ],
   imports: [
     BrowserModule,
