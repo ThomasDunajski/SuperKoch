@@ -42,11 +42,6 @@ span.list-item {
     transform: scale(1.15);
     transition: 600ms ease;
   }
-  .img-only {
-    vertical-align: middle;
-    border-radius: 4px;
-    /* width: 100%; */
-  }
 
   .overlay {
     position: absolute;
