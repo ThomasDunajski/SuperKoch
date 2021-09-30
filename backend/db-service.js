@@ -1,13 +1,15 @@
 var MongoClient = require('mongodb').MongoClient;
 var url = process.env.DB;
 
-exports.getDB = () =>{
+exports.getDB = () => {
   return new Promise((resolve, reject) => {
-    MongoClient.connect(url, { useUnifiedTopology: true }, async function(err, con) {
-      err 
-      ? reject(err) 
-      : resolve(con);
-  });
+    MongoClient.connect(
+      url,
+      { useUnifiedTopology: true },
+      async function (err, con) {
+        err ? reject(err) : resolve(con);
+      }
+    );
   });
 };
 
@@ -19,35 +21,27 @@ exports.find = (options) => {
     if (!options.projection) options.projection = {};
     if (!options.sort) options.sort = {};
     const connection = await exports.getDB();
-    const db = connection.db("rezeptekiste");
-     db
-     .collection(options.collection)
-     .find(options.query)
-     .project(options.projection )
-     .skip(options.skip)
-     .limit(options.limit)
-     .sort(options.sort)
-     .toArray(function(err, data) {
-       connection.close();
-        err 
-           ? reject(err) 
-           : resolve(data);
+    const db = connection.db('rezeptekiste');
+    db.collection(options.collection)
+      .find(options.query)
+      .project(options.projection)
+      .skip(options.skip)
+      .limit(options.limit)
+      .sort(options.sort)
+      .toArray(function (err, data) {
+        connection.close();
+        err ? reject(err) : resolve(data);
       });
   });
 };
 
-exports.findOne =  (query) => {
+exports.findOne = (query) => {
   return new Promise(async (resolve, reject) => {
-
     const connection = await exports.getDB();
-    const db = connection.db("rezeptekiste");
-     db
-     .collection('recipes')
-     .findOne(query, function(err, data) {
-        err 
-           ? reject(err) 
-           : resolve(data);
-        connection.close();
-      });
+    const db = connection.db('rezeptekiste');
+    db.collection('recipes').findOne(query, function (err, data) {
+      err ? reject(err) : resolve(data);
+      connection.close();
+    });
   });
 };

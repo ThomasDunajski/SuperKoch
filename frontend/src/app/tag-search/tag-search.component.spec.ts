@@ -8,9 +8,8 @@ describe('TagSearchComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ TagSearchComponent ]
-    })
-    .compileComponents();
+      declarations: [TagSearchComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

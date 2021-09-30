@@ -1,19 +1,33 @@
-import { Component, OnInit, Input} from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-season-viewer',
   templateUrl: './season-viewer.component.html',
-  styleUrls: ['./season-viewer.component.css']
+  styleUrls: ['./season-viewer.component.css'],
 })
 export class SeasonViewerComponent implements OnInit {
-
-  constructor() { }
+  constructor() {}
   @Input() season;
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
-  months = ["Jan", "Feb", "Mär", "Apr", "Mai", "Jun", "Jul", "Aug", "Sep", "Okt", "Nov", "Dez" ];
-  inSeason = (number) => this.season.indexOf(number) === -1 ? false : true;
-  cuurentlyInSeaseon = () => this.inSeason(new Date().getMonth() +1) ? "grade in Saison" : "grade nicht in Saison";
+  months = [
+    'Jan',
+    'Feb',
+    'Mär',
+    'Apr',
+    'Mai',
+    'Jun',
+    'Jul',
+    'Aug',
+    'Sep',
+    'Okt',
+    'Nov',
+    'Dez',
+  ];
+  inSeason = (number) => (this.season.indexOf(number) === -1 ? false : true);
+  cuurentlyInSeaseon = () =>
+    this.inSeason(new Date().getMonth() + 1)
+      ? 'grade in Saison'
+      : 'grade nicht in Saison';
 }

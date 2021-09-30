@@ -4,7 +4,7 @@ var bodyParser = require('body-parser');
 var cors = require('cors');
 var app = express();
 var path = require('path');
-require('dotenv').config()
+require('dotenv').config();
 
 // controllers
 const tagsController = require('./tags-controller');
@@ -28,9 +28,9 @@ app.use('/auto-complete', autoCompleteController);
 // serve the frontend.
 var path = require('path');
 const indexPath = path.join(__dirname, '/public/index.html');
-function sendIndex(req, res){
-  res.status(200).sendFile(indexPath); 
-} 
+function sendIndex(req, res) {
+  res.status(200).sendFile(indexPath);
+}
 
 app.get('/', (req, res) => {
   sendIndex(res);
@@ -38,14 +38,14 @@ app.get('/', (req, res) => {
 
 app.use((req, res) => {
   sendIndex(res);
- });
+});
 
-sendIndex = (res) =>{
-  res.status(200).sendFile(indexPath); 
-} 
+sendIndex = (res) => {
+  res.status(200).sendFile(indexPath);
+};
 
 //start server
 var server_port = process.env.PORT || 8080;
 app.listen(server_port, function () {
-  console.log("Listening on port " , server_port);
+  console.log('Listening on port ', server_port);
 });

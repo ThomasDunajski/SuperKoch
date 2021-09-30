@@ -1,54 +1,54 @@
-.red{
-    color: darkred;
+.red {
+  color: darkred;
 }
-.green{
-    color: green;
+.green {
+  color: green;
 }
-.centered{
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    text-align: center;
+.centered {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
 }
 .centered.narrow {
-    width: 90%;
-  }
+  width: 90%;
+}
 .mat-form-field {
-    width: 90%;
-  }
-.mat-form-field.centered{
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
+  width: 90%;
 }
-.mat-button{
-    width: 5%;
+.mat-form-field.centered {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
-#ingredient{
-    width: 50%;
+.mat-button {
+  width: 5%;
 }
-#quantity{
-    width: 15%; 
-    margin-left: 2%;
+#ingredient {
+  width: 50%;
 }
-#unit{
-    width: 16%; 
-    margin-left: 2%;
+#quantity {
+  width: 15%;
+  margin-left: 2%;
 }
-#instruction{
-    width: 85%;
+#unit {
+  width: 16%;
+  margin-left: 2%;
+}
+#instruction {
+  width: 85%;
 }
 .mat-button-toggle-checked {
-    background-color: #74C365;
+  background-color: #74c365;
 }
-.mat-button-toggle-group{
-    justify-content: center;
-    flex-wrap: wrap;
+.mat-button-toggle-group {
+  justify-content: center;
+  flex-wrap: wrap;
 }
-.previev-img{
-    width: 25%;
+.previev-img {
+  width: 25%;
 }
-.image-comtainer{
-    margin: 5%;
-    cursor: default;
+.image-comtainer {
+  margin: 5%;
+  cursor: default;
 }

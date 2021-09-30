@@ -8,9 +8,8 @@ describe('ModalPasteRecipeComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ModalPasteRecipeComponent ]
-    })
-    .compileComponents();
+      declarations: [ModalPasteRecipeComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

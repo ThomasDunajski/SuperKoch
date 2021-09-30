@@ -1,120 +1,137 @@
-.centered{
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    text-align: center;
+.centered {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
 }
 .centered.narrow {
-    width: 90%;
-  }
+  width: 90%;
+}
 .mat-form-field {
-    width: 90%;
-  }
-.mat-form-field.centered{
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
+  width: 90%;
 }
-.mat-button{
-    width: 5%;
+.mat-form-field.centered {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
-#save-button{
-    width: auto;
+.mat-button {
+  width: 5%;
+}
+#save-button {
+  width: auto;
 }
 #delete-image-button {
-    display: inline-block;
-    vertical-align: middle;
-    margin-left: 2%;
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: 2%;
 }
-.red{
-    color: darkred;
+.red {
+  color: darkred;
 }
-.green{
-    color: green;
+.green {
+  color: green;
 }
-#section-name{
-    width: 85%;
+#section-name {
+  width: 85%;
 }
 
-.mat-card{
-    width: 83%;
-    margin-left: 5%;
-    margin-bottom: 2%;
+.mat-card {
+  width: 83%;
+  margin-left: 5%;
+  margin-bottom: 2%;
 }
 @media screen and (min-width: 500px) {
-    .mat-card{
-        width: 88%;
-        margin-left: 5%;
-    }
+  .mat-card {
+    width: 88%;
+    margin-left: 5%;
+  }
 }
-.preview{
-    width: 90%;
-    text-align: center;
-    padding-left: 4%;
+.preview {
+  width: 90%;
+  text-align: center;
+  padding-left: 4%;
 }
-
-
-
 
 .modal {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
-    left: 0;
-    top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-    -webkit-animation-name: fadeIn; /* Fade in the background */
-    -webkit-animation-duration: 0.4s;
-    animation-name: fadeIn;
-    animation-duration: 0.4s
-  }
-  
-  /* Modal Content */
-  .modal-content {
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    -webkit-animation-name: slideIn;
-    -webkit-animation-duration: 0.4s;
-    animation-name: slideIn;
-    animation-duration: 0.4s
-  }
-  .modal-content p{
-    width: 95%;
-    margin-right: 2%;
-  }
-  .modal-card{
-    overflow: auto;
-    height: 50em;
-    /* Hide scrollbar for Firefox */
-    scrollbar-width: none;
-  }
-  /* Hide scrollbar for Chrome, Safari and Opera */
-  .modal-card::-webkit-scrollbar {
-    display: none;
-  }
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0, 0, 0); /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+  -webkit-animation-name: fadeIn; /* Fade in the background */
+  -webkit-animation-duration: 0.4s;
+  animation-name: fadeIn;
+  animation-duration: 0.4s;
+}
 
-  /* Add Animation */
-  @-webkit-keyframes slideIn {
-    from {bottom: -300px; opacity: 0} 
-    to {bottom: 0; opacity: 1}
+/* Modal Content */
+.modal-content {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  -webkit-animation-name: slideIn;
+  -webkit-animation-duration: 0.4s;
+  animation-name: slideIn;
+  animation-duration: 0.4s;
+}
+.modal-content p {
+  width: 95%;
+  margin-right: 2%;
+}
+.modal-card {
+  overflow: auto;
+  height: 50em;
+  /* Hide scrollbar for Firefox */
+  scrollbar-width: none;
+}
+/* Hide scrollbar for Chrome, Safari and Opera */
+.modal-card::-webkit-scrollbar {
+  display: none;
+}
+
+/* Add Animation */
+@-webkit-keyframes slideIn {
+  from {
+    bottom: -300px;
+    opacity: 0;
   }
-  
-  @keyframes slideIn {
-    from {bottom: -300px; opacity: 0}
-    to {bottom: 0; opacity: 1}
+  to {
+    bottom: 0;
+    opacity: 1;
   }
-  
-  @-webkit-keyframes fadeIn {
-    from {opacity: 0} 
-    to {opacity: 1}
+}
+
+@keyframes slideIn {
+  from {
+    bottom: -300px;
+    opacity: 0;
   }
-  
-  @keyframes fadeIn {
-    from {opacity: 0} 
-    to {opacity: 1}
+  to {
+    bottom: 0;
+    opacity: 1;
   }
+}
+
+@-webkit-keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

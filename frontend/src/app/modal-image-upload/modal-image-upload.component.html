@@ -1,35 +1,51 @@
-
 <div id="uploadModal" (click)="hideModal()" class="modal">
-    <!-- Modal content -->
-    <div class="modal-content">
-          <mat-card class="modal-card" (click)="interceptModalClose($event)">
-            <div class="container" [hidden]="imageChangedEvent !==''">
-              <input type="file" #fileDropRef id="fileDropRef" (change)="fileChangeEvent($event)" />
-              <mat-icon id="upload-icon">cloud_upload</mat-icon>
-              <h3>zieh ein Bild hier rein</h3>
-              <h3>oder</h3>
-              <button mat-flat-button color="primary" for="fileDropRef">wähle eine Datei</button>
-            </div>
-            <div *ngIf="imageChangedEvent !==''">
-              <span>Rotieren: </span>
-              <button (click)="canvasRotation= canvasRotation + 1" mat-stroked-button color='primary'>
-                <mat-icon>rotate_right</mat-icon>
-              </button>
-              <button (click)="canvasRotation= canvasRotation - 1" mat-stroked-button color='primary'>
-                <mat-icon>rotate_left</mat-icon>
-              </button>
-              <span>Hochladen: </span>
-              <button (click)="uploadImage()" mat-flat-button color='primary'>Upload</button>
-              <image-cropper 
-              [imageChangedEvent]="imageChangedEvent" 
-              [maintainAspectRatio]="true" 
-              [aspectRatio]="aspectRatio"
-              [canvasRotation]="canvasRotation"
-              format="jpg" 
-              (imageCropped)="imageCropped($event)" 
-              style="flex-grow: 1; min-width: 20em;"></image-cropper>
-            </div>
-          </mat-card>
-    </div>
-  
+  <!-- Modal content -->
+  <div class="modal-content">
+    <mat-card class="modal-card" (click)="interceptModalClose($event)">
+      <div class="container" [hidden]="imageChangedEvent !== ''">
+        <input
+          type="file"
+          #fileDropRef
+          id="fileDropRef"
+          (change)="fileChangeEvent($event)"
+        />
+        <mat-icon id="upload-icon">cloud_upload</mat-icon>
+        <h3>zieh ein Bild hier rein</h3>
+        <h3>oder</h3>
+        <button mat-flat-button color="primary" for="fileDropRef">
+          wähle eine Datei
+        </button>
+      </div>
+      <div *ngIf="imageChangedEvent !== ''">
+        <span>Rotieren: </span>
+        <button
+          (click)="canvasRotation = canvasRotation + 1"
+          mat-stroked-button
+          color="primary"
+        >
+          <mat-icon>rotate_right</mat-icon>
+        </button>
+        <button
+          (click)="canvasRotation = canvasRotation - 1"
+          mat-stroked-button
+          color="primary"
+        >
+          <mat-icon>rotate_left</mat-icon>
+        </button>
+        <span>Hochladen: </span>
+        <button (click)="uploadImage()" mat-flat-button color="primary">
+          Upload
+        </button>
+        <image-cropper
+          [imageChangedEvent]="imageChangedEvent"
+          [maintainAspectRatio]="true"
+          [aspectRatio]="aspectRatio"
+          [canvasRotation]="canvasRotation"
+          format="jpg"
+          (imageCropped)="imageCropped($event)"
+          style="flex-grow: 1; min-width: 20em"
+        ></image-cropper>
+      </div>
+    </mat-card>
   </div>
+</div>

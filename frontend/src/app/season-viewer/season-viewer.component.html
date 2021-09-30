@@ -1,10 +1,16 @@
-<mat-expansion-panel style="width: 14em;">
-    <mat-expansion-panel-header *ngIf="season">
-      <mat-panel-title >
-        {{cuurentlyInSeaseon()}}
-      </mat-panel-title>
-    </mat-expansion-panel-header>
-    <mat-button-toggle-group *ngIf="season" multiple="true" >
-        <mat-button-toggle *ngFor="let month of months; let i = index" [checked]="inSeason(i +1)" class="same-width" [disabled]="true">{{month}}</mat-button-toggle>
-      </mat-button-toggle-group>
-  </mat-expansion-panel>
+<mat-expansion-panel style="width: 14em">
+  <mat-expansion-panel-header *ngIf="season">
+    <mat-panel-title>
+      {{ cuurentlyInSeaseon() }}
+    </mat-panel-title>
+  </mat-expansion-panel-header>
+  <mat-button-toggle-group *ngIf="season" multiple="true">
+    <mat-button-toggle
+      *ngFor="let month of months; let i = index"
+      [checked]="inSeason(i + 1)"
+      class="same-width"
+      [disabled]="true"
+      >{{ month }}</mat-button-toggle
+    >
+  </mat-button-toggle-group>
+</mat-expansion-panel>

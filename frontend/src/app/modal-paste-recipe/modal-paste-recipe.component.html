@@ -1,13 +1,15 @@
 <div id="paste-recipe-modal" (click)="hideModal()" class="modal">
-    <div class="modal-content">
-        <mat-card class="modal-card" (click)="interceptModalClose($event)">
-          <mat-form-field style="width: 100%">
-            <mat-label>Anleitung hier eifügen...</mat-label>
-            <textarea [(ngModel)]="pasteInstructionString" matInput rows="40"></textarea>
-          </mat-form-field>
-          <button mat-button (click)="pasteInstructions()" >
-            Hinzufügen
-          </button>
-        </mat-card>
-    </div>
+  <div class="modal-content">
+    <mat-card class="modal-card" (click)="interceptModalClose($event)">
+      <mat-form-field style="width: 100%">
+        <mat-label>Anleitung hier eifügen...</mat-label>
+        <textarea
+          [(ngModel)]="pasteInstructionString"
+          matInput
+          rows="40"
+        ></textarea>
+      </mat-form-field>
+      <button mat-button (click)="pasteInstructions()">Hinzufügen</button>
+    </mat-card>
   </div>
+</div>

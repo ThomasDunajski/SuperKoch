@@ -1,54 +1,94 @@
-<div class="centered"> 
-    <h3>Suche:</h3>
+<div class="centered">
+  <h3>Suche:</h3>
 
-        <mat-form-field>
-            <mat-label>Name oder Zutat</mat-label>
-            <input #nameInput matInput [(ngModel)]="searchName" (keyup.enter)="updateSearchParams()" (keyup)="autoComplete()" [matAutocomplete]="auto">
-            <button matSuffix  mat-button (click)="updateSearchParams()">
-                <mat-icon>search</mat-icon>
-            </button> 
-            <mat-autocomplete #auto="matAutocomplete">
-                <mat-option *ngFor="let option of autoCompleteSugestions" [value]="option" (click)="direcktlyOpen(option)">
-                    {{option}}
-                </mat-option>
-            </mat-autocomplete>
-          </mat-form-field>   
+  <mat-form-field>
+    <mat-label>Name oder Zutat</mat-label>
+    <input
+      #nameInput
+      matInput
+      [(ngModel)]="searchName"
+      (keyup.enter)="updateSearchParams()"
+      (keyup)="autoComplete()"
+      [matAutocomplete]="auto"
+    />
+    <button matSuffix mat-button (click)="updateSearchParams()">
+      <mat-icon>search</mat-icon>
+    </button>
+    <mat-autocomplete #auto="matAutocomplete">
+      <mat-option
+        *ngFor="let option of autoCompleteSugestions"
+        [value]="option"
+        (click)="direcktlyOpen(option)"
+      >
+        {{ option }}
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
 
-    <h3>Filter:</h3>
+  <h3>Filter:</h3>
 
-    <div *ngFor="let category of tagCategorys, let  i = index;">
-        <span> {{tagCategorys[i][0].category.name + ":"}} </span>
-        <mat-form-field>
-        <mat-chip-list #tags>
-            <mat-chip color="primary" *ngFor="let tag of tagCategorys[i]" (click)="onTagClick($event, tag)">{{tag.name}}</mat-chip>
-        </mat-chip-list>
-        </mat-form-field>
-    </div>
-    
-    <p class="view-buttons">
-        <mat-button-toggle-group name="fontStyle" aria-label="Font Style" value="{{previewClass ==='img-only' ? 'imageOnlyView' : 'normalView'}}">
-            <mat-button-toggle color="primary" (click)="previewClass='img-only'; updateSearchParams()" value="imageOnlyView">
-                <mat-icon>view_comfy</mat-icon>
-            </mat-button-toggle>
-            <mat-button-toggle color="primary" (click)="previewClass='list-item'; updateSearchParams()"  value="normalView">
-                <mat-icon>view_list</mat-icon>
-            </mat-button-toggle>
-          </mat-button-toggle-group>
-    </p>
+  <div *ngFor="let category of tagCategorys; let i = index">
+    <span> {{ tagCategorys[i][0].category.name + ":" }} </span>
+    <mat-form-field>
+      <mat-chip-list #tags>
+        <mat-chip
+          color="primary"
+          *ngFor="let tag of tagCategorys[i]"
+          (click)="onTagClick($event, tag)"
+          >{{ tag.name }}</mat-chip
+        >
+      </mat-chip-list>
+    </mat-form-field>
+  </div>
 
-    <h3>Rezepte:</h3>
+  <p class="view-buttons">
+    <mat-button-toggle-group
+      name="fontStyle"
+      aria-label="Font Style"
+      value="{{ previewClass === 'img-only' ? 'imageOnlyView' : 'normalView' }}"
+    >
+      <mat-button-toggle
+        color="primary"
+        (click)="previewClass = 'img-only'; updateSearchParams()"
+        value="imageOnlyView"
+      >
+        <mat-icon>view_comfy</mat-icon>
+      </mat-button-toggle>
+      <mat-button-toggle
+        color="primary"
+        (click)="previewClass = 'list-item'; updateSearchParams()"
+        value="normalView"
+      >
+        <mat-icon>view_list</mat-icon>
+      </mat-button-toggle>
+    </mat-button-toggle-group>
+  </p>
 
-    <mat-chip-list #chipList>
-        <mat-chip selected *ngFor="let tag of selected" [removable]="true" (removed)="remove(tag)">{{tag.name}} 
-          <mat-icon matChipRemove>cancel</mat-icon>
-        </mat-chip>
-    </mat-chip-list>  
-    
-     <p class="{{previewClass === 'img-only' ?  'grid' : ''}}">
-        <a *ngFor="let recipe of recepies" href="/recipe/{{recipe.number}}" target="_blank">
-            <div style="height: calc(100% - 1rem);">
-                <app-recepie-preview [data]="recipe" [previewStyle]="previewClass"></app-recepie-preview>
-            </div>
-        </a>
-     </p>
+  <h3>Rezepte:</h3>
+
+  <mat-chip-list #chipList>
+    <mat-chip
+      selected
+      *ngFor="let tag of selected"
+      [removable]="true"
+      (removed)="remove(tag)"
+      >{{ tag.name }}
+      <mat-icon matChipRemove>cancel</mat-icon>
+    </mat-chip>
+  </mat-chip-list>
+
+  <p class="{{ previewClass === 'img-only' ? 'grid' : '' }}">
+    <a
+      *ngFor="let recipe of recepies"
+      href="/recipe/{{ recipe.number }}"
+      target="_blank"
+    >
+      <div style="height: calc(100% - 1rem)">
+        <app-recepie-preview
+          [data]="recipe"
+          [previewStyle]="previewClass"
+        ></app-recepie-preview>
+      </div>
+    </a>
+  </p>
 </div>

@@ -1,22 +1,25 @@
 <div>
-    <button mat-button (click)="decServings()">-</button>
-    {{servings}} Portionen
-    <button mat-button (click)="incServings()">+</button>
+  <button mat-button (click)="decServings()">-</button>
+  {{ servings }} Portionen
+  <button mat-button (click)="incServings()">+</button>
 </div>
 <table *ngIf="entries" class="ingredients-table">
-    <tr *ngFor="let ingredient of entries, let isEven=even, let i = index" [ngClass]="ingredient.disabled ? 'disabled' : 'left'" (click)='ingredientClicked(ingredient)'>
-        <th class="heading" *ngIf="ingredient.text"> {{ingredient.text}}</th>
+  <tr
+    *ngFor="let ingredient of entries; let isEven = even; let i = index"
+    [ngClass]="ingredient.disabled ? 'disabled' : 'left'"
+    (click)="ingredientClicked(ingredient)"
+  >
+    <th class="heading" *ngIf="ingredient.text">{{ ingredient.text }}</th>
 
-        <td *ngIf="ingredient.name" [class.even]="isEven">{{ingredient.name}}</td>   
-        <td *ngIf="ingredient.name" [class.even]="isEven">{{getQuantity(ingredient.quantity)}} {{ingredient.unit}}</td>
-    </tr>
+    <td *ngIf="ingredient.name" [class.even]="isEven">{{ ingredient.name }}</td>
+    <td *ngIf="ingredient.name" [class.even]="isEven">
+      {{ getQuantity(ingredient.quantity) }} {{ ingredient.unit }}
+    </td>
+  </tr>
 </table>
 <div>
-    <button mat-button (click)="copyToClipboard()">
-        <mat-icon>content_paste</mat-icon>
-        <span>
-            in Zwischenablage kopieren
-        </span>
-    </button>
+  <button mat-button (click)="copyToClipboard()">
+    <mat-icon>content_paste</mat-icon>
+    <span> in Zwischenablage kopieren </span>
+  </button>
 </div>
-

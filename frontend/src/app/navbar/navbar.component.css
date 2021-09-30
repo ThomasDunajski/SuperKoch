@@ -1,6 +1,6 @@
 .navbar {
   font-size: 16px;
-  font-family: 'Open Sans';
+  font-family: "Open Sans";
   --transition-speed: 600ms;
   z-index: 500;
   position: fixed;
@@ -8,8 +8,6 @@
   transition: width 600ms ease;
   overflow: scroll;
 }
-
-
 
 .navbar::-webkit-scrollbar {
   width: 0.25rem;
@@ -21,7 +19,7 @@
 }
 
 .navbar::-webkit-scrollbar-thumb {
-  background: var(--item-primary);;
+  background: var(--item-primary);
   width: 5px;
 }
 
@@ -59,7 +57,7 @@ main {
 }
 .link-text {
   display: none;
-  margin-left: .5rem;
+  margin-left: 0.5rem;
 }
 
 .nav-link svg {
@@ -69,9 +67,9 @@ main {
 }
 
 .nav-link .mat-icon {
-    font-size: 30px;
-    margin: 0 1.5rem;
-  }
+  font-size: 30px;
+  margin: 0 1.5rem;
+}
 
 .mat-icon {
   color: var(--item-primary);
@@ -95,14 +93,13 @@ main {
 }
 
 .logo .mat-icon {
-    opacity: 0.6;
-    transition: opacity 1s ease-in-out;
-    -moz-transition: opacity 1s ease-in-out;
-    -webkit-transition: opacity 1s ease-in-out;
+  opacity: 0.6;
+  transition: opacity 1s ease-in-out;
+  -moz-transition: opacity 1s ease-in-out;
+  -webkit-transition: opacity 1s ease-in-out;
 }
 
-.logo-text
-{
+.logo-text {
   display: inline;
   position: absolute;
   left: -999px;
@@ -110,10 +107,10 @@ main {
 }
 
 .navbar:hover .logo .mat-icon {
-    opacity: 0;
-    transition: opacity .55s ease-in-out;
-    -moz-transition: opacity .55s ease-in-out;
-    -webkit-transition: opacity .55s ease-in-out;
+  opacity: 0;
+  transition: opacity 0.55s ease-in-out;
+  -moz-transition: opacity 0.55s ease-in-out;
+  -webkit-transition: opacity 0.55s ease-in-out;
 }
 
 /* Small screens */
@@ -160,11 +157,10 @@ main {
     white-space: nowrap;
   }
 
-  .navbar:hover .logo-text
-  {
+  .navbar:hover .logo-text {
     left: 0px;
   }
-  
+
   .nav-link:hover {
     filter: grayscale(0%) opacity(1);
     background: var(--bg-secondary);

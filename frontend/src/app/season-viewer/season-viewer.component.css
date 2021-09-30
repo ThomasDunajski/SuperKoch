@@ -1,10 +1,10 @@
 .mat-button-toggle-checked {
-    background-color: #74C365;
+  background-color: #74c365;
 }
-.mat-button-toggle-group{
-    justify-content: center;
-    flex-wrap: wrap;
+.mat-button-toggle-group {
+  justify-content: center;
+  flex-wrap: wrap;
 }
-.same-width{
-    flex: 1 1 0px
+.same-width {
+  flex: 1 1 0px;
 }

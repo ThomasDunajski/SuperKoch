@@ -1,30 +1,37 @@
-<mat-toolbar color="primary" style="display: flex; justify-content: space-between; flex-direction: row;">
-    <a id="page-name" routerLink = "/" style="color:inherit; text-decoration: none;">Rezeptekiste</a>
-    <a id="home-icon" routerLink = "/" style="color:inherit; text-decoration: none;">
-        <mat-icon>home</mat-icon>
-    </a>
-    <span>
-        <mat-form-field>
-            <mat-label>Rezept suchen</mat-label>
-            <input matInput [(ngModel)]="searchName" (keyup.enter)="goToSearch()">
-          </mat-form-field>    
-        <button mat-button (click)="goToSearch()">
-            <mat-icon>search</mat-icon>
-        </button>
-    </span>
-    <button mat-button [matMenuTriggerFor]="menu"><mat-icon>menu</mat-icon></button>
+<mat-toolbar
+  color="primary"
+  style="display: flex; justify-content: space-between; flex-direction: row"
+>
+  <a id="page-name" routerLink="/" style="color: inherit; text-decoration: none"
+    >Rezeptekiste</a
+  >
+  <a
+    id="home-icon"
+    routerLink="/"
+    style="color: inherit; text-decoration: none"
+  >
+    <mat-icon>home</mat-icon>
+  </a>
+  <span>
+    <mat-form-field>
+      <mat-label>Rezept suchen</mat-label>
+      <input matInput [(ngModel)]="searchName" (keyup.enter)="goToSearch()" />
+    </mat-form-field>
+    <button mat-button (click)="goToSearch()">
+      <mat-icon>search</mat-icon>
+    </button>
+  </span>
+  <button mat-button [matMenuTriggerFor]="menu">
+    <mat-icon>menu</mat-icon>
+  </button>
 </mat-toolbar>
 <mat-menu #menu="matMenu">
-    <button mat-menu-item [routerLink]="['/']">
-        Rezept finden
-    </button>
-    <button mat-menu-item [routerLink]="['/add-recepie']">
-        Rezept hinzufügen
-    </button>
-    <button mat-menu-item [routerLink]="['/edit-tags']">
-        Tags verwalten
-    </button>
-    <button mat-menu-item [routerLink]="['/collection']">
-        Rezeptesammlungen
-    </button>
+  <button mat-menu-item [routerLink]="['/']">Rezept finden</button>
+  <button mat-menu-item [routerLink]="['/add-recepie']">
+    Rezept hinzufügen
+  </button>
+  <button mat-menu-item [routerLink]="['/edit-tags']">Tags verwalten</button>
+  <button mat-menu-item [routerLink]="['/collection']">
+    Rezeptesammlungen
+  </button>
 </mat-menu>

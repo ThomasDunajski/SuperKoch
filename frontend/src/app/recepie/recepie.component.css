@@ -1,70 +1,70 @@
 p {
-    word-wrap: break-word;
-    width: 90%;
+  word-wrap: break-word;
+  width: 90%;
 }
 
-a{
-    text-decoration: none;
+a {
+  text-decoration: none;
 }
 .centered {
-    align-self: center;
+  align-self: center;
 }
-.recepie{
-    display: flex;
-    flex-basis: 100%;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-    max-width: 90%;
-    margin-left: auto;
-    margin-right: auto;
-    gap: 10px;
+.recepie {
+  display: flex;
+  flex-basis: 100%;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  max-width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+  gap: 10px;
 }
 h1 {
-    text-align: center;
+  text-align: center;
 }
 img {
-    max-width: 60%;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    border-radius: 8px;
+  max-width: 60%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 8px;
 }
-.mat-chip-list{
-    display:inline-block;
+.mat-chip-list {
+  display: inline-block;
 }
-.app-ingredients{
-    margin-right: 2%;
+.app-ingredients {
+  margin-right: 2%;
 }
-.growing{
-    width: 55%;
-    flex-grow: 2;
+.growing {
+  width: 55%;
+  flex-grow: 2;
 }
-app-season-viewer{
-    margin-top: 1%;
+app-season-viewer {
+  margin-top: 1%;
 }
-.mat-chip-list{
-    margin-top: 1%;
+.mat-chip-list {
+  margin-top: 1%;
 }
-#chips-container{
-    text-align: center;
+#chips-container {
+  text-align: center;
 }
-#edit-button{
-    float: right;
-    margin-right: 6%;
-    bottom: calc(var(--navbar-size) + 5px);
+#edit-button {
+  float: right;
+  margin-right: 6%;
+  bottom: calc(var(--navbar-size) + 5px);
 }
-#image-gallery{
-    max-width: 60%;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
+#image-gallery {
+  max-width: 60%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 @media only screen and (max-width: 600px) {
-    .mat-chip-list{
-        padding-left: 10%;
-    }
-    .recepie{
-        padding-bottom: var(--navbar-size);
-    }
+  .mat-chip-list {
+    padding-left: 10%;
+  }
+  .recepie {
+    padding-bottom: var(--navbar-size);
+  }
 }

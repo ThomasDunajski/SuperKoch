@@ -1,17 +1,17 @@
 .mat-card {
+  display: inline-block;
+  margin: 1%;
+  width: 45%;
+  overflow: hidden;
+}
+@media screen and (max-width: 600px) {
+  .mat-card {
     display: inline-block;
     margin: 1%;
-    width: 45%;
-    overflow: hidden;
+    width: 90%;
   }
-  @media screen and (max-width: 600px){
-    .mat-card {
-      display: inline-block;
-      margin: 1%;
-      width: 90%;
-    }
-  }
-.image:hover{
+}
+.image:hover {
   transform: scale(1.08);
-  transition: transform .3s; 
+  transition: transform 0.3s;
 }

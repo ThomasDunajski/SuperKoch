@@ -1,27 +1,43 @@
-<div *ngIf="recepie" class="centered"> 
-    <h1>{{recepie.name}}</h1>
-    <app-gallery id="image-gallery" [images]="images"></app-gallery>
-    <div style="text-align: center;">
-        <span style="margin-right: 1%;">Kochzeit {{getFormatedTime(recepie.cookingDuration)}}</span>
-        <span>Wartezeit {{getFormatedTime(recepie.restDuration)}}</span>
-    </div>    
-    <div id="chips-container">
+<div *ngIf="recepie" class="centered">
+  <h1>{{ recepie.name }}</h1>
+  <app-gallery id="image-gallery" [images]="images"></app-gallery>
+  <div style="text-align: center">
+    <span style="margin-right: 1%"
+      >Kochzeit {{ getFormatedTime(recepie.cookingDuration) }}</span
+    >
+    <span>Wartezeit {{ getFormatedTime(recepie.restDuration) }}</span>
+  </div>
+  <div id="chips-container">
     <mat-chip-list>
-        <a *ngFor="let tag of recepie.tags" href="/search?selectedTags={{tag.name}}" target="_blank">
-            <mat-chip color="primary" selected >{{tag.name}}</mat-chip>
-        </a>
+      <a
+        *ngFor="let tag of recepie.tags"
+        href="/search?selectedTags={{ tag.name }}"
+        target="_blank"
+      >
+        <mat-chip color="primary" selected>{{ tag.name }}</mat-chip>
+      </a>
     </mat-chip-list>
-    </div>
-    <div class="recepie">
-        <app-season-viewer id="season-viewer" *ngIf="recepie.season.length >0" class="recepie" [season]="recepie.season"></app-season-viewer>
-        <app-ingredients [ingredients]="recepie.ingredients" [servings]="recepie.servings" [headings]="recepie.headings" class="app-ingredients"></app-ingredients>
-        <span class="growing">
-            <p *ngFor="let instruction of recepie.instructions">
-                {{instruction}}
-            </p>
-        </span>
-    </div>
-    <button id="edit-button" mat-fab color="primary"(click)="goToEdit()">
-        <mat-icon>edit</mat-icon>
-    </button>
+  </div>
+  <div class="recepie">
+    <app-season-viewer
+      id="season-viewer"
+      *ngIf="recepie.season.length > 0"
+      class="recepie"
+      [season]="recepie.season"
+    ></app-season-viewer>
+    <app-ingredients
+      [ingredients]="recepie.ingredients"
+      [servings]="recepie.servings"
+      [headings]="recepie.headings"
+      class="app-ingredients"
+    ></app-ingredients>
+    <span class="growing">
+      <p *ngFor="let instruction of recepie.instructions">
+        {{ instruction }}
+      </p>
+    </span>
+  </div>
+  <button id="edit-button" mat-fab color="primary" (click)="goToEdit()">
+    <mat-icon>edit</mat-icon>
+  </button>
 </div>

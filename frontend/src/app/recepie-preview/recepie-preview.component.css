@@ -1,12 +1,12 @@
 .img-only {
   border-radius: 4px;
-  transition: transform .3s; 
-}  
-.hover-container{
+  transition: transform 0.3s;
+}
+.hover-container {
   position: relative;
   overflow: hidden;
 }
-div{
+div {
   font-weight: 500;
 }
 span.img-only {
@@ -25,20 +25,20 @@ span.list-item {
   text-align: center;
 }
 
-.list-item img{
+.list-item img {
   overflow: hidden;
   width: 25%;
 }
 
-@media(hover:none){
-}  
-@media(hover){
+@media (hover: none) {
+}
+@media (hover) {
   /* When you mouse over the hover-container, fade in the overlay title */
   .hover-container:hover .overlay {
     opacity: 1;
     transition: 500ms ease-in-out;
   }
-  .hover-container:hover img{
+  .hover-container:hover img {
     transform: scale(1.15);
     transition: 600ms ease;
   }
@@ -51,8 +51,8 @@ span.list-item {
     background: rgba(0, 0, 0, 0.7); /* Black see-through */
     color: #f1f1f1;
     width: 100%;
-    transition: .5s ease;
-    opacity:0;
+    transition: 0.5s ease;
+    opacity: 0;
     font-size: 20px;
     padding-bottom: 20px;
     padding-top: 20px;

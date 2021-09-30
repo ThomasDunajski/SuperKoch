@@ -1,21 +1,21 @@
 .centered {
-    text-align: center;
+  text-align: center;
 }
-.category{
-    margin-left: 5%;
-    margin-right: 5%;
-    margin-bottom: 2%;
+.category {
+  margin-left: 5%;
+  margin-right: 5%;
+  margin-bottom: 2%;
 }
-.recepie-container{
-    margin-bottom: 1%;
+.recepie-container {
+  margin-bottom: 1%;
 }
-.mat-checkbox{
-    margin-right: 1%;
+.mat-checkbox {
+  margin-right: 1%;
 }
-.image{
-    margin: 5%;
+.image {
+  margin: 5%;
 }
-#edit-button{
-    float: right;
-    margin-right: 6%;
+#edit-button {
+  float: right;
+  margin-right: 6%;
 }

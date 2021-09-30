@@ -1,13 +1,13 @@
 @media only screen and (min-width: 600px) {
-    .main-container{
-        --navbar-size: 5rem;
-        padding-left: var(--navbar-size);
-    }
+  .main-container {
+    --navbar-size: 5rem;
+    padding-left: var(--navbar-size);
+  }
 }
 
 @media only screen and (max-width: 600px) {
-    .main-container{
-        --navbar-size: 3.5rem;
-        padding-bottom: var(--navbar-size);
-    }
+  .main-container {
+    --navbar-size: 3.5rem;
+    padding-bottom: var(--navbar-size);
+  }
 }

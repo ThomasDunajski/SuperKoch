@@ -4,17 +4,15 @@ import { ApiService } from '../services/api.service';
 @Component({
   selector: 'app-collection-overview',
   templateUrl: './collection-overview.component.html',
-  styleUrls: ['./collection-overview.component.css']
+  styleUrls: ['./collection-overview.component.css'],
 })
 export class CollectionOverviewComponent implements OnInit {
-
-  constructor(private api:ApiService) { }
+  constructor(private api: ApiService) {}
   collections = [];
   ngOnInit(): void {
-    this.getCollections();  
+    this.getCollections();
   }
-  getCollections = async function(){
-    this.collections = await this.api.getCollections();  
-  }
-
+  getCollections = async function () {
+    this.collections = await this.api.getCollections();
+  };
 }

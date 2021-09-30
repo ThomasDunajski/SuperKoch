@@ -1,72 +1,95 @@
 <div class="centered">
-    <p>
-        <mat-form-field>
-            <mat-label>Name</mat-label>
-            <input [(ngModel)]="collection.name" matInput placeholder="z.B. Festessen">
-            <mat-hint>Name der Sammlung</mat-hint>
-        </mat-form-field>
-    </p>
-    <p>
-        <mat-form-field>
-            <mat-label>Unterüberschrift</mat-label>
-            <input [(ngModel)]="collection.text" matInput placeholder="z.B. Wenn es mal etwas länger dauern darf">
-            <mat-hint>Name der Sammlung</mat-hint>
-        </mat-form-field>
-    </p>
-    <p>
-        <button mat-flat-button color='primary' (click)="showUploadModal()">
-            Bild hochladen
-        </button>  
-    </p>
-    <h1>Kategorien</h1>
-    <p>
-        <mat-card *ngFor="let section of collection.sections; let i = index">
-            <mat-form-field id="section-name">
-                <mat-label>Name</mat-label>
-                <textarea [(ngModel)]="section.name" matInput placeholder="z.B. Vorspeisen"></textarea>
-              </mat-form-field>
-              <p class="preview" *ngFor="let recipe of section.recipes,let j = index">
-                <app-recepie-preview [data]="recipe" ></app-recepie-preview>
-                <button mat-button (click)="removeRecipe(i,j)" class="red">
-                    <mat-icon>remove_circle_outline</mat-icon>
-                  </button>
-              </p>
-              <p>
-                <button mat-button (click)="addRecipe(i)" class="green">
-                    <mat-icon>add_circle_outline</mat-icon>
-                </button>
-                <button mat-button *ngIf="!(section.recipes.length >0)" (click)="removeSection(i)" class="red">
-                    <mat-icon>remove_circle_outline</mat-icon>
-                </button>
-              </p>
-        </mat-card>
-    </p>
-    <p>
-        <button mat-button color='primary' (click)="addSection()" class="green">
-            <mat-icon>add_circle_outline</mat-icon>
+  <p>
+    <mat-form-field>
+      <mat-label>Name</mat-label>
+      <input
+        [(ngModel)]="collection.name"
+        matInput
+        placeholder="z.B. Festessen"
+      />
+      <mat-hint>Name der Sammlung</mat-hint>
+    </mat-form-field>
+  </p>
+  <p>
+    <mat-form-field>
+      <mat-label>Unterüberschrift</mat-label>
+      <input
+        [(ngModel)]="collection.text"
+        matInput
+        placeholder="z.B. Wenn es mal etwas länger dauern darf"
+      />
+      <mat-hint>Name der Sammlung</mat-hint>
+    </mat-form-field>
+  </p>
+  <p>
+    <button mat-flat-button color="primary" (click)="showUploadModal()">
+      Bild hochladen
+    </button>
+  </p>
+  <h1>Kategorien</h1>
+  <p>
+    <mat-card *ngFor="let section of collection.sections; let i = index">
+      <mat-form-field id="section-name">
+        <mat-label>Name</mat-label>
+        <textarea
+          [(ngModel)]="section.name"
+          matInput
+          placeholder="z.B. Vorspeisen"
+        ></textarea>
+      </mat-form-field>
+      <p class="preview" *ngFor="let recipe of section.recipes; let j = index">
+        <app-recepie-preview [data]="recipe"></app-recepie-preview>
+        <button mat-button (click)="removeRecipe(i, j)" class="red">
+          <mat-icon>remove_circle_outline</mat-icon>
         </button>
-    </p>
+      </p>
+      <p>
+        <button mat-button (click)="addRecipe(i)" class="green">
+          <mat-icon>add_circle_outline</mat-icon>
+        </button>
+        <button
+          mat-button
+          *ngIf="!(section.recipes.length > 0)"
+          (click)="removeSection(i)"
+          class="red"
+        >
+          <mat-icon>remove_circle_outline</mat-icon>
+        </button>
+      </p>
+    </mat-card>
+  </p>
+  <p>
+    <button mat-button color="primary" (click)="addSection()" class="green">
+      <mat-icon>add_circle_outline</mat-icon>
+    </button>
+  </p>
 
-    <p>
-        <button mat-flat-button color='primary' (click)="saveCollection()">
-            Speichern
-        </button>
-    </p>
+  <p>
+    <button mat-flat-button color="primary" (click)="saveCollection()">
+      Speichern
+    </button>
+  </p>
 </div>
 
 <!-- The Modal -->
 <div id="myModal" (click)="hideModal()" class="modal">
-
   <!-- Modal content -->
   <div class="modal-content">
-        <mat-card class="modal-card" (click)="interceptModalClose($event)">
-            <p *ngFor="let recipe of allRecipes, let i = index" >
-                <app-recepie-preview [data]="recipe" (click)="recipeSelectedEvent(i + 1)"></app-recepie-preview>
-            </p>
-        </mat-card>
+    <mat-card class="modal-card" (click)="interceptModalClose($event)">
+      <p *ngFor="let recipe of allRecipes; let i = index">
+        <app-recepie-preview
+          [data]="recipe"
+          (click)="recipeSelectedEvent(i + 1)"
+        ></app-recepie-preview>
+      </p>
+    </mat-card>
   </div>
-
 </div>
 
-<app-modal-image-upload [images]="collection.imageUrl" [aspectRatio]="16/9" [events]="eventUplad.asObservable()" (imageUrlChanged)="setImgePath($event)">
+<app-modal-image-upload
+  [images]="collection.imageUrl"
+  [aspectRatio]="16 / 9"
+  [events]="eventUplad.asObservable()"
+  (imageUrlChanged)="setImgePath($event)"
+>
 </app-modal-image-upload>

@@ -1,4 +1,3 @@
-
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -10,7 +9,7 @@ import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-import { MatButtonModule} from '@angular/material/button';
+import { MatButtonModule } from '@angular/material/button';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
@@ -18,12 +17,12 @@ import { MatChipsModule } from '@angular/material/chips';
 import { MatSelectModule } from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
-import {MatInputModule} from '@angular/material/input';
-import{MatCheckboxModule} from '@angular/material/checkbox';
-import{MatCardModule} from '@angular/material/card';
-import {MatButtonToggleModule} from '@angular/material/button-toggle';
-import {MatProgressBarModule} from '@angular/material/progress-bar';
-import {MatExpansionModule} from '@angular/material/expansion';
+import { MatInputModule } from '@angular/material/input';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatCardModule } from '@angular/material/card';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatExpansionModule } from '@angular/material/expansion';
 import { ImageCropperModule } from 'ngx-image-cropper';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { ClipboardModule } from 'ngx-clipboard';
@@ -50,7 +49,6 @@ import { ModalPasteRecipeComponent } from './modal-paste-recipe/modal-paste-reci
 import { NavbarComponent } from './navbar/navbar.component';
 import { CardComponent } from './card/card.component';
 
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -74,7 +72,7 @@ import { CardComponent } from './card/card.component';
     ModalImageUploadComponent,
     ModalPasteRecipeComponent,
     NavbarComponent,
-    CardComponent
+    CardComponent,
   ],
   imports: [
     BrowserModule,
@@ -112,11 +110,11 @@ import { CardComponent } from './card/card.component';
       { path: 'collection/edit/:id', component: EditCollectionComponent },
       { path: 'collection/:id', component: CollectionComponent },
       { path: 'add-collection', component: EditCollectionComponent },
-      {path: '404', component: NotFoundComponent},
-      {path: '**', redirectTo: '/404'}
-    ])
+      { path: '404', component: NotFoundComponent },
+      { path: '**', redirectTo: '/404' },
+    ]),
   ],
   providers: [],
   bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

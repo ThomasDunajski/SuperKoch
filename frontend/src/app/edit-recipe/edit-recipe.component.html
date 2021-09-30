@@ -1,100 +1,160 @@
 <div class="centered">
-    <p>
-        <mat-form-field>
-            <mat-label>Name</mat-label>
-            <input [(ngModel)]="recipe.name" matInput required placeholder="z.B. Tomatensalat">
-            <mat-hint>Hint</mat-hint>
-          </mat-form-field>
-    </p>
-    <p>
-      <mat-form-field>
-          <mat-label>Kochzeit</mat-label>
-          <input [(ngModel)]="recipe.cookingDuration" type="number" matInput placeholder="z.B. 15">
-          <mat-hint>Minuten</mat-hint>
-        </mat-form-field>
-    </p>
-    <p>
+  <p>
     <mat-form-field>
-      <mat-label>Wartezeit</mat-label>
-      <input [(ngModel)]="recipe.restDuration" type="number" matInput placeholder="z.B. 15">
+      <mat-label>Name</mat-label>
+      <input
+        [(ngModel)]="recipe.name"
+        matInput
+        required
+        placeholder="z.B. Tomatensalat"
+      />
+      <mat-hint>Hint</mat-hint>
+    </mat-form-field>
+  </p>
+  <p>
+    <mat-form-field>
+      <mat-label>Kochzeit</mat-label>
+      <input
+        [(ngModel)]="recipe.cookingDuration"
+        type="number"
+        matInput
+        placeholder="z.B. 15"
+      />
       <mat-hint>Minuten</mat-hint>
     </mat-form-field>
-    </p>
-    <p>
-      <mat-form-field>
-        <mat-label>Portionen</mat-label>
-        <input [(ngModel)]="recipe.servings" type="number" matInput required placeholder="z.B. 4">
+  </p>
+  <p>
+    <mat-form-field>
+      <mat-label>Wartezeit</mat-label>
+      <input
+        [(ngModel)]="recipe.restDuration"
+        type="number"
+        matInput
+        placeholder="z.B. 15"
+      />
+      <mat-hint>Minuten</mat-hint>
+    </mat-form-field>
+  </p>
+  <p>
+    <mat-form-field>
+      <mat-label>Portionen</mat-label>
+      <input
+        [(ngModel)]="recipe.servings"
+        type="number"
+        matInput
+        required
+        placeholder="z.B. 4"
+      />
+    </mat-form-field>
+  </p>
+  <h3>Zutaten</h3>
+  <div
+    *ngFor="let ingredient of recipe.ingredients; let i = index"
+    class="centered"
+  >
+    <p *ngIf="getHeading(i)">
+      <mat-form-field id="heading">
+        <mat-label>Überschrift</mat-label>
+        <input
+          [(ngModel)]="getHeading(i).text"
+          matInput
+          placeholder="z.B. für den Teig"
+        />
       </mat-form-field>
-    </p>
-    <h3>Zutaten</h3>
-    <div *ngFor="let ingredient of recipe.ingredients; let i = index" class="centered">
-      <p *ngIf="getHeading(i)">
-        <mat-form-field id="heading">
-          <mat-label>Überschrift</mat-label>
-          <input [(ngModel)]="getHeading(i).text" matInput placeholder="z.B. für den Teig">
-        </mat-form-field>
-        <button mat-button (click)="removeHeading(i)" class="red">
-          <mat-icon>remove_circle_outline</mat-icon>
-        </button>
-      </p>
-      <p>
-        <button mat-button (click)="addHeading(i)" class="green">
-          <mat-icon>add_comment</mat-icon>
-        </button>
-        <mat-form-field id="ingredient">
-          <mat-label>Zutat</mat-label>
-          <input [(ngModel)]="ingredient.name" matInput placeholder="z.B. Tomate">
-          <mat-hint>Hint</mat-hint>
-        </mat-form-field>
-        <mat-form-field id="quantity">
-          <mat-label>Menge</mat-label>
-          <input [(ngModel)]="ingredient.quantity" type="number" matInput placeholder="z.B. 1">
-          <mat-hint>Hint</mat-hint>
-        </mat-form-field>
-        <mat-form-field id="unit">
-          <mat-label>Einheit</mat-label>
-          <mat-select [(ngModel)]="ingredient.unit">
-            <mat-option *ngFor="let unit of units" [value]="unit">
-              {{unit}}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
-        <button mat-button (click)="removeIngredient(i)" class="red">
-          <mat-icon>remove_circle_outline</mat-icon>
-        </button>
-      </p>
-    </div>
-    
-    <p class="center_button">
-      <button mat-button (click)="addIngredient()" class="green">
-        <mat-icon>add_circle_outline</mat-icon>
-      </button>
-    </p>
-    <h3>Anleitung</h3>
-    <p  *ngFor="let instruction of recipe.instructions; let i = index trackBy:getInstructionId">
-      <mat-form-field id="instruction">
-        <mat-label>Schritt</mat-label>
-        <textarea [(ngModel)]="recipe.instructions[i]" matInput rows="5" placeholder="z.B. Gemüse schneiden"></textarea>
-        <mat-hint *ngIf="i===0">Für die Übersicht lohnt es sich meist das Rezept in mehrere Schritte zu unterteilen</mat-hint>
-      </mat-form-field>
-      <button mat-button (click)="removeInctruction(i)" class="red">
+      <button mat-button (click)="removeHeading(i)" class="red">
         <mat-icon>remove_circle_outline</mat-icon>
       </button>
     </p>
     <p>
+      <button mat-button (click)="addHeading(i)" class="green">
+        <mat-icon>add_comment</mat-icon>
+      </button>
+      <mat-form-field id="ingredient">
+        <mat-label>Zutat</mat-label>
+        <input
+          [(ngModel)]="ingredient.name"
+          matInput
+          placeholder="z.B. Tomate"
+        />
+        <mat-hint>Hint</mat-hint>
+      </mat-form-field>
+      <mat-form-field id="quantity">
+        <mat-label>Menge</mat-label>
+        <input
+          [(ngModel)]="ingredient.quantity"
+          type="number"
+          matInput
+          placeholder="z.B. 1"
+        />
+        <mat-hint>Hint</mat-hint>
+      </mat-form-field>
+      <mat-form-field id="unit">
+        <mat-label>Einheit</mat-label>
+        <mat-select [(ngModel)]="ingredient.unit">
+          <mat-option *ngFor="let unit of units" [value]="unit">
+            {{ unit }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <button mat-button (click)="removeIngredient(i)" class="red">
+        <mat-icon>remove_circle_outline</mat-icon>
+      </button>
+    </p>
+  </div>
+
+  <p class="center_button">
+    <button mat-button (click)="addIngredient()" class="green">
+      <mat-icon>add_circle_outline</mat-icon>
+    </button>
+  </p>
+  <h3>Anleitung</h3>
+  <p
+    *ngFor="
+      let instruction of recipe.instructions;
+      let i = index;
+      trackBy: getInstructionId
+    "
+  >
+    <mat-form-field id="instruction">
+      <mat-label>Schritt</mat-label>
+      <textarea
+        [(ngModel)]="recipe.instructions[i]"
+        matInput
+        rows="5"
+        placeholder="z.B. Gemüse schneiden"
+      ></textarea>
+      <mat-hint *ngIf="i === 0"
+        >Für die Übersicht lohnt es sich meist das Rezept in mehrere Schritte zu
+        unterteilen</mat-hint
+      >
+    </mat-form-field>
+    <button mat-button (click)="removeInctruction(i)" class="red">
+      <mat-icon>remove_circle_outline</mat-icon>
+    </button>
+  </p>
+  <p>
     <button mat-button (click)="addInstruction()" class="green">
       <mat-icon>add_circle_outline</mat-icon>
     </button>
     <button mat-button (click)="showPasteRecipeModal()" class="green">
       <mat-icon>content_paste</mat-icon>
     </button>
-    </p>
+  </p>
+  <p>
+    <mat-checkbox
+      [checked]="isSesonal"
+      color="primary"
+      (change)="onCheckboxChange($event.checked)"
+      >Saisonal</mat-checkbox
+    >
+  </p>
+  <div *ngIf="isSesonal">
     <p>
-      <mat-checkbox [checked]="isSesonal" color="primary" (change)="onCheckboxChange($event.checked)">Saisonal</mat-checkbox>
-    </p>
-    <div *ngIf="isSesonal">
-    <p>
-      <mat-button-toggle-group #season="matButtonToggleGroup" multiple="true" (change)="onSesonChanged(season.value)">
+      <mat-button-toggle-group
+        #season="matButtonToggleGroup"
+        multiple="true"
+        (change)="onSesonChanged(season.value)"
+      >
         <mat-button-toggle value="1">Jan</mat-button-toggle>
         <mat-button-toggle value="2">Feb</mat-button-toggle>
         <mat-button-toggle value="3">Mär</mat-button-toggle>
@@ -110,40 +170,66 @@
       </mat-button-toggle-group>
     </p>
     <p>
-      <a target="_blank" rel="noopener noreferrer" href="https://www.verbraucherzentrale.de/sites/default/files/migration_files/media222992A.pdf">Saisonkalender</a>
+      <a
+        target="_blank"
+        rel="noopener noreferrer"
+        href="https://www.verbraucherzentrale.de/sites/default/files/migration_files/media222992A.pdf"
+        >Saisonkalender</a
+      >
     </p>
-    </div>
-
-    <h3>Tags</h3>
-    <mat-form-field>
-      <mat-chip-list>
-        <mat-chip color="primary" *ngFor="let tag of tags" (click)="addTag(tag)">{{tag.name}}</mat-chip>
-      </mat-chip-list>
-    </mat-form-field>
-    <p class=" centered narrow">
-    <mat-chip-list>
-      <mat-chip selected *ngFor="let tag of selectedTags" [removable]="true" (removed)="removeTag(tag)">{{tag.name}} 
-        <mat-icon matChipRemove>cancel</mat-icon>
-      </mat-chip>
-      </mat-chip-list>  
-    </p>
-
-    <h3>Bilder</h3>
-    <span *ngFor="let image of recipe.images; let i = index" class="image-comtainer">
-      <img class="previev-img" src="{{api.getImageUri(image)}}">
-        <mat-icon class="red" (click)="deleteImage(image, i)">remove_circle_outline</mat-icon>
-    </span>
-    <button mat-flat-button color='primary' (click)="showUploadModal()">
-      Bild hinzufügen
-    </button>     
-      <p>
-        <button mat-flat-button color='primary' (click)="saveRecipe()">
-          Rezept Speichern
-        </button>
-      </p>
   </div>
 
-  <app-modal-image-upload [images]="recipe.images" [events]="eventUplad.asObservable()">
-  </app-modal-image-upload>
-  <app-modal-paste-recipe [recipe]="recipe" [events]="eventPasteRecipe.asObservable()">
-  </app-modal-paste-recipe>
+  <h3>Tags</h3>
+  <mat-form-field>
+    <mat-chip-list>
+      <mat-chip
+        color="primary"
+        *ngFor="let tag of tags"
+        (click)="addTag(tag)"
+        >{{ tag.name }}</mat-chip
+      >
+    </mat-chip-list>
+  </mat-form-field>
+  <p class="centered narrow">
+    <mat-chip-list>
+      <mat-chip
+        selected
+        *ngFor="let tag of selectedTags"
+        [removable]="true"
+        (removed)="removeTag(tag)"
+        >{{ tag.name }}
+        <mat-icon matChipRemove>cancel</mat-icon>
+      </mat-chip>
+    </mat-chip-list>
+  </p>
+
+  <h3>Bilder</h3>
+  <span
+    *ngFor="let image of recipe.images; let i = index"
+    class="image-comtainer"
+  >
+    <img class="previev-img" src="{{ api.getImageUri(image) }}" />
+    <mat-icon class="red" (click)="deleteImage(image, i)"
+      >remove_circle_outline</mat-icon
+    >
+  </span>
+  <button mat-flat-button color="primary" (click)="showUploadModal()">
+    Bild hinzufügen
+  </button>
+  <p>
+    <button mat-flat-button color="primary" (click)="saveRecipe()">
+      Rezept Speichern
+    </button>
+  </p>
+</div>
+
+<app-modal-image-upload
+  [images]="recipe.images"
+  [events]="eventUplad.asObservable()"
+>
+</app-modal-image-upload>
+<app-modal-paste-recipe
+  [recipe]="recipe"
+  [events]="eventPasteRecipe.asObservable()"
+>
+</app-modal-paste-recipe>

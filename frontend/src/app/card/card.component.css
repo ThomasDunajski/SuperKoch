@@ -1,14 +1,14 @@
-.card{
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    height: 100%;
-    border: 1px solid lightgray;
-    padding: 5px;
-    color: var(--text-primary);
-    transition: 200ms ease;
-  }
-.card:hover{
-    transform: translateY(-4px);
-    box-shadow: 0 16px 28px rgb(131, 133, 145)
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  height: 100%;
+  border: 1px solid lightgray;
+  padding: 5px;
+  color: var(--text-primary);
+  transition: 200ms ease;
+}
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 28px rgb(131, 133, 145);
 }

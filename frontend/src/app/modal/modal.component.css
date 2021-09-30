@@ -1,62 +1,82 @@
 .modal {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
-    left: var(--navbar-size);
-    top: 0;
-    width: calc(100% - var(--navbar-size)); /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-    -webkit-animation-name: fadeIn; /* Fade in the background */
-    -webkit-animation-duration: 0.4s;
-    animation-name: fadeIn;
-    animation-duration: 0.4s
-  }
-  
-  /* Modal Content */
-  .modal-content {
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    -webkit-animation-name: slideIn;
-    -webkit-animation-duration: 0.4s;
-    animation-name: slideIn;
-    animation-duration: 0.4s
-  }
-  .modal-content p{
-    width: 95%;
-    margin-right: 2%;
-  }
-  .modal-card{
-    overflow: auto;
-    height: 50em;
-    /* Hide scrollbar for Firefox */
-    scrollbar-width: none;
-  }
-  /* Hide scrollbar for Chrome, Safari and Opera */
-  .modal-card::-webkit-scrollbar {
-    display: none;
-  }
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: var(--navbar-size);
+  top: 0;
+  width: calc(100% - var(--navbar-size)); /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0, 0, 0); /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+  -webkit-animation-name: fadeIn; /* Fade in the background */
+  -webkit-animation-duration: 0.4s;
+  animation-name: fadeIn;
+  animation-duration: 0.4s;
+}
 
-  /* Add Animation */
-  @-webkit-keyframes slideIn {
-    from {bottom: -300px; opacity: 0} 
-    to {bottom: 0; opacity: 1}
+/* Modal Content */
+.modal-content {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  -webkit-animation-name: slideIn;
+  -webkit-animation-duration: 0.4s;
+  animation-name: slideIn;
+  animation-duration: 0.4s;
+}
+.modal-content p {
+  width: 95%;
+  margin-right: 2%;
+}
+.modal-card {
+  overflow: auto;
+  height: 50em;
+  /* Hide scrollbar for Firefox */
+  scrollbar-width: none;
+}
+/* Hide scrollbar for Chrome, Safari and Opera */
+.modal-card::-webkit-scrollbar {
+  display: none;
+}
+
+/* Add Animation */
+@-webkit-keyframes slideIn {
+  from {
+    bottom: -300px;
+    opacity: 0;
   }
-  
-  @keyframes slideIn {
-    from {bottom: -300px; opacity: 0}
-    to {bottom: 0; opacity: 1}
+  to {
+    bottom: 0;
+    opacity: 1;
   }
-  
-  @-webkit-keyframes fadeIn {
-    from {opacity: 0} 
-    to {opacity: 1}
+}
+
+@keyframes slideIn {
+  from {
+    bottom: -300px;
+    opacity: 0;
   }
-  
-  @keyframes fadeIn {
-    from {opacity: 0} 
-    to {opacity: 1}
+  to {
+    bottom: 0;
+    opacity: 1;
   }
+}
+
+@-webkit-keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
