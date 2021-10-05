@@ -84,7 +84,13 @@
       target="_blank"
     >
       <div style="height: calc(100% - 1rem)">
+        <app-recipe-prewiew-tile
+          *ngIf="previewClass === 'img-only'"
+          [data]="recipe"
+        ></app-recipe-prewiew-tile>
+
         <app-recepie-preview
+          *ngIf="previewClass !== 'img-only'"
           [data]="recipe"
           [previewStyle]="previewClass"
         ></app-recepie-preview>

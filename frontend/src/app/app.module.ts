@@ -48,6 +48,7 @@ import { ModalImageUploadComponent } from './modal-image-upload/modal-image-uplo
 import { ModalPasteRecipeComponent } from './modal-paste-recipe/modal-paste-recipe.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { CardComponent } from './card/card.component';
+import { RecipePrewiewTileComponent } from './recipe-prewiew-tile/recipe-prewiew-tile.component';
 
 @NgModule({
   declarations: [
@@ -73,6 +74,7 @@ import { CardComponent } from './card/card.component';
     ModalPasteRecipeComponent,
     NavbarComponent,
     CardComponent,
+    RecipePrewiewTileComponent,
   ],
   imports: [
     BrowserModule,

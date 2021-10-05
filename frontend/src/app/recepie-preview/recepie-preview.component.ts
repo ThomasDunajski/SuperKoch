@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./recepie-preview.component.css'],
 })
 export class RecepiePreviewComponent implements OnInit {
-  constructor(public api: ApiService, private router: Router) {}
+  constructor(public api: ApiService) {}
 
   @Input() data;
   @Input() previewStyle;

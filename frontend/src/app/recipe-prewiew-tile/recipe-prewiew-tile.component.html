@@ -1,0 +1,11 @@
+<app-card>
+  <div class="hover-container">
+    <img src="{{ api.getThumbImageUri(data.images[0]) }}" loading="lazy" />
+    <div class="desktop-overlay">
+      {{ data.name }}
+    </div>
+    <div class="mobile-name">
+      {{ data.name }}
+    </div>
+  </div>
+</app-card>
