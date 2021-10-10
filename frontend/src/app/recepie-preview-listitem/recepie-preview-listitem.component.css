@@ -1,11 +1,9 @@
-.hover-container {
+.list-item {
   position: relative;
-  overflow: hidden;
+  text-align: left;
 }
-div {
-  font-weight: 500;
-}
-span.list-item {
+
+.list-item-text {
   margin: 0;
   position: absolute;
   top: 50%;
@@ -13,9 +11,16 @@ span.list-item {
   transform: translateY(-50%);
   width: 75%;
   text-align: center;
+  font-weight: 500;
 }
 
-.list-item img {
+img {
   overflow: hidden;
   width: 25%;
+}
+
+@media only screen and (min-width: 600px) {
+  img {
+    width: 12%;
+  }
 }

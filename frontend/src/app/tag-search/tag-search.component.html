@@ -45,19 +45,20 @@
     <mat-button-toggle-group
       name="fontStyle"
       aria-label="Font Style"
+      [(ngModel)]="previewClass"
       value="{{ previewClass === 'img-only' ? 'imageOnlyView' : 'normalView' }}"
     >
       <mat-button-toggle
         color="primary"
-        (click)="previewClass = 'img-only'; updateSearchParams()"
-        value="imageOnlyView"
+        (click)="updateSearchParams()"
+        value="img-only"
       >
         <mat-icon>view_comfy</mat-icon>
       </mat-button-toggle>
       <mat-button-toggle
         color="primary"
-        (click)="previewClass = 'list-item'; updateSearchParams()"
-        value="normalView"
+        (click)="updateSearchParams()"
+        value="list-view"
       >
         <mat-icon>view_list</mat-icon>
       </mat-button-toggle>
@@ -89,11 +90,10 @@
           [data]="recipe"
         ></app-recipe-prewiew-tile>
 
-        <app-recepie-preview
+        <app-recepie-preview-listitem
           *ngIf="previewClass !== 'img-only'"
           [data]="recipe"
-          [previewStyle]="previewClass"
-        ></app-recepie-preview>
+        ></app-recepie-preview-listitem>
       </div>
     </a>
   </p>

@@ -30,7 +30,6 @@ import { MatCarouselModule } from '@ngbmodule/material-carousel';
 
 import { RecepieComponent } from './recepie/recepie.component';
 import { TagSearchComponent } from './tag-search/tag-search.component';
-import { RecepiePreviewComponent } from './recepie-preview/recepie-preview.component';
 import { TextFilterPipe } from './text-filter-pipe';
 import { IngredientsComponent } from './ingredients/ingredients.component';
 import { SeasonViewerComponent } from './season-viewer/season-viewer.component';
@@ -49,6 +48,7 @@ import { ModalPasteRecipeComponent } from './modal-paste-recipe/modal-paste-reci
 import { NavbarComponent } from './navbar/navbar.component';
 import { CardComponent } from './card/card.component';
 import { RecipePrewiewTileComponent } from './recipe-prewiew-tile/recipe-prewiew-tile.component';
+import { RecepiePreviewListitemComponent } from './recepie-preview-listitem/recepie-preview-listitem.component';
 
 @NgModule({
   declarations: [
@@ -56,7 +56,6 @@ import { RecipePrewiewTileComponent } from './recipe-prewiew-tile/recipe-prewiew
     HeaderComponent,
     RecepieComponent,
     TagSearchComponent,
-    RecepiePreviewComponent,
     TextFilterPipe,
     IngredientsComponent,
     SeasonViewerComponent,
@@ -75,6 +74,7 @@ import { RecipePrewiewTileComponent } from './recipe-prewiew-tile/recipe-prewiew
     NavbarComponent,
     CardComponent,
     RecipePrewiewTileComponent,
+    RecepiePreviewListitemComponent,
   ],
   imports: [
     BrowserModule,
