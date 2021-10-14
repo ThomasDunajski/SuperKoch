@@ -8,9 +8,10 @@ exports.getRecipe = async (number) => {
 };
 
 exports.getRecipes = async (recipeNumbers) => {
-  const recipes = await Promise.all(
-    recipeNumbers.map(async (number) => await exports.getRecipe(number))
-  );
+  const recipes = await dbService.find({
+    collection: 'recipes',
+    query: { number: { $in: recipeNumbers } },
+  });
   return recipes;
 };
 
