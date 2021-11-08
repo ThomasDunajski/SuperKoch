@@ -74,12 +74,12 @@ export class ApiService {
   getThumbImageUri(name: string) {
     return name
       ? localUrl + 'images/thumb/' + name.replace('.jpg', '.webp')
-      : localUrl + 'images/thumb/no-image.jpg';
+      : localUrl + 'images/thumb/no-image.webp';
   }
   getImageUri(name: string) {
     return name
       ? localUrl + 'images/large/' + name.replace('.jpg', '.webp')
-      : localUrl + 'images/large/no-image.jpg';
+      : localUrl + 'images/large/no-image.jwebppg';
   }
   getOriginalImageUri(name: string) {
     return name
@@ -89,7 +89,7 @@ export class ApiService {
   getWidemageUri(name: string) {
     return name
       ? localUrl + 'images/wide/' + name.replace('.jpg', '.webp')
-      : localUrl + 'images/wide/no-image.png';
+      : localUrl + 'images/wide/no-image.webp';
   }
   deleteImage(uri) {
     return this.http.delete(localUrl + 'images/' + uri).toPromise();
