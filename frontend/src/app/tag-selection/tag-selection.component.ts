@@ -8,11 +8,15 @@ import { ApiService } from '../services/api.service';
 })
 export class TagSelectionComponent implements OnInit {
   @Output() tagsChanged = new EventEmitter<string[]>();
+  @Input() set setSelected(newSelected) {
+    this.selected = newSelected;
+  }
+
+  selected = [];
 
   constructor(private api: ApiService) {}
 
   tagCategorys: any = [];
-  selected = [];
 
   ngOnInit(): void {
     this.init();

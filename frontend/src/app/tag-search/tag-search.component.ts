@@ -61,11 +61,11 @@ export class TagSearchComponent implements OnInit {
 
   onTagsChanged = function (selectedTags) {
     this.selectedTags = selectedTags;
-    this.getRecipeSearch(selectedTags);
+    this.searchRecipe(selectedTags);
   };
 
   onTextSearch = function () {
-    this.getRecipeSearch(this.selectedTags);
+    this.searchRecipe(this.selectedTags);
   };
 
   async direcktlyOpen(name: string) {

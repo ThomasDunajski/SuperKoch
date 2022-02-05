@@ -28,10 +28,11 @@ export class EditRecipeComponent implements OnInit {
     'Bund',
     'Packung',
   ];
-  tags;
   selectedTags = [];
   progress: number = 0;
   pasteInstructionString = '';
+  initialySelectedTags = [];
+
   constructor(
     public api: ApiService,
     private router: Router,
@@ -39,7 +40,6 @@ export class EditRecipeComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.getAllTags();
     this.loadRecipe();
   }
   async loadRecipe() {
@@ -48,17 +48,7 @@ export class EditRecipeComponent implements OnInit {
         this.actRoute.snapshot.params.id
       )) as Recipe;
       this.recipe.ingredients.map((x) => (x.quantity *= this.recipe.servings));
-      this.selectedTags = this.recipe.tags;
-      //filter out already used tags
-      this.tags = this.tags.filter(
-        (y) =>
-          !this.selectedTags.some((x) => x.name.valueOf() === y.name.valueOf())
-      );
-      //filter out  "in saison"
-      this.tags = this.tags.filter(
-        (x) => x.name.valueOf() !== 'in Saison'.valueOf()
-      );
-      this.sortTags();
+      this.initialySelectedTags = this.recipe.tags;
     }
   }
   addIngredient() {
@@ -124,25 +114,7 @@ export class EditRecipeComponent implements OnInit {
         );
       });
   }
-  getAllTags = async function () {
-    this.tags = await this.api.getAllTags();
-  };
-  addTag(tag) {
-    this.selectedTags.push(tag);
-    this.tags = this.tags.filter(
-      (el) => el.name.valueOf() !== tag.name.valueOf()
-    );
-  }
-  removeTag(tag) {
-    this.tags.push(tag);
-    this.sortTags();
-    this.selectedTags = this.selectedTags.filter(
-      (el) => el.name.valueOf() !== tag.name.valueOf()
-    );
-  }
-  sortTags() {
-    this.tags = this.tags.sort((x, y) => ('' + x.name).localeCompare(y.name));
-  }
+
   deleteImage(image, index) {
     if (confirm('Sind Sie sicher, dass Sie das Bild löschen wollen?')) {
       console.log('call delete image: ' + image);
@@ -159,6 +131,7 @@ export class EditRecipeComponent implements OnInit {
   showUploadModal() {
     this.eventUplad.next();
   }
+
   eventPasteRecipe: Subject<void> = new Subject<void>();
   showPasteRecipeModal() {
     this.eventPasteRecipe.next();
@@ -166,5 +139,9 @@ export class EditRecipeComponent implements OnInit {
 
   getInstructionId(index: number, employee: any) {
     return index;
+  }
+
+  tagsCahnged(newTags) {
+    this.selectedTags = newTags;
   }
 }
