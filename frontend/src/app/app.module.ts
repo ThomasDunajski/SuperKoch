@@ -49,6 +49,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { CardComponent } from './card/card.component';
 import { RecipePrewiewTileComponent } from './recipe-prewiew-tile/recipe-prewiew-tile.component';
 import { RecepiePreviewListitemComponent } from './recepie-preview-listitem/recepie-preview-listitem.component';
+import { TagSelectionComponent } from './tag-selection/tag-selection.component';
 
 @NgModule({
   declarations: [
@@ -75,6 +76,7 @@ import { RecepiePreviewListitemComponent } from './recepie-preview-listitem/rece
     CardComponent,
     RecipePrewiewTileComponent,
     RecepiePreviewListitemComponent,
+    TagSelectionComponent,
   ],
   imports: [
     BrowserModule,

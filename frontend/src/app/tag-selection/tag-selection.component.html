@@ -1,0 +1,22 @@
+<div class="container" *ngFor="let category of tagCategorys; let i = index">
+  <span> {{ tagCategorys[i][0].category.name + ":" }} </span>
+  <mat-form-field class="container">
+    <mat-chip-list #tags>
+      <mat-chip
+        color="primary"
+        *ngFor="let tag of tagCategorys[i]"
+        (click)="onTagClick(tag)"
+        >{{ tag.name }}</mat-chip
+      >
+    </mat-chip-list>
+  </mat-form-field>
+</div>
+
+<h3>Aüsgewählt:</h3>
+
+<mat-chip-list #chipList>
+  <mat-chip selected *ngFor="let tag of selected" [removable]="true"
+    >{{ tag.name }}
+    <mat-icon (click)="onTagClick(tag)" matChipRemove>cancel</mat-icon>
+  </mat-chip>
+</mat-chip-list>

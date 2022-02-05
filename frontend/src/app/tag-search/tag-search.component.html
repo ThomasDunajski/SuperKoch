@@ -7,11 +7,11 @@
       #nameInput
       matInput
       [(ngModel)]="searchName"
-      (keyup.enter)="updateSearchParams()"
+      (keyup.enter)="onTextSearch()"
       (keyup)="autoComplete()"
       [matAutocomplete]="auto"
     />
-    <button matSuffix mat-button (click)="updateSearchParams()">
+    <button matSuffix mat-button>
       <mat-icon>search</mat-icon>
     </button>
     <mat-autocomplete #auto="matAutocomplete">
@@ -27,19 +27,7 @@
 
   <h3>Filter:</h3>
 
-  <div *ngFor="let category of tagCategorys; let i = index">
-    <span> {{ tagCategorys[i][0].category.name + ":" }} </span>
-    <mat-form-field>
-      <mat-chip-list #tags>
-        <mat-chip
-          color="primary"
-          *ngFor="let tag of tagCategorys[i]"
-          (click)="onTagClick($event, tag)"
-          >{{ tag.name }}</mat-chip
-        >
-      </mat-chip-list>
-    </mat-form-field>
-  </div>
+  <app-tag-selection (tagsChanged)="onTagsChanged($event)"></app-tag-selection>
 
   <p class="view-buttons">
     <mat-button-toggle-group
@@ -48,35 +36,16 @@
       [(ngModel)]="previewClass"
       value="{{ previewClass === 'img-only' ? 'imageOnlyView' : 'normalView' }}"
     >
-      <mat-button-toggle
-        color="primary"
-        (click)="updateSearchParams()"
-        value="img-only"
-      >
+      <mat-button-toggle color="primary" value="img-only">
         <mat-icon>view_comfy</mat-icon>
       </mat-button-toggle>
-      <mat-button-toggle
-        color="primary"
-        (click)="updateSearchParams()"
-        value="list-view"
-      >
+      <mat-button-toggle color="primary" value="list-view">
         <mat-icon>view_list</mat-icon>
       </mat-button-toggle>
     </mat-button-toggle-group>
   </p>
 
   <h3>Rezepte:</h3>
-
-  <mat-chip-list #chipList>
-    <mat-chip
-      selected
-      *ngFor="let tag of selected"
-      [removable]="true"
-      (removed)="remove(tag)"
-      >{{ tag.name }}
-      <mat-icon matChipRemove>cancel</mat-icon>
-    </mat-chip>
-  </mat-chip-list>
 
   <p class="{{ previewClass === 'img-only' ? 'grid' : '' }}">
     <a

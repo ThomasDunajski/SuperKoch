@@ -1,5 +1,4 @@
 var dbService = require('./db-service');
-var ObjectId = require('mongodb').ObjectId;
 var express = require('express');
 var router = express.Router();
 
@@ -7,7 +6,7 @@ router.get('/', async (req, res) => {
   var tags = await dbService.find({
     collection: 'tags',
     query: {},
-    sort: { name: 1 },
+    projection: { _id: 1 },
   });
   res.json(tags);
 });
@@ -20,6 +19,20 @@ router.post('/', async (req, res) => {
     connection.close();
   });
   res.json(tag);
+});
+
+router.get('/by-category', async (req, res) => {
+  var tags = await dbService.find({
+    collection: 'tags',
+    query: {},
+  });
+  result = [];
+  for (const tag of tags) {
+    if (!result[tag.category.number]) result[tag.category.number] = [];
+    result[tag.category.number].push(tag);
+  }
+  result = result.filter((value) => value != null);
+  res.json(result);
 });
 
 module.exports = router;

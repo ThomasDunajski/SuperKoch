@@ -16,7 +16,7 @@ export class ApiService {
     }
   }
   getAllTags() {
-    return this.http.get(localUrl + 'tags').toPromise();
+    return this.http.get(localUrl + 'tags/by-category').toPromise();
   }
   async getRecepie(number) {
     return new Promise(async (resolve, reject) => {
