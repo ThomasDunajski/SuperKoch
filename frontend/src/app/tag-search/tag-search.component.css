@@ -4,18 +4,11 @@ mat-form-field {
 .left {
   text-align: left;
 }
-.centered {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  width: 90%;
-}
 #search-field {
   width: calc(100% - 70px);
 }
 .view-buttons {
-  position: absolute;
-  right: 5%;
+  text-align: right;
 }
 a {
   text-decoration: none;

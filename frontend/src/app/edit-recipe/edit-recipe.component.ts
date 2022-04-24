@@ -49,6 +49,7 @@ export class EditRecipeComponent implements OnInit {
       )) as Recipe;
       this.recipe.ingredients.map((x) => (x.quantity *= this.recipe.servings));
       this.initialySelectedTags = this.recipe.tags;
+      this.selectedTags = this.recipe.tags;
     }
   }
   addIngredient() {

@@ -4,9 +4,7 @@
   margin-right: auto;
   text-align: center;
 }
-.mat-form-field {
-  width: 90%;
-}
+
 .mat-form-field.centered {
   display: block;
   margin-left: auto;
