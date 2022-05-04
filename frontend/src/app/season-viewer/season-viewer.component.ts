@@ -28,6 +28,6 @@ export class SeasonViewerComponent implements OnInit {
   inSeason = (number) => (this.season.indexOf(number) === -1 ? false : true);
   cuurentlyInSeaseon = () =>
     this.inSeason(new Date().getMonth() + 1)
-      ? 'grade in Saison'
-      : 'grade nicht in Saison';
+      ? 'gerade in Saison'
+      : 'gerade nicht in Saison';
 }
