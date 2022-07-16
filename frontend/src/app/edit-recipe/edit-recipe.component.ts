@@ -3,10 +3,8 @@ import { ApiService } from '../services/api.service';
 import { Recipe, Ingredient, Heading } from '../types';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
-import { HttpEvent, HttpEventType } from '@angular/common/http';
 import { Subject } from 'rxjs';
 
-import { ImageCroppedEvent } from 'ngx-image-cropper';
 @Component({
   selector: 'app-edit-recipe',
   templateUrl: './edit-recipe.component.html',
@@ -30,7 +28,6 @@ export class EditRecipeComponent implements OnInit {
   ];
   selectedTags = [];
   progress: number = 0;
-  pasteInstructionString = '';
   initialySelectedTags = [];
 
   constructor(
@@ -133,16 +130,25 @@ export class EditRecipeComponent implements OnInit {
     this.eventUplad.next();
   }
 
-  eventPasteRecipe: Subject<void> = new Subject<void>();
-  showPasteRecipeModal() {
-    this.eventPasteRecipe.next();
-  }
-
   getInstructionId(index: number, employee: any) {
     return index;
   }
 
   tagsCahnged(newTags) {
     this.selectedTags = newTags;
+  }
+  pasteIgredients() {
+    navigator.clipboard.readText().then((clipText) => {
+      const lines = clipText.split('\n');
+      lines.forEach((line) =>
+        this.recipe.ingredients.push(new Ingredient(line))
+      );
+    });
+  }
+  pasteInstructions() {
+    navigator.clipboard.readText().then((clipText) => {
+      const lines = clipText.split('\n');
+      lines.forEach((line) => this.recipe.instructions.push(line));
+    });
   }
 }

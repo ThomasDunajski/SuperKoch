@@ -44,7 +44,6 @@ import { EditCollectionComponent } from './edit-collection/edit-collection.compo
 import { GalleryComponent } from './gallery/gallery.component';
 import { ModalComponent } from './modal/modal.component';
 import { ModalImageUploadComponent } from './modal-image-upload/modal-image-upload.component';
-import { ModalPasteRecipeComponent } from './modal-paste-recipe/modal-paste-recipe.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { CardComponent } from './card/card.component';
 import { RecipePrewiewTileComponent } from './recipe-prewiew-tile/recipe-prewiew-tile.component';
@@ -71,7 +70,6 @@ import { TagSelectionComponent } from './tag-selection/tag-selection.component';
     GalleryComponent,
     ModalComponent,
     ModalImageUploadComponent,
-    ModalPasteRecipeComponent,
     NavbarComponent,
     CardComponent,
     RecipePrewiewTileComponent,

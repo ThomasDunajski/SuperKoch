@@ -106,6 +106,9 @@
     <button mat-button (click)="addIngredient()" class="green">
       <mat-icon>add_circle_outline</mat-icon>
     </button>
+    <button mat-button (click)="pasteIgredients()" class="green">
+      <mat-icon>content_paste</mat-icon>
+    </button>
   </p>
   <h3>Anleitung</h3>
   <p
@@ -136,7 +139,7 @@
     <button mat-button (click)="addInstruction()" class="green">
       <mat-icon>add_circle_outline</mat-icon>
     </button>
-    <button mat-button (click)="showPasteRecipeModal()" class="green">
+    <button mat-button (click)="pasteInstructions()" class="green">
       <mat-icon>content_paste</mat-icon>
     </button>
   </p>
@@ -210,8 +213,3 @@
   [events]="eventUplad.asObservable()"
 >
 </app-modal-image-upload>
-<app-modal-paste-recipe
-  [recipe]="recipe"
-  [events]="eventPasteRecipe.asObservable()"
->
-</app-modal-paste-recipe>

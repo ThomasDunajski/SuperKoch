@@ -48,10 +48,10 @@ export class Ingredient {
   name: string;
   quantity: number;
   unit: string;
-  constructor() {
-    this.name = '';
-    this.quantity = null;
-    this.unit = '';
+  constructor(name?: string, quantity?: number, unit?: string) {
+    this.name = name || '';
+    this.quantity = quantity || null;
+    this.unit = unit || '';
   }
 }
 
