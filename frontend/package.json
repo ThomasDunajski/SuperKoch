@@ -5,6 +5,7 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build --prod",
+    "deploy": "rm ../backend/public/* && cp dist/super-koch/* ../backend/public",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
