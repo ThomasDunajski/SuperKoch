@@ -189,7 +189,7 @@
   ></app-tag-selection>
 
   <h3>Bilder</h3>
-  <span
+  <ul
     *ngFor="let image of recipe.images; let i = index"
     class="image-comtainer"
   >
@@ -197,7 +197,15 @@
     <mat-icon class="red" (click)="deleteImage(image, i)"
       >remove_circle_outline</mat-icon
     >
-  </span>
+    <mat-icon *ngIf="i !== 0" (click)="moveImage('up', i)"
+      >arrow_circle_up</mat-icon
+    >
+    <mat-icon
+      *ngIf="i !== recipe?.images?.length - 1"
+      (click)="moveImage('down', i)"
+      >arrow_circle_down</mat-icon
+    >
+  </ul>
   <button mat-flat-button color="primary" (click)="showUploadModal()">
     Bild hinzufügen
   </button>

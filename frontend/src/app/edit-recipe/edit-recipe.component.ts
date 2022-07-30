@@ -138,7 +138,7 @@ export class EditRecipeComponent implements OnInit {
     this.selectedTags = newTags;
   }
   pasteIgredients() {
-    navigator.clipboard.readText().then((clipText) => {
+    navigator.clipboard?.readText().then((clipText) => {
       const lines = clipText.split('\n');
       lines.forEach((line) =>
         this.recipe.ingredients.push(new Ingredient(line))
@@ -146,9 +146,21 @@ export class EditRecipeComponent implements OnInit {
     });
   }
   pasteInstructions() {
-    navigator.clipboard.readText().then((clipText) => {
+    navigator.clipboard?.readText().then((clipText) => {
       const lines = clipText.split('\n');
       lines.forEach((line) => this.recipe.instructions.push(line));
     });
+  }
+
+  moveImage(direction: 'up' | 'down', index: number) {
+    const targetIndex = direction === 'up' ? index - 1 : index + 1;
+    if (targetIndex < 0 || targetIndex > this.recipe.images.length - 1) {
+      throw new Error(
+        `move image error: incorect index:${index} with direction:${direction}`
+      );
+    }
+    const swap = this.recipe.images[index];
+    this.recipe.images[index] = this.recipe.images[targetIndex];
+    this.recipe.images[targetIndex] = swap;
   }
 }
