@@ -19,6 +19,7 @@ save = async (str) => {
 };
 
 remove = async (str) => {
+  if (!str) return;
   const fullText = str.trim();
   var connection = await dbService.getDB();
   var db = connection.db('rezeptekiste');
@@ -56,4 +57,4 @@ find = async (str) => {
     connection.close();
   }
 };
-module.exports = { find: find, save: save, remove: remove };
+module.exports = { find, save, remove };

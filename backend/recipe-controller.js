@@ -29,6 +29,8 @@ async function updateRecipe(recipe, req, res) {
   delete recipe._id;
   var connection = await dbService.getDB();
   var db = connection.db('rezeptekiste');
+  const old = await await recipeService.getRecipe(recipe.number);
+  autoCompleteService.remove(old.name);
   db.collection('recipes').update(
     { number: recipe.number },
     recipe,
@@ -36,6 +38,7 @@ async function updateRecipe(recipe, req, res) {
       if (err) {
         console.log(err);
       }
+      autoCompleteService.save(recipe.name);
       res.json({ message: 'success', url: '/recipe/' + recipe.number });
       connection.close();
     }
