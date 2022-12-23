@@ -20,6 +20,7 @@ export class RecepieComponent implements OnInit {
   ngOnInit(): void {
     if (this.recipeNumber) this.getRecepie(this.recipeNumber);
     else this.getRecepie(this.actRoute.snapshot.params.id);
+    this.getWakeLcok();
   }
 
   recepie: Recipe;
@@ -46,5 +47,10 @@ export class RecepieComponent implements OnInit {
   };
   goToEdit() {
     this.router.navigate(['/recipe/edit/' + this.actRoute.snapshot.params.id]);
+  }
+
+  async getWakeLcok() {
+    //@ts-ignore
+    const wakeLock = await navigator.wakeLock.request('screen');
   }
 }

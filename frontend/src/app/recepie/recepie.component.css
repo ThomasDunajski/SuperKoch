@@ -1,7 +1,6 @@
 p {
   word-wrap: break-word;
 }
-
 a {
   text-decoration: none;
 }
@@ -50,7 +49,6 @@ app-season-viewer {
 #edit-button {
   float: right;
   margin-right: 6%;
-  bottom: calc(var(--navbar-size) + 5px);
 }
 #image-gallery {
   max-width: 60%;
@@ -64,5 +62,8 @@ app-season-viewer {
   }
   .recepie {
     padding-bottom: var(--navbar-size);
+  }
+  #edit-button {
+    bottom: calc(var(--navbar-size) + 5px);
   }
 }
